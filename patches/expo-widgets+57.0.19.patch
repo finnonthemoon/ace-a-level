@@ -1,0 +1,125 @@
+diff --git a/node_modules/expo-widgets/build/ExpoWidgets.d.ts b/node_modules/expo-widgets/build/ExpoWidgets.d.ts
+index 7f139d2..0fc5187 100644
+--- a/node_modules/expo-widgets/build/ExpoWidgets.d.ts
++++ b/node_modules/expo-widgets/build/ExpoWidgets.d.ts
+@@ -3,6 +3,7 @@ import type { ExpoWidgetsEvents, NativeLiveActivity, NativeLiveActivityFactory,
+ declare const ExpoWidgetsModule: {
+     widgetsDirectory: string;
+     reloadAllWidgets(): void;
++    getInstalledWidgetKinds(): Promise<string[]>;
+     Widget: typeof NativeWidgetObject;
+     LiveActivityFactory: typeof NativeLiveActivityFactory;
+     LiveActivity: typeof NativeLiveActivity;
+diff --git a/node_modules/expo-widgets/build/ExpoWidgets.ios.d.ts b/node_modules/expo-widgets/build/ExpoWidgets.ios.d.ts
+index 7df2b6c..8232739 100644
+--- a/node_modules/expo-widgets/build/ExpoWidgets.ios.d.ts
++++ b/node_modules/expo-widgets/build/ExpoWidgets.ios.d.ts
+@@ -3,6 +3,7 @@ import type { ExpoWidgetsEvents, NativeLiveActivity, NativeLiveActivityFactory,
+ declare class ExpoWidgetsModule extends NativeModule<ExpoWidgetsEvents> {
+     widgetsDirectory: string;
+     reloadAllWidgets(): void;
++    getInstalledWidgetKinds(): Promise<string[]>;
+     readonly Widget: typeof NativeWidgetObject;
+     readonly LiveActivityFactory: typeof NativeLiveActivityFactory;
+     readonly LiveActivity: typeof NativeLiveActivity;
+diff --git a/node_modules/expo-widgets/build/ExpoWidgets.js b/node_modules/expo-widgets/build/ExpoWidgets.js
+index aabbb41..1f63cf8 100644
+--- a/node_modules/expo-widgets/build/ExpoWidgets.js
++++ b/node_modules/expo-widgets/build/ExpoWidgets.js
+@@ -34,6 +34,9 @@ class LiveActivityFactoryStub {
+ const ExpoWidgetsModule = {
+     widgetsDirectory: '',
+     reloadAllWidgets() { },
++    async getInstalledWidgetKinds() {
++        return [];
++    },
+     Widget: WidgetStub,
+     LiveActivityFactory: LiveActivityFactoryStub,
+     LiveActivity: LiveActivityStub,
+diff --git a/node_modules/expo-widgets/build/Widgets.d.ts b/node_modules/expo-widgets/build/Widgets.d.ts
+index d4b5aac..4eade02 100644
+--- a/node_modules/expo-widgets/build/Widgets.d.ts
++++ b/node_modules/expo-widgets/build/Widgets.d.ts
+@@ -122,4 +122,6 @@ export declare function addPushToStartTokenListener(listener: ExpoWidgetsEvents[
+  * The contents of this directory are accessible by both the main app and widgets.
+  */
+ export declare const widgetsDirectory: string;
++/** Returns the widget kinds from this app that are currently on a Home or Lock Screen. */
++export declare function getInstalledWidgetKinds(): Promise<string[]>;
+ //# sourceMappingURL=Widgets.d.ts.map
+diff --git a/node_modules/expo-widgets/build/Widgets.js b/node_modules/expo-widgets/build/Widgets.js
+index 9099a1b..099f522 100644
+--- a/node_modules/expo-widgets/build/Widgets.js
++++ b/node_modules/expo-widgets/build/Widgets.js
+@@ -168,4 +168,8 @@ export function addPushToStartTokenListener(listener) {
+  * The contents of this directory are accessible by both the main app and widgets.
+  */
+ export const widgetsDirectory = ExpoWidgetsModule.widgetsDirectory;
++/** Returns the widget kinds from this app that are currently on a Home or Lock Screen. */
++export function getInstalledWidgetKinds() {
++    return ExpoWidgetsModule.getInstalledWidgetKinds();
++}
+ //# sourceMappingURL=Widgets.js.map
+diff --git a/node_modules/expo-widgets/ios/WidgetsModule.swift b/node_modules/expo-widgets/ios/WidgetsModule.swift
+index b1b4295..c542121 100644
+--- a/node_modules/expo-widgets/ios/WidgetsModule.swift
++++ b/node_modules/expo-widgets/ios/WidgetsModule.swift
+@@ -63,6 +63,19 @@ public final class WidgetsModule: Module {
+       WidgetCenter.shared.reloadAllTimelines()
+     }
+ 
++    AsyncFunction("getInstalledWidgetKinds") { () async throws -> [String] in
++      try await withCheckedThrowingContinuation { continuation in
++        WidgetCenter.shared.getCurrentConfigurations { result in
++          switch result {
++          case .success(let configurations):
++            continuation.resume(returning: configurations.map(\.kind))
++          case .failure(let error):
++            continuation.resume(throwing: error)
++          }
++        }
++      }
++    }
++
+     Class("Widget", WidgetObject.self) {
+       Constructor { (name: String, layout: String) in
+         WidgetObject(name: name, layout: layout)
+diff --git a/node_modules/expo-widgets/src/ExpoWidgets.ios.ts b/node_modules/expo-widgets/src/ExpoWidgets.ios.ts
+index 1383d9c..1ddbc98 100644
+--- a/node_modules/expo-widgets/src/ExpoWidgets.ios.ts
++++ b/node_modules/expo-widgets/src/ExpoWidgets.ios.ts
+@@ -10,6 +10,7 @@ import type {
+ declare class ExpoWidgetsModule extends NativeModule<ExpoWidgetsEvents> {
+   widgetsDirectory: string;
+   reloadAllWidgets(): void;
++  getInstalledWidgetKinds(): Promise<string[]>;
+   readonly Widget: typeof NativeWidgetObject;
+   readonly LiveActivityFactory: typeof NativeLiveActivityFactory;
+   readonly LiveActivity: typeof NativeLiveActivity;
+diff --git a/node_modules/expo-widgets/src/ExpoWidgets.ts b/node_modules/expo-widgets/src/ExpoWidgets.ts
+index b118f91..bf8cad8 100644
+--- a/node_modules/expo-widgets/src/ExpoWidgets.ts
++++ b/node_modules/expo-widgets/src/ExpoWidgets.ts
+@@ -53,6 +53,9 @@ class LiveActivityFactoryStub {
+ const ExpoWidgetsModule = {
+   widgetsDirectory: '',
+   reloadAllWidgets(): void {},
++  async getInstalledWidgetKinds(): Promise<string[]> {
++    return [];
++  },
+   Widget: WidgetStub as typeof NativeWidgetObject,
+   LiveActivityFactory: LiveActivityFactoryStub as typeof NativeLiveActivityFactory,
+   LiveActivity: LiveActivityStub as typeof NativeLiveActivity,
+diff --git a/node_modules/expo-widgets/src/Widgets.ts b/node_modules/expo-widgets/src/Widgets.ts
+index 51ea140..51c65f2 100644
+--- a/node_modules/expo-widgets/src/Widgets.ts
++++ b/node_modules/expo-widgets/src/Widgets.ts
+@@ -242,3 +242,8 @@ export function addPushToStartTokenListener(
+  * The contents of this directory are accessible by both the main app and widgets.
+  */
+ export const widgetsDirectory = ExpoWidgetsModule.widgetsDirectory;
++
++/** Returns the widget kinds from this app that are currently on a Home or Lock Screen. */
++export function getInstalledWidgetKinds(): Promise<string[]> {
++  return ExpoWidgetsModule.getInstalledWidgetKinds();
++}

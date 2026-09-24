@@ -1,0 +1,114 @@
+diff --git a/node_modules/react-native-mathjax-html-to-svg/index.d.ts b/node_modules/react-native-mathjax-html-to-svg/index.d.ts
+index 74dc18f..c7134b8 100644
+--- a/node_modules/react-native-mathjax-html-to-svg/index.d.ts
++++ b/node_modules/react-native-mathjax-html-to-svg/index.d.ts
+@@ -6,6 +6,7 @@ declare module 'react-native-mathjax-html-to-svg' {
+         fontSize?: number,
+         color?: string,
+         fontCache?: boolean,
++        maxWidth?: number,
+         style?: ViewStyle,
+         textStyle?: TextStyle,
+         children?: ReactNode,
+diff --git a/node_modules/react-native-mathjax-html-to-svg/index.js b/node_modules/react-native-mathjax-html-to-svg/index.js
+index ba615f7..8a80054 100644
+--- a/node_modules/react-native-mathjax-html-to-svg/index.js
++++ b/node_modules/react-native-mathjax-html-to-svg/index.js
+@@ -70,25 +70,49 @@ const applyColor = (svgString, fillColor) => {
+     return svgString.replace(/currentColor/gim, `${fillColor}`);
+ };
+
+-const GenerateSvgComponent = ({ item, fontSize, color }) => {
++const GenerateSvgComponent = ({ item, fontSize, color, maxWidth }) => {
+     let svgText = adaptor.innerHTML(item);
+
+     const [width, height] = getScale(svgText);
++    const scaledWidth = width * fontSize;
++    const scaledHeight = height * fontSize;
++    const availableWidth = Number.isFinite(maxWidth) && maxWidth > 0
++        ? maxWidth
++        : scaledWidth;
++    const fitScale = scaledWidth > availableWidth
++        ? availableWidth / scaledWidth
++        : 1;
++    const renderedWidth = scaledWidth * fitScale;
++    const renderedHeight = scaledHeight * fitScale;
++    const verticalPadding = Math.max(2, fontSize * fitScale * 0.2);
+
+     svgText = svgText.replace(/font-family=\"([^\"]*)\"/gmi, '');
+
+-    svgText = applyScale(svgText, [width * fontSize, height * fontSize]);
++    svgText = applyScale(svgText, [renderedWidth, renderedHeight]);
+
+     svgText = applyColor(svgText, color);
+
+     return (
+-        <Text>
+-            <SvgFromXml xml={svgText} />
+-        </Text>
++        <View
++            style={{
++                width: renderedWidth,
++                height: renderedHeight + (verticalPadding * 2),
++                paddingVertical: verticalPadding,
++                flexShrink: 0,
++                justifyContent: 'center',
++                overflow: 'visible',
++            }}
++        >
++            <SvgFromXml
++                xml={svgText}
++                width={renderedWidth}
++                height={renderedHeight}
++            />
++        </View>
+     );
+ };
+
+-const GenerateTextComponent = ({ fontSize, color, index, item, parentStyle = null, textStyle }) => {
++const GenerateTextComponent = ({ fontSize, color, index, item, maxWidth, parentStyle = null, textStyle }) => {
+     let rnStyle = null;
+     let text = null;
+
+@@ -117,12 +141,12 @@ const GenerateTextComponent = ({ fontSize, color, index, item, parentStyle = nul
+                     <Text key={`sub-${index}`} style={[{ fontSize: (fontSize * 2), color, ...rnStyle }, textStyle]}>{text}</Text>
+                     : (
+                         item?.kind === 'mjx-container' ? (
+-                            <GenerateSvgComponent key={`sub-${index}`} item={item} fontSize={fontSize} color={color} />
++                            <GenerateSvgComponent key={`sub-${index}`} item={item} fontSize={fontSize} color={color} maxWidth={maxWidth} />
+                         ) : (
+                             item.children?.length ?
+                                 (
+                                     item.children.map((subItem, subIndex) => (
+-                                        <GenerateTextComponent key={`sub-${index}-${subIndex}`} color={color} fontSize={fontSize} item={subItem} index={subIndex} parentStyle={rnStyle} />
++                                        <GenerateTextComponent key={`sub-${index}-${subIndex}`} color={color} fontSize={fontSize} item={subItem} index={subIndex} maxWidth={maxWidth} parentStyle={rnStyle} />
+                                     ))
+                                 )
+                                 : null
+@@ -133,7 +157,7 @@ const GenerateTextComponent = ({ fontSize, color, index, item, parentStyle = nul
+     );
+ };
+
+-const ConvertToComponent = ({ texString = '', fontSize = 12, fontCache = false, color, textStyle }) => {
++const ConvertToComponent = ({ texString = '', fontSize = 12, fontCache = false, color, maxWidth, textStyle }) => {
+     if (!texString) {
+         return '';
+     }
+@@ -167,7 +191,7 @@ const ConvertToComponent = ({ texString = '', fontSize = 12, fontCache = false,
+         <Fragment>
+             {
+                 nodes?.map((item, index) => (
+-                    <GenerateTextComponent key={index} textStyle={textStyle} item={item} index={index} fontSize={fontSize} color={color} />
++                    <GenerateTextComponent key={index} textStyle={textStyle} item={item} index={index} fontSize={fontSize} color={color} maxWidth={maxWidth} />
+                 ))
+             }
+         </Fragment>
+@@ -185,7 +209,7 @@ export const MathJaxSvg = memo((props) => {
+         <View style={{ flexDirection: 'row', flexWrap: 'wrap', flexShrink: 1, alignItems: 'center', ...style }}>
+             {
+                 textext ? (
+-                    <ConvertToComponent textStyle={props.textStyle} fontSize={fontSize} color={color} texString={textext} fontCache={fontCache} />
++                    <ConvertToComponent textStyle={props.textStyle} fontSize={fontSize} color={color} maxWidth={props.maxWidth} texString={textext} fontCache={fontCache} />
+                 ) : null
+             }
+         </View>

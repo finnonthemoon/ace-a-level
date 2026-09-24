@@ -1,0 +1,66 @@
+{
+  "expo": {
+    "name": "Ace A Level",
+    "slug": "ace-a-level",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "acealevel",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "icon": "./assets/images/icon.png",
+      "bundleIdentifier": "com.aceitstudios.acealevel",
+      "usesAppleSignIn": true,
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#FF6817",
+        "foregroundImage": "./assets/images/icon.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.aceitstudios.acealevel"
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/icon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#FFF8EE",
+          "image": "./assets/images/icon.png",
+          "imageWidth": 140
+        }
+      ],
+      "expo-font",
+      "expo-apple-authentication",
+      [
+        "expo-web-browser",
+        {
+          "experimentalLauncherActivity": false
+        }
+      ],
+      "expo-image",
+      "expo-status-bar",
+      "expo-secure-store",
+      [
+        "expo-notifications",
+        {
+          "defaultChannel": "default"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "extra": {
+      "router": {}
+    }
+  }
+}
