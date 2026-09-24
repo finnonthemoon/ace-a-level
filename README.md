@@ -6,14 +6,17 @@ Ace A Level is the multi-subject A-level study app from Ace It Studios. This rep
 
 - Expo SDK 57 and Expo Router
 - Home, Learn, Practice, and Profile tabs
-- First-launch subject selection
+- First-launch selection for a 3–5-subject A-level plan
+- Blue ACE visual system with active-subject focus and an all-course dashboard
 - Mathematics, Physics, Biology, Chemistry, Computer Science, and Economics registry
 - Subject-aware topic outlines
 - A-level-specific AsyncStorage namespace
+- Email account creation, sign-in and password recovery
+- Signed-in course-plan synchronisation using dedicated `a_level_*` tables
 - Configuration points for the existing Supabase and RevenueCat projects
 - A non-destructive Supabase migration using dedicated `a_level_*` tables
 
-Lesson content, practice banks, authentication UI, cloud synchronisation, purchases, and production branding are the next implementation phases.
+Social sign-in, account deletion, lesson content, practice banks, purchases, and production branding remain future implementation phases.
 
 ## Run locally
 

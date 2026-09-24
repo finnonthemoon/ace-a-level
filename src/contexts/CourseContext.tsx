@@ -11,16 +11,23 @@ import {
 
 import { storageKey } from "@/product/config";
 import { SUBJECTS, type SubjectId } from "@/product/subjects";
+import { useAccount } from "@/contexts/AccountContext";
+import {
+  fetchRemoteCourseSettings,
+  saveRemoteCourseSettings,
+  type SyncedCourseSettings,
+  type TargetGrade,
+} from "@/services/course-sync";
 
 const SETTINGS_KEY = storageKey("course/settings/v1");
 
 export interface SubjectSelection {
   subjectId: SubjectId;
   specificationId: string | null;
-  targetGrade: "A*" | "A" | "B" | "C" | "D" | "E" | null;
+  targetGrade: TargetGrade | null;
 }
 
-interface CourseSettings {
+interface CourseSettings extends SyncedCourseSettings {
   activeSubjectId: SubjectId | null;
   examYear: number | null;
   selections: SubjectSelection[];
@@ -28,6 +35,8 @@ interface CourseSettings {
 
 interface CourseContextValue extends CourseSettings {
   isHydrated: boolean;
+  isSyncing: boolean;
+  syncError: string | null;
   setActiveSubject: (subjectId: SubjectId) => Promise<void>;
   saveSelections: (selections: SubjectSelection[], examYear: number | null) => Promise<void>;
 }
@@ -70,8 +79,11 @@ function normaliseSettings(value: unknown): CourseSettings {
 }
 
 export function CourseProvider({ children }: PropsWithChildren) {
+  const { isLoading: isAccountLoading, session } = useAccount();
   const [settings, setSettings] = useState<CourseSettings>(EMPTY_SETTINGS);
   const [isHydrated, setIsHydrated] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [syncError, setSyncError] = useState<string | null>(null);
 
   useEffect(() => {
     AsyncStorage.getItem(SETTINGS_KEY)
@@ -82,10 +94,58 @@ export function CourseProvider({ children }: PropsWithChildren) {
       .finally(() => setIsHydrated(true));
   }, []);
 
+  useEffect(() => {
+    if (!isHydrated || isAccountLoading || !session) return;
+    let active = true;
+
+    void Promise.resolve()
+      .then(() => {
+        if (!active) return null;
+        setIsSyncing(true);
+        setSyncError(null);
+        return fetchRemoteCourseSettings(session.user.id);
+      })
+      .then(async (remote) => {
+        if (!active) return;
+        if (remote) {
+          const next = normaliseSettings(remote);
+          setSettings(next);
+          await AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(next));
+        } else {
+          await saveRemoteCourseSettings(session.user.id, settings);
+        }
+      })
+      .catch((error: unknown) => {
+        if (active) {
+          setSyncError(error instanceof Error ? error.message : "Course sync failed.");
+        }
+      })
+      .finally(() => {
+        if (active) setIsSyncing(false);
+      });
+
+    return () => {
+      active = false;
+    };
+    // Sync once for each authenticated user. Local edits are uploaded by persist.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAccountLoading, isHydrated, session?.user.id]);
+
   const persist = useCallback(async (next: CourseSettings) => {
     setSettings(next);
     await AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(next));
-  }, []);
+    if (session) {
+      setIsSyncing(true);
+      setSyncError(null);
+      try {
+        await saveRemoteCourseSettings(session.user.id, next);
+      } catch (error) {
+        setSyncError(error instanceof Error ? error.message : "Course sync failed.");
+      } finally {
+        setIsSyncing(false);
+      }
+    }
+  }, [session]);
 
   const setActiveSubject = useCallback(
     async (subjectId: SubjectId) => {
@@ -108,8 +168,8 @@ export function CourseProvider({ children }: PropsWithChildren) {
   );
 
   const value = useMemo(
-    () => ({ ...settings, isHydrated, saveSelections, setActiveSubject }),
-    [isHydrated, saveSelections, setActiveSubject, settings],
+    () => ({ ...settings, isHydrated, isSyncing, syncError, saveSelections, setActiveSubject }),
+    [isHydrated, isSyncing, saveSelections, setActiveSubject, settings, syncError],
   );
 
   return <CourseContext.Provider value={value}>{children}</CourseContext.Provider>;

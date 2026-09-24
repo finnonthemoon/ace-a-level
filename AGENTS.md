@@ -7,3 +7,9 @@ Read the exact versioned documentation at https://docs.expo.dev/versions/v57.0.0
 - Keep qualification, subject, specification, topic, lesson, and assessment identities explicit.
 - Do not introduce TMUA content or `@ace-tmua` storage keys.
 - Shared Supabase and RevenueCat projects must use A-level-specific tables, products, and entitlements unless a deliberate all-access product is being implemented.
+
+# Project references
+
+- For product direction, architecture decisions, current state, or roadmap work, consult `docs/PROJECT_CONTEXT.md`.
+- For Supabase, authentication, RevenueCat, EAS, or store setup, consult `docs/SHARED_SERVICES_SETUP.md`.
+- Do not assume the ACE TMUA app is being replaced. ACE A Level is a separate store app that reuses selected engineering patterns and shared services.

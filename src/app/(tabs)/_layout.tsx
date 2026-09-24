@@ -10,8 +10,9 @@ export default function TabLayout() {
         headerShown: false,
         tabBarActiveTintColor: Colors.primary,
         tabBarInactiveTintColor: Colors.muted,
-        tabBarStyle: { backgroundColor: Colors.surface, borderTopColor: Colors.line },
-        tabBarLabelStyle: { fontSize: 11, fontWeight: "700" },
+        tabBarStyle: { backgroundColor: Colors.surface, borderTopColor: Colors.line, height: 74, paddingTop: 7, paddingBottom: 9 },
+        tabBarLabelStyle: { fontSize: 10, fontWeight: "800" },
+        tabBarItemStyle: { borderRadius: 16 },
       }}
     >
       <Tabs.Screen name="index" options={{ title: "Home", tabBarIcon: ({ color, size }) => <Ionicons name="home" color={color} size={size} /> }} />

@@ -3,6 +3,7 @@ import { StatusBar } from "expo-status-bar";
 
 import { Colors } from "@/constants/theme";
 import { CourseProvider } from "@/contexts/CourseContext";
+import { AccountProvider } from "@/contexts/AccountContext";
 
 const aceTheme = {
   ...DefaultTheme,
@@ -19,14 +20,18 @@ const aceTheme = {
 
 export default function RootLayout() {
   return (
-    <CourseProvider>
-      <ThemeProvider value={aceTheme}>
-        <StatusBar style="dark" />
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="onboarding" options={{ animation: "fade", gestureEnabled: false }} />
-        </Stack>
-      </ThemeProvider>
-    </CourseProvider>
+    <AccountProvider>
+      <CourseProvider>
+        <ThemeProvider value={aceTheme}>
+          <StatusBar style="dark" />
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="onboarding" options={{ animation: "fade", gestureEnabled: false }} />
+            <Stack.Screen name="account" options={{ presentation: "modal" }} />
+            <Stack.Screen name="auth/callback" options={{ animation: "fade" }} />
+          </Stack>
+        </ThemeProvider>
+      </CourseProvider>
+    </AccountProvider>
   );
 }

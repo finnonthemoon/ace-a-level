@@ -8,6 +8,8 @@ import { storageKey } from "@/product/config";
 const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL?.trim();
 const supabasePublishableKey = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY?.trim();
 
+export const isSupabaseConfigured = Boolean(supabaseUrl && supabasePublishableKey);
+
 export const supabase =
   supabaseUrl && supabasePublishableKey
     ? createClient(supabaseUrl, supabasePublishableKey, {
@@ -20,3 +22,10 @@ export const supabase =
         },
       })
     : null;
+
+export function requireSupabase() {
+  if (!supabase) {
+    throw new Error("Add the ACE Supabase URL and publishable key before using accounts.");
+  }
+  return supabase;
+}
