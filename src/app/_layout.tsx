@@ -5,6 +5,7 @@ import { Colors } from "@/constants/theme";
 import { CourseProvider } from "@/contexts/CourseContext";
 import { AccountProvider } from "@/contexts/AccountContext";
 import { MascotProvider } from "@/contexts/MascotContext";
+import { TopicProgressProvider } from "@/contexts/TopicProgressContext";
 
 const aceTheme = {
   ...DefaultTheme,
@@ -23,17 +24,19 @@ export default function RootLayout() {
   return (
     <AccountProvider>
       <CourseProvider>
-        <MascotProvider>
-        <ThemeProvider value={aceTheme}>
-          <StatusBar style="dark" />
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(tabs)" />
-            <Stack.Screen name="onboarding" options={{ animation: "fade", gestureEnabled: false }} />
-            <Stack.Screen name="account" options={{ presentation: "modal" }} />
-            <Stack.Screen name="auth/callback" options={{ animation: "fade" }} />
-          </Stack>
-        </ThemeProvider>
-        </MascotProvider>
+        <TopicProgressProvider>
+          <MascotProvider>
+            <ThemeProvider value={aceTheme}>
+              <StatusBar style="dark" />
+              <Stack screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="(tabs)" />
+                <Stack.Screen name="onboarding" options={{ animation: "fade", gestureEnabled: false }} />
+                <Stack.Screen name="account" options={{ presentation: "modal" }} />
+                <Stack.Screen name="auth/callback" options={{ animation: "fade" }} />
+              </Stack>
+            </ThemeProvider>
+          </MascotProvider>
+        </TopicProgressProvider>
       </CourseProvider>
     </AccountProvider>
   );
