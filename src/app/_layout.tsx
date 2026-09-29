@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { Colors } from "@/constants/theme";
 import { CourseProvider } from "@/contexts/CourseContext";
 import { AccountProvider } from "@/contexts/AccountContext";
+import { MascotProvider } from "@/contexts/MascotContext";
 
 const aceTheme = {
   ...DefaultTheme,
@@ -22,6 +23,7 @@ export default function RootLayout() {
   return (
     <AccountProvider>
       <CourseProvider>
+        <MascotProvider>
         <ThemeProvider value={aceTheme}>
           <StatusBar style="dark" />
           <Stack screenOptions={{ headerShown: false }}>
@@ -31,6 +33,7 @@ export default function RootLayout() {
             <Stack.Screen name="auth/callback" options={{ animation: "fade" }} />
           </Stack>
         </ThemeProvider>
+        </MascotProvider>
       </CourseProvider>
     </AccountProvider>
   );

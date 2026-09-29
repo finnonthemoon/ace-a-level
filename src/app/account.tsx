@@ -80,11 +80,11 @@ export default function AccountScreen() {
 
 const styles = StyleSheet.create({
   intro: { color: Colors.muted, fontSize: 14, lineHeight: 21 },
-  card: { gap: 13, padding: 18, borderRadius: 22, borderWidth: 1, borderColor: Colors.line, backgroundColor: Colors.surface },
-  input: { minHeight: 50, paddingHorizontal: 14, borderRadius: 14, borderWidth: 1, borderColor: Colors.line, color: Colors.ink, backgroundColor: Colors.cream },
+  card: { gap: 14, padding: 20, borderRadius: 17, borderWidth: 1, borderColor: Colors.line, backgroundColor: Colors.surface },
+  input: { minHeight: 52, paddingHorizontal: 14, borderRadius: 11, borderWidth: 1, borderColor: Colors.line, color: Colors.ink, backgroundColor: Colors.surface, fontSize: 15 },
   help: { color: Colors.muted, fontSize: 12, lineHeight: 18 },
   error: { color: Colors.danger, fontSize: 12 },
-  email: { color: Colors.ink, fontSize: 17, fontWeight: "900" },
-  button: { minHeight: 52, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, padding: 14, borderRadius: 15, backgroundColor: Colors.primary },
-  buttonText: { color: "#FFFFFF", fontSize: 13, fontWeight: "900" },
+  email: { color: Colors.ink, fontSize: 17, fontWeight: "700" },
+  button: { minHeight: 52, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, padding: 14, borderRadius: 11, backgroundColor: Colors.primary },
+  buttonText: { color: "#FFFFFF", fontSize: 14, fontWeight: "700" },
 });

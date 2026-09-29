@@ -1,15 +1,15 @@
 import { Platform } from "react-native";
 
 export const Colors = {
-  primary: "#2563EB",
-  primaryDark: "#1746A2",
-  primaryDeep: "#142B5F",
-  primarySoft: "#E8F0FF",
-  cream: "#F6F8FC",
+  primary: "#2556B7",
+  primaryDark: "#174489",
+  primaryDeep: "#172B53",
+  primarySoft: "#EAF0FB",
+  cream: "#F7F8F6",
   surface: "#FFFFFF",
-  ink: "#17233C",
-  muted: "#667085",
-  line: "#DEE5F0",
+  ink: "#1B2740",
+  muted: "#626D7D",
+  line: "#E0E5E9",
   success: "#27835B",
   successSoft: "#E9F7EF",
   warning: "#B66A12",

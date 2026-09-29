@@ -37,10 +37,10 @@ export function Screen({
 
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: Colors.cream },
-  content: { width: "100%", maxWidth: MaxContentWidth, alignSelf: "center", paddingHorizontal: 20, paddingTop: 12, paddingBottom: 52, gap: 20 },
+  content: { width: "100%", maxWidth: MaxContentWidth, alignSelf: "center", paddingHorizontal: 22, paddingTop: 20, paddingBottom: 60, gap: 28 },
   header: { flexDirection: "row", alignItems: "flex-start", justifyContent: "space-between", gap: 16 },
-  heading: { flex: 1, gap: 5 },
-  eyebrow: { color: Colors.primary, fontSize: 10, fontWeight: "900", letterSpacing: 1.7, textTransform: "uppercase" },
-  title: { color: Colors.ink, fontSize: 31, lineHeight: 37, fontWeight: "900", letterSpacing: -0.7 },
-  subtitle: { maxWidth: 610, color: Colors.muted, fontSize: 13, lineHeight: 20 },
+  heading: { flex: 1, gap: 7 },
+  eyebrow: { color: Colors.primary, fontSize: 11, fontWeight: "700", letterSpacing: 1.1, textTransform: "uppercase" },
+  title: { color: Colors.ink, fontSize: 32, lineHeight: 38, fontWeight: "700", letterSpacing: -0.8 },
+  subtitle: { maxWidth: 610, color: Colors.muted, fontSize: 14, lineHeight: 21 },
 });

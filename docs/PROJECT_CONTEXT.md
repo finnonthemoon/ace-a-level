@@ -62,6 +62,7 @@ Implemented:
 - central registry for six subjects and starter topic outlines;
 - Home, Learn, Practice, and Profile tabs;
 - a blue visual system derived from the proven ACE TMUA card, spacing, and hierarchy patterns;
+- a restrained A-level visual refresh and five transparent star mascot PNGs, with a cross-app stage preview in Profile;
 - a multi-subject dashboard and 3–5-subject onboarding model;
 - active-subject switching;
 - local study-plan persistence under an `@ace-a-level/...` namespace;
@@ -82,6 +83,7 @@ Not yet implemented:
 - the practice runner and assessment formats;
 - final A-level branding, icon, legal URLs, or store metadata;
 - ranked mode, friend duels, or competitive leaderboards.
+- study-activity measurement and automatic mascot stage changes (the current stage selector is explicitly a visual preview).
 
 Before implementation work, inspect `README.md` and the relevant source rather than assuming the app has feature parity with ACE TMUA.
 

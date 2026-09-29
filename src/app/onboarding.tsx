@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { Screen } from "@/components/Screen";
+import { StarMascot } from "@/components/StarMascot";
 import { Colors } from "@/constants/theme";
 import { useCourse, type SubjectSelection } from "@/contexts/CourseContext";
 import { SUBJECTS, type SubjectId } from "@/product/subjects";
@@ -61,15 +62,15 @@ export default function OnboardingScreen() {
     <Screen
       eyebrow="BUILD YOUR PLAN"
       title="Choose your A-levels"
-      subtitle="Your dashboard brings every course together while keeping lessons and practice separate for each subject."
+      subtitle="Start with the subjects you study. You can change your plan later."
     >
       <View style={styles.stepCard}>
-        <View style={styles.stepIcon}><Ionicons name="layers-outline" color={Colors.primary} size={22} /></View>
         <View style={styles.stepCopy}>
-          <Text style={styles.stepEyebrow}>STEP 1 OF 2</Text>
+          <Text style={styles.stepEyebrow}>YOUR COURSES</Text>
           <Text style={styles.stepTitle}>Select 3–5 subjects</Text>
-          <Text style={styles.stepBody}>Choose the courses you are taking. You can edit them later.</Text>
+          <Text style={styles.stepBody}>Pick the A-levels on your timetable.</Text>
         </View>
+        <StarMascot size={70} stage="yellow" />
         <View style={[styles.countBadge, selectedIds.length >= 3 && styles.countBadgeReady]}>
           <Text style={[styles.countText, selectedIds.length >= 3 && styles.countTextReady]}>{selectedIds.length}/5</Text>
         </View>
@@ -107,9 +108,9 @@ export default function OnboardingScreen() {
       </View>
 
       <View style={styles.yearCard}>
-        <Text style={styles.yearEyebrow}>STEP 2 OF 2</Text>
+        <Text style={styles.yearEyebrow}>EXAM YEAR</Text>
         <Text style={styles.yearTitle}>When will you sit your exams?</Text>
-        <Text style={styles.yearBody}>We’ll use this to pace work across all of your selected subjects.</Text>
+        <Text style={styles.yearBody}>This helps shape your study plan later.</Text>
         <View style={styles.years}>
           {years.map((year) => (
             <TouchableOpacity
@@ -143,32 +144,31 @@ export default function OnboardingScreen() {
 }
 
 const styles = StyleSheet.create({
-  stepCard: { flexDirection: "row", alignItems: "center", gap: 12, padding: 16, borderRadius: 21, backgroundColor: Colors.primarySoft },
-  stepIcon: { width: 45, height: 45, borderRadius: 15, alignItems: "center", justifyContent: "center", backgroundColor: Colors.surface },
+  stepCard: { flexDirection: "row", alignItems: "center", gap: 4, padding: 17, borderRadius: 18, backgroundColor: Colors.primarySoft },
   stepCopy: { flex: 1, gap: 2 },
-  stepEyebrow: { color: Colors.primary, fontSize: 8, fontWeight: "900", letterSpacing: 1 },
-  stepTitle: { color: Colors.ink, fontSize: 15, fontWeight: "900" },
-  stepBody: { color: Colors.muted, fontSize: 10, lineHeight: 14 },
-  countBadge: { minWidth: 42, alignItems: "center", paddingHorizontal: 8, paddingVertical: 7, borderRadius: 11, backgroundColor: Colors.surface },
+  stepEyebrow: { color: Colors.primary, fontSize: 10, fontWeight: "700", letterSpacing: 0.7 },
+  stepTitle: { color: Colors.ink, fontSize: 17, fontWeight: "700" },
+  stepBody: { color: Colors.muted, fontSize: 12, lineHeight: 17 },
+  countBadge: { minWidth: 38, alignItems: "center", paddingHorizontal: 7, paddingVertical: 7, borderRadius: 9, backgroundColor: Colors.surface },
   countBadgeReady: { backgroundColor: Colors.primary },
-  countText: { color: Colors.muted, fontSize: 11, fontWeight: "900" },
+  countText: { color: Colors.muted, fontSize: 11, fontWeight: "700" },
   countTextReady: { color: "#FFFFFF" },
   grid: { flexDirection: "row", flexWrap: "wrap", gap: 10 },
-  subject: { flexBasis: "47%", flexGrow: 1, minHeight: 132, padding: 15, borderRadius: 22, borderWidth: 1.5, borderColor: Colors.line, backgroundColor: Colors.surface, gap: 11 },
+  subject: { flexBasis: "47%", flexGrow: 1, minHeight: 126, padding: 15, borderRadius: 16, borderWidth: 1, borderColor: Colors.line, backgroundColor: Colors.surface, gap: 11 },
   subjectSelected: { borderColor: Colors.primary, backgroundColor: "#FBFCFF" },
   subjectUnavailable: { opacity: 0.45 },
   subjectIcon: { width: 44, height: 44, borderRadius: 15, alignItems: "center", justifyContent: "center" },
-  subjectTitle: { flex: 1, color: Colors.ink, fontSize: 15, lineHeight: 19, fontWeight: "900" },
-  yearCard: { padding: 18, borderRadius: 22, backgroundColor: Colors.surface, borderWidth: 1, borderColor: Colors.line },
-  yearEyebrow: { color: Colors.primary, fontSize: 8, fontWeight: "900", letterSpacing: 1, marginBottom: 4 },
-  yearTitle: { color: Colors.ink, fontSize: 17, fontWeight: "900" },
+  subjectTitle: { flex: 1, color: Colors.ink, fontSize: 15, lineHeight: 19, fontWeight: "700" },
+  yearCard: { padding: 18, borderRadius: 17, backgroundColor: Colors.surface, borderWidth: 1, borderColor: Colors.line },
+  yearEyebrow: { color: Colors.primary, fontSize: 10, fontWeight: "700", letterSpacing: 0.7, marginBottom: 4 },
+  yearTitle: { color: Colors.ink, fontSize: 17, fontWeight: "700" },
   yearBody: { color: Colors.muted, fontSize: 12, lineHeight: 18, marginTop: 4 },
   years: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 14 },
   year: { paddingHorizontal: 13, paddingVertical: 10, borderRadius: 12, backgroundColor: Colors.cream, borderWidth: 1, borderColor: Colors.line },
   yearActive: { backgroundColor: Colors.primary, borderColor: Colors.primary },
-  yearText: { color: Colors.ink, fontSize: 12, fontWeight: "800" },
+  yearText: { color: Colors.ink, fontSize: 13, fontWeight: "600" },
   yearTextActive: { color: "#FFFFFF" },
-  continueButton: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 9, backgroundColor: Colors.primary, padding: 17, borderRadius: 18 },
+  continueButton: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 9, backgroundColor: Colors.primary, padding: 17, borderRadius: 12 },
   continueDisabled: { opacity: 0.4 },
-  continueText: { color: "#FFFFFF", fontSize: 14, fontWeight: "900" },
+  continueText: { color: "#FFFFFF", fontSize: 14, fontWeight: "700" },
 });

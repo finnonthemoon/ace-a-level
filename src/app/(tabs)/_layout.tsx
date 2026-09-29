@@ -10,15 +10,15 @@ export default function TabLayout() {
         headerShown: false,
         tabBarActiveTintColor: Colors.primary,
         tabBarInactiveTintColor: Colors.muted,
-        tabBarStyle: { backgroundColor: Colors.surface, borderTopColor: Colors.line, height: 74, paddingTop: 7, paddingBottom: 9 },
-        tabBarLabelStyle: { fontSize: 10, fontWeight: "800" },
-        tabBarItemStyle: { borderRadius: 16 },
+        tabBarStyle: { backgroundColor: Colors.surface, borderTopColor: Colors.line, height: 76, paddingTop: 8, paddingBottom: 10 },
+        tabBarLabelStyle: { fontSize: 11, fontWeight: "600" },
+        tabBarItemStyle: { borderRadius: 10 },
       }}
     >
-      <Tabs.Screen name="index" options={{ title: "Home", tabBarIcon: ({ color, size }) => <Ionicons name="home" color={color} size={size} /> }} />
-      <Tabs.Screen name="learn" options={{ title: "Learn", tabBarIcon: ({ color, size }) => <Ionicons name="map" color={color} size={size} /> }} />
-      <Tabs.Screen name="practice" options={{ title: "Practice", tabBarIcon: ({ color, size }) => <Ionicons name="document-text" color={color} size={size} /> }} />
-      <Tabs.Screen name="profile" options={{ title: "Profile", tabBarIcon: ({ color, size }) => <Ionicons name="person" color={color} size={size} /> }} />
+      <Tabs.Screen name="index" options={{ title: "Home", tabBarIcon: ({ color, size, focused }) => <Ionicons name={focused ? "home" : "home-outline"} color={color} size={size} /> }} />
+      <Tabs.Screen name="learn" options={{ title: "Learn", tabBarIcon: ({ color, size, focused }) => <Ionicons name={focused ? "book" : "book-outline"} color={color} size={size} /> }} />
+      <Tabs.Screen name="practice" options={{ title: "Practice", tabBarIcon: ({ color, size, focused }) => <Ionicons name={focused ? "document-text" : "document-text-outline"} color={color} size={size} /> }} />
+      <Tabs.Screen name="profile" options={{ title: "Profile", tabBarIcon: ({ color, size, focused }) => <Ionicons name={focused ? "person" : "person-outline"} color={color} size={size} /> }} />
     </Tabs>
   );
 }

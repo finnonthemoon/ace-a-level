@@ -15,6 +15,7 @@
     "expo-application": "~57.0.2",
     "expo-auth-session": "~57.0.6",
     "expo-blur": "~57.0.2",
+    "expo-build-properties": "~57.0.22",
     "expo-constants": "~57.0.3",
     "expo-crypto": "~57.0.0",
     "expo-dev-client": "~57.0.10",
@@ -63,7 +64,7 @@
     "typescript": "~6.0.3"
   },
   "overrides": {
-    "js-yaml": "4.3.1"
+    "js-yaml": "4.3.2"
   },
   "scripts": {
     "start": "expo start",

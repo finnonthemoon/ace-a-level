@@ -3,138 +3,93 @@ import { useRouter, type Href } from "expo-router";
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { Screen } from "@/components/Screen";
-import { Colors, Shadow } from "@/constants/theme";
+import { StarMascot } from "@/components/StarMascot";
+import { Colors } from "@/constants/theme";
 import { useAccount } from "@/contexts/AccountContext";
 import { useCourse } from "@/contexts/CourseContext";
+import { STAR_STAGES, useMascot } from "@/contexts/MascotContext";
 import { findSubject } from "@/product/subjects";
 
 export default function ProfileScreen() {
   const router = useRouter();
   const { examYear, isSyncing, selections, syncError } = useCourse();
   const { isSignedIn, session, signOut } = useAccount();
+  const { stage, setStage } = useMascot();
 
   async function handleSignOut() {
-    try {
-      await signOut();
-    } catch (error) {
-      Alert.alert("Could not sign out", error instanceof Error ? error.message : "Please try again.");
-    }
+    try { await signOut(); }
+    catch (error) { Alert.alert("Could not sign out", error instanceof Error ? error.message : "Please try again."); }
   }
 
   return (
-    <Screen eyebrow="YOUR PLAN" title="Profile" subtitle="Manage the courses that make up your A-level programme.">
-      <View style={styles.hero}>
-        <View style={styles.heroGlow} />
-        <View style={styles.avatar}><Ionicons name="person" color="#FFFFFF" size={29} /></View>
-        <View style={styles.heroCopy}>
-          <Text style={styles.heroEyebrow}>ACE A LEVEL STUDENT</Text>
-          <Text style={styles.heroTitle}>{isSignedIn ? session?.user.email ?? "Your account" : "Your study plan"}</Text>
-          <Text style={styles.heroBody}>{examYear ? `Exams in ${examYear}` : "Exam year not set"} · {selections.length} subjects</Text>
+    <Screen eyebrow="YOUR PLAN" title="Profile" subtitle={examYear ? `${examYear} exams · ${selections.length} subjects` : `${selections.length} subjects in your A-level plan`}>
+      <View style={styles.starPanel}>
+        <View style={styles.starTop}>
+          <View style={styles.starCopy}><Text style={styles.panelLabel}>MASCOT PREVIEW</Text><Text style={styles.panelTitle}>Your star, your pace.</Text><Text style={styles.panelBody}>As study activity grows, your star warms from red to blue. Choose a stage to preview it across the app.</Text></View>
+          <StarMascot size={112} />
         </View>
-        <View style={styles.heroBadge}><Ionicons name="school-outline" color="#FFFFFF" size={18} /></View>
+        <View style={styles.stageRow}>
+          {STAR_STAGES.map((item) => (
+            <Pressable key={item} accessibilityRole="button" accessibilityLabel={`Preview ${item} star`} accessibilityState={{ selected: stage === item }} onPress={() => setStage(item)} style={[styles.stageButton, stage === item && styles.stageSelected]}>
+              <StarMascot stage={item} size={37} /><Text style={[styles.stageText, stage === item && styles.stageTextSelected]}>{item[0].toUpperCase() + item.slice(1)}</Text>
+            </Pressable>
+          ))}
+        </View>
+        <Text style={styles.previewNote}>Preview only · Activity tracking is not connected yet</Text>
       </View>
 
-      <View style={styles.sectionHeader}>
-        <View>
-          <Text style={styles.sectionEyebrow}>YOUR COURSES</Text>
-          <Text style={styles.sectionTitle}>A-level subjects</Text>
-        </View>
-        <Pressable onPress={() => router.push("/onboarding")}><Text style={styles.editText}>Edit plan</Text></Pressable>
-      </View>
-
-      <View style={styles.section}>
+      <View style={styles.sectionHeading}><Text style={styles.sectionTitle}>Your subjects</Text><Pressable accessibilityRole="button" onPress={() => router.push("/onboarding")} style={styles.editButton}><Text style={styles.editText}>Edit plan</Text></Pressable></View>
+      <View style={styles.subjectList}>
         {selections.map((selection, index) => {
           const subject = findSubject(selection.subjectId);
-          return subject ? (
-            <View key={subject.id} style={[styles.subject, index < selections.length - 1 && styles.subjectDivider]}>
-              <View style={[styles.subjectIcon, { backgroundColor: subject.softColor }]}><Ionicons name={subject.icon} color={subject.color} size={21} /></View>
-              <View style={styles.subjectCopy}>
-                <Text style={styles.subjectTitle}>{subject.title}</Text>
-                <Text style={styles.subjectMeta}>{selection.specificationId ?? "Exam board not chosen"} · Target {selection.targetGrade ?? "not set"}</Text>
-              </View>
-              <Ionicons name="chevron-forward" color={Colors.muted} size={18} />
-            </View>
-          ) : null;
+          return subject ? <View key={subject.id} style={[styles.subject, index < selections.length - 1 && styles.divider]}>
+            <View style={[styles.subjectIcon, { backgroundColor: subject.softColor }]}><Ionicons name={subject.icon} color={subject.color} size={20} /></View>
+            <View style={styles.subjectCopy}><Text style={styles.subjectTitle}>{subject.title}</Text><Text style={styles.subjectMeta}>{selection.specificationId ?? "Board to be selected"}{selection.targetGrade ? ` · Target ${selection.targetGrade}` : ""}</Text></View>
+          </View> : null;
         })}
       </View>
 
-      <View style={styles.stats}>
-        <ProfileStat value={`${selections.length}`} label="subjects" />
-        <ProfileStat value="0" label="lessons" />
-        <ProfileStat value="0m" label="study time" />
+      <View style={styles.accountSection}>
+        <Text style={styles.sectionTitle}>Account</Text>
+        <Text style={styles.accountIdentity}>{isSignedIn ? session?.user.email ?? "Signed in" : "Save your study plan"}</Text>
+        <Text style={styles.accountDescription}>{isSignedIn ? isSyncing ? "Syncing your subject choices…" : "Your subject choices are connected across signed-in devices." : "Sign in to keep your subject choices across devices."}</Text>
+        {syncError ? <Text style={styles.syncError}>{syncError}</Text> : null}
+        {isSignedIn ? <Pressable accessibilityRole="button" onPress={() => void handleSignOut()} style={styles.secondaryButton}><Text style={styles.secondaryButtonText}>Sign out</Text></Pressable> : <Pressable accessibilityRole="button" onPress={() => router.push("/account" as Href)} style={styles.primaryButton}><Text style={styles.primaryButtonText}>Create account or sign in</Text><Ionicons name="arrow-forward" color="#FFFFFF" size={17} /></Pressable>}
       </View>
-
-      <View style={[styles.connection, isSignedIn && styles.connectionSignedIn]}>
-        <View style={[styles.connectionIcon, isSignedIn && styles.connectionIconSignedIn]}>
-          <Ionicons name={isSignedIn ? "cloud-done-outline" : "cloud-offline-outline"} color={isSignedIn ? Colors.success : Colors.primary} size={22} />
-        </View>
-        <View style={styles.connectionCopy}>
-          <Text style={styles.connectionTitle}>{isSignedIn ? "Your plan is connected" : "Save your A-level plan"}</Text>
-          <Text style={styles.connectionBody}>
-            {isSignedIn
-              ? isSyncing
-                ? "Syncing your latest course choices…"
-                : "Your subject choices are available across signed-in devices."
-              : "Create an ACE account or sign in to keep your courses across devices."}
-          </Text>
-          {syncError ? <Text style={styles.syncError}>{syncError}</Text> : null}
-        </View>
-      </View>
-
-      {isSignedIn ? (
-        <Pressable onPress={() => void handleSignOut()} style={({ pressed }) => [styles.accountButton, pressed && styles.pressed]}>
-          <Ionicons name="log-out-outline" color={Colors.danger} size={18} />
-          <Text style={[styles.accountButtonText, { color: Colors.danger }]}>Sign out</Text>
-        </Pressable>
-      ) : (
-        <Pressable onPress={() => router.push("/account" as Href)} style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]}>
-          <Ionicons name="person-add-outline" color="#FFFFFF" size={18} />
-          <Text style={styles.primaryButtonText}>Create account or sign in</Text>
-        </Pressable>
-      )}
     </Screen>
   );
 }
 
-function ProfileStat({ value, label }: { value: string; label: string }) {
-  return <View style={styles.stat}><Text style={styles.statValue}>{value}</Text><Text style={styles.statLabel}>{label}</Text></View>;
-}
-
 const styles = StyleSheet.create({
-  hero: { overflow: "hidden", flexDirection: "row", alignItems: "center", gap: 13, padding: 19, borderRadius: 27, backgroundColor: Colors.primaryDeep, ...Shadow.blue },
-  heroGlow: { position: "absolute", width: 160, height: 160, borderRadius: 80, right: -55, top: -70, backgroundColor: "rgba(79,135,255,0.24)" },
-  avatar: { width: 58, height: 58, borderRadius: 20, alignItems: "center", justifyContent: "center", backgroundColor: Colors.primary },
-  heroCopy: { flex: 1, gap: 3 },
-  heroEyebrow: { color: "#9EBEFF", fontSize: 8, fontWeight: "900", letterSpacing: 1.05 },
-  heroTitle: { color: "#FFFFFF", fontSize: 17, fontWeight: "900" },
-  heroBody: { color: "rgba(255,255,255,0.65)", fontSize: 10 },
-  heroBadge: { width: 38, height: 38, borderRadius: 13, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(255,255,255,0.12)" },
-  sectionHeader: { flexDirection: "row", alignItems: "flex-end", justifyContent: "space-between" },
-  sectionEyebrow: { color: Colors.primary, fontSize: 9, fontWeight: "900", letterSpacing: 1.2 },
-  sectionTitle: { color: Colors.ink, fontSize: 21, fontWeight: "900", marginTop: 3 },
-  editText: { color: Colors.primary, fontSize: 12, fontWeight: "900" },
-  section: { paddingHorizontal: 17, borderRadius: 23, borderWidth: 1, borderColor: Colors.line, backgroundColor: Colors.surface, ...Shadow.card },
-  subject: { minHeight: 75, flexDirection: "row", alignItems: "center", gap: 11 },
-  subjectDivider: { borderBottomWidth: 1, borderBottomColor: Colors.line },
-  subjectIcon: { width: 43, height: 43, borderRadius: 14, alignItems: "center", justifyContent: "center" },
-  subjectCopy: { flex: 1, gap: 3 },
-  subjectTitle: { color: Colors.ink, fontSize: 14, fontWeight: "900" },
-  subjectMeta: { color: Colors.muted, fontSize: 10 },
-  stats: { flexDirection: "row", gap: 10 },
-  stat: { flex: 1, alignItems: "center", paddingVertical: 15, borderRadius: 18, borderWidth: 1, borderColor: Colors.line, backgroundColor: Colors.surface },
-  statValue: { color: Colors.ink, fontSize: 18, fontWeight: "900" },
-  statLabel: { color: Colors.muted, fontSize: 9, fontWeight: "700", marginTop: 2 },
-  connection: { flexDirection: "row", alignItems: "flex-start", gap: 12, padding: 17, borderRadius: 21, backgroundColor: Colors.primarySoft },
-  connectionSignedIn: { backgroundColor: Colors.successSoft },
-  connectionIcon: { width: 43, height: 43, borderRadius: 14, alignItems: "center", justifyContent: "center", backgroundColor: Colors.surface },
-  connectionIconSignedIn: { backgroundColor: "#FFFFFF" },
-  connectionCopy: { flex: 1, gap: 4 },
-  connectionTitle: { color: Colors.ink, fontSize: 14, fontWeight: "900" },
-  connectionBody: { color: Colors.muted, fontSize: 11, lineHeight: 16 },
-  syncError: { color: Colors.danger, fontSize: 10, lineHeight: 15 },
-  primaryButton: { minHeight: 53, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, padding: 15, borderRadius: 17, backgroundColor: Colors.primary, ...Shadow.blue },
-  primaryButtonText: { color: "#FFFFFF", fontSize: 13, fontWeight: "900" },
-  accountButton: { minHeight: 51, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, padding: 14, borderRadius: 17, borderWidth: 1, borderColor: Colors.line, backgroundColor: Colors.surface },
-  accountButtonText: { fontSize: 13, fontWeight: "900" },
-  pressed: { opacity: 0.84 },
+  starPanel: { padding: 19, borderRadius: 20, backgroundColor: Colors.primarySoft, gap: 12 },
+  starTop: { flexDirection: "row", alignItems: "center", gap: 4 },
+  starCopy: { flex: 1 },
+  panelLabel: { color: Colors.primary, fontSize: 10, fontWeight: "700", letterSpacing: 0.8 },
+  panelTitle: { color: Colors.ink, fontSize: 21, fontWeight: "700", marginTop: 6, letterSpacing: -0.3 },
+  panelBody: { color: Colors.muted, fontSize: 12, lineHeight: 18, marginTop: 6 },
+  stageRow: { flexDirection: "row", gap: 5 },
+  stageButton: { flex: 1, minHeight: 72, alignItems: "center", justifyContent: "center", borderRadius: 11, gap: 2 },
+  stageSelected: { backgroundColor: "#FFFFFF", borderWidth: 1, borderColor: "#B4C7E9" },
+  stageText: { color: Colors.muted, fontSize: 10, fontWeight: "600" },
+  stageTextSelected: { color: Colors.primary, fontWeight: "700" },
+  previewNote: { color: Colors.muted, fontSize: 11, textAlign: "center" },
+  sectionHeading: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
+  sectionTitle: { color: Colors.ink, fontSize: 22, fontWeight: "700", letterSpacing: -0.3 },
+  editButton: { minHeight: 44, justifyContent: "center", paddingHorizontal: 4 },
+  editText: { color: Colors.primary, fontSize: 13, fontWeight: "700" },
+  subjectList: { paddingHorizontal: 17, borderRadius: 17, borderWidth: 1, borderColor: Colors.line, backgroundColor: Colors.surface },
+  subject: { minHeight: 72, flexDirection: "row", alignItems: "center", gap: 12 },
+  divider: { borderBottomWidth: 1, borderBottomColor: Colors.line },
+  subjectIcon: { width: 41, height: 41, borderRadius: 11, alignItems: "center", justifyContent: "center" },
+  subjectCopy: { flex: 1, gap: 4 },
+  subjectTitle: { color: Colors.ink, fontSize: 14, fontWeight: "700" },
+  subjectMeta: { color: Colors.muted, fontSize: 11 },
+  accountSection: { gap: 8, paddingTop: 3 },
+  accountIdentity: { color: Colors.ink, fontSize: 15, fontWeight: "700" },
+  accountDescription: { color: Colors.muted, fontSize: 12, lineHeight: 18 },
+  syncError: { color: Colors.danger, fontSize: 12 },
+  primaryButton: { minHeight: 49, alignSelf: "flex-start", flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 18, borderRadius: 11, backgroundColor: Colors.primary, marginTop: 9 },
+  primaryButtonText: { color: "#FFFFFF", fontSize: 13, fontWeight: "700" },
+  secondaryButton: { minHeight: 44, alignSelf: "flex-start", justifyContent: "center", paddingHorizontal: 2, marginTop: 4 },
+  secondaryButtonText: { color: Colors.danger, fontSize: 13, fontWeight: "700" },
 });
