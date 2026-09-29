@@ -1,16 +1,25 @@
 import { QUADRATICS_TOPIC_CONTENT_ID } from "@/content/course-catalog";
 
 export type LessonBlock =
-  | { type: "heading"; text: string }
+  | { type: "section-heading"; text: string }
   | { type: "text"; content: string }
   | { type: "math"; expression: string }
   | { type: "callout"; title: string; content: string }
+  | { type: "warning"; title: string; content: string }
   | { type: "worked-example"; title: string; question: string; steps: readonly string[]; answer: string }
-  | { type: "check"; prompt: string; options: readonly { id: string; content: string }[]; correctOptionId: string; explanation: string };
+  | {
+      type: "check";
+      id: string;
+      prompt: string;
+      options: readonly { id: string; content: string }[];
+      correctOptionId: string;
+      explanation: string;
+    };
 
 export interface LessonDefinition {
   id: string;
   topicId: string;
+  courseLabel: string;
   title: string;
   description: string;
   estimatedMinutes: number;
@@ -21,41 +30,50 @@ export const LESSONS: readonly LessonDefinition[] = [
   {
     id: "quadratics-solving-equations",
     topicId: QUADRATICS_TOPIC_CONTENT_ID,
+    courseLabel: "Pure Mathematics",
     title: "Solving quadratic equations",
-    description: "Learn what roots mean and solve quadratics by factorisation and the quadratic formula.",
+    description: "Solve quadratic equations and understand what their roots tell you.",
     estimatedMinutes: 8,
     blocks: [
-      { type: "heading", text: "What is a quadratic?" },
+      { type: "section-heading", text: "What is a quadratic equation?" },
       {
         type: "text",
         content: String.raw`A quadratic equation has a highest power of 2. In standard form it is \(ax^2+bx+c=0\), where \(a\ne0\). Solving means finding the value or values of \(x\) that make the equation true.`,
       },
       { type: "math", expression: String.raw`ax^2+bx+c=0,\qquad a\ne0` },
-      {
-        type: "callout",
-        title: "Roots are x-intercepts",
-        content: "A solution, or root, is an x-value where the corresponding graph y = ax² + bx + c meets the x-axis.",
-      },
-      { type: "heading", text: "Solve by factorisation" },
+
+      { type: "section-heading", text: "Solving by factorisation" },
       {
         type: "text",
-        content: "When a quadratic factorises, use the zero-product rule: if two factors multiply to zero, at least one factor must be zero.",
+        content: String.raw`If the quadratic factorises, use the zero-product rule: if two factors multiply to zero, at least one factor must be zero.`,
       },
       {
         type: "worked-example",
         title: "Factorise and solve",
         question: String.raw`Solve \(x^2-5x+6=0\).`,
         steps: [
-          String.raw`Find two numbers that multiply to \(6\) and add to \(-5\): they are \(-2\) and \(-3\).`,
+          String.raw`Find two numbers that multiply to \(6\) and add to \(-5\): \(-2\) and \(-3\).`,
           String.raw`Factorise: \((x-2)(x-3)=0\).`,
           String.raw`Set each factor to zero: \(x-2=0\) or \(x-3=0\).`,
         ],
-        answer: String.raw`So the roots are \(x=2\) and \(x=3\).`,
+        answer: String.raw`The roots are \(x=2\) and \(x=3\).`,
       },
-      { type: "heading", text: "Use the quadratic formula" },
+
+      { type: "section-heading", text: "When factorisation does not work" },
       {
         type: "text",
-        content: String.raw`If a quadratic does not factorise easily, identify \(a\), \(b\), and \(c\) in standard form and substitute them into the formula.`,
+        content: String.raw`Some quadratics do not factorise neatly. Write the equation in standard form, then use the quadratic formula. The discriminant \(b^2-4ac\) helps predict the number of real roots.`,
+      },
+      {
+        type: "warning",
+        title: "Watch the signs",
+        content: String.raw`In \(ax^2+bx+c=0\), \(b\) includes its sign. For example, in \(x^2-5x+6=0\), \(b=-5\).`,
+      },
+
+      { type: "section-heading", text: "Using the quadratic formula" },
+      {
+        type: "text",
+        content: String.raw`Identify \(a\), \(b\), and \(c\) in standard form, then substitute them carefully.`,
       },
       { type: "math", expression: String.raw`x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}` },
       {
@@ -69,21 +87,35 @@ export const LESSONS: readonly LessonDefinition[] = [
         ],
         answer: String.raw`The roots are \(x=1\) and \(x=-\frac{3}{2}\).`,
       },
+
+      { type: "section-heading", text: "Interpreting the roots" },
       {
-        type: "check",
-        prompt: String.raw`For \((x-4)(x+1)=0\), which pair gives the roots?`,
-        options: [
-          { id: "a", content: String.raw`\(4,\ -1\)` },
-          { id: "b", content: String.raw`\(-4,\ 1\)` },
-          { id: "c", content: String.raw`\(4,\ 1\)` },
-        ],
-        correctOptionId: "a",
-        explanation: "Set each factor equal to zero: x − 4 = 0 gives x = 4, and x + 1 = 0 gives x = −1.",
+        type: "text",
+        content: String.raw`The roots are the solutions to the equation and the \(x\)-coordinates where its graph meets the \(x\)-axis. The discriminant tells you how many real roots to expect.`,
       },
       {
         type: "callout",
-        title: "Check your roots",
-        content: "Substitute each solution back into the original equation. A root should make the left-hand side equal zero.",
+        title: "The discriminant and the roots",
+        content: String.raw`If \(b^2-4ac>0\), there are two real roots. If \(b^2-4ac=0\), there is one repeated real root. If \(b^2-4ac<0\), there are no real roots.`,
+      },
+
+      { type: "section-heading", text: "Quick check and summary" },
+      {
+        type: "check",
+        id: "quadratics-solving-equations-check-01",
+        prompt: String.raw`Solve \(x^2-7x+12=0\). Choose the pair of roots.`,
+        options: [
+          { id: "a", content: String.raw`\(x=3,\ 4\)` },
+          { id: "b", content: String.raw`\(x=-3,\ -4\)` },
+          { id: "c", content: String.raw`\(x=2,\ 6\)` },
+        ],
+        correctOptionId: "a",
+        explanation: String.raw`\(x^2-7x+12=(x-3)(x-4)\). Setting each factor to zero gives \(x=3\) or \(x=4\).`,
+      },
+      {
+        type: "callout",
+        title: "Remember",
+        content: "Set the equation equal to zero, choose a suitable method, and check that each root satisfies the original equation.",
       },
     ],
   },
@@ -92,4 +124,3 @@ export const LESSONS: readonly LessonDefinition[] = [
 export function findLesson(lessonId: string) {
   return LESSONS.find((lesson) => lesson.id === lessonId) ?? null;
 }
-

@@ -1,16 +1,12 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter, type Href } from "expo-router";
-import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { CourseProgressCard } from "@/components/course/CourseProgressCard";
 import { Screen } from "@/components/Screen";
 import { TopicOverview } from "@/components/course/TopicOverview";
 import { Colors } from "@/constants/theme";
-import {
-  findSpecification,
-  findTopicArea,
-  type CourseTopic,
-} from "@/content/course-catalog";
+import { resolveCoursePath, type CourseTopic } from "@/content/course-catalog";
 
 function readinessLabel(readiness: CourseTopic["readiness"]) {
   if (readiness === "available") return "Explore";
@@ -26,46 +22,25 @@ export default function CourseOutlineScreen() {
   const router = useRouter();
   const { subjectId, coursePath } = useLocalSearchParams<{ subjectId: string; coursePath: string[] }>();
   const path = Array.isArray(coursePath) ? coursePath : coursePath ? [coursePath] : [];
-  const specification = findSpecification(subjectId, path[0]);
-  const area = specification && path[0] ? findTopicArea(specification, path[0]) : null;
-
-  let currentItems: readonly CourseTopic[] = area?.topics ?? [];
-  let title = area?.title ?? "Course";
-  let subtitle = area?.summary ?? "Explore your course outline.";
-  let validPath = Boolean(specification && area);
-  let selectedTopic: CourseTopic | null = null;
-
-  for (const segment of path.slice(1)) {
-    const selected = currentItems.find((topic) => topic.id === segment);
-    if (!selected) {
-      validPath = false;
-      break;
-    }
-    title = selected.title;
-    subtitle = selected.summary;
-    currentItems = selected.topics ?? [];
-    selectedTopic = selected;
-  }
+  const resolved = resolveCoursePath(subjectId, path);
+  const specification = resolved?.specification;
+  const area = resolved?.area;
+  const selectedTopic = resolved?.selectedTopic ?? null;
+  const currentItems: readonly CourseTopic[] = resolved?.children ?? [];
+  const title = selectedTopic?.title ?? area?.title ?? "Course";
+  const subtitle = selectedTopic?.summary ?? area?.summary ?? "Explore your course outline.";
 
   function goBack() {
     if (router.canGoBack()) router.back();
+    else if (path.length > 1) router.replace(`/course/${subjectId}/${path.slice(0, -1).join("/")}` as Href);
     else router.replace("/(tabs)/learn");
   }
 
   function openTopic(topic: CourseTopic) {
-    if (topic.readiness !== "available") {
-      Alert.alert(
-        topic.readiness === "planned" ? "Planned next" : "Coming soon",
-        topic.readiness === "planned"
-          ? `${topic.title} is the first planned lesson and practice topic.`
-          : `Content for ${topic.title} is being prepared.`,
-      );
-      return;
-    }
     router.push(`/course/${subjectId}/${[...path, topic.id].join("/")}` as Href);
   }
 
-  if (!validPath || !specification || !area) {
+  if (!resolved || !specification || !area) {
     return (
       <Screen eyebrow="COURSE LIBRARY" title="Course unavailable" subtitle="This course outline could not be found." onBack={goBack}>
         <Pressable accessibilityRole="button" onPress={goBack} style={styles.returnButton}>
@@ -76,8 +51,14 @@ export default function CourseOutlineScreen() {
     );
   }
 
-  if (selectedTopic && (selectedTopic.lessonIds.length > 0 || selectedTopic.practiceSetIds.length > 0)) {
-    return <TopicOverview topic={selectedTopic} onBack={goBack} />;
+  if (selectedTopic && currentItems.length === 0) {
+    const progressTopicId = selectedTopic.contentId ?? [
+      specification.qualification.id,
+      specification.subject.id,
+      specification.id,
+      ...path,
+    ].join(":");
+    return <TopicOverview topic={selectedTopic} progressTopicId={progressTopicId} onBack={goBack} />;
   }
 
   return (
@@ -90,7 +71,7 @@ export default function CourseOutlineScreen() {
       {path.length === 1 ? (
         <View style={styles.specNote}>
           <Ionicons name="information-circle-outline" color={Colors.primary} size={19} />
-          <Text style={styles.specNoteText}>Initial OCR MEI Mathematics B outline. Topic names are scaffolding and may be refined against the specification.</Text>
+          <Text style={styles.specNoteText}>Showing the {specification.title} topic structure (version {specification.version}). Lesson content is being added topic by topic.</Text>
         </View>
       ) : null}
 
@@ -116,11 +97,10 @@ export default function CourseOutlineScreen() {
             <View style={styles.topicCopy}>
               <Text style={styles.topicTitle}>{topic.title}</Text>
               <Text style={styles.topicSummary}>{topic.summary}</Text>
-              {topic.id === "quadratics" ? <Text style={styles.planNote}>First lesson and practice topic</Text> : null}
             </View>
             <View style={styles.trailing}>
               <Text style={[styles.status, { color: readinessColor(topic.readiness) }]}>{readinessLabel(topic.readiness)}</Text>
-              <Ionicons name={topic.readiness === "available" ? "chevron-forward" : "lock-closed-outline"} color={topic.readiness === "available" ? Colors.primary : "#9DA8B5"} size={17} />
+              <Ionicons name="chevron-forward" color={topic.readiness === "available" ? Colors.primary : "#9DA8B5"} size={17} />
             </View>
           </Pressable>
         ))}
@@ -145,7 +125,6 @@ const styles = StyleSheet.create({
   topicCopy: { flex: 1, gap: 4 },
   topicTitle: { color: Colors.ink, fontSize: 14, fontWeight: "700" },
   topicSummary: { color: Colors.muted, fontSize: 11, lineHeight: 16 },
-  planNote: { color: Colors.primary, fontSize: 10, fontWeight: "600", marginTop: 2 },
   trailing: { alignItems: "flex-end", gap: 7 },
   status: { fontSize: 9, fontWeight: "700" },
   pressed: { opacity: 0.78 },

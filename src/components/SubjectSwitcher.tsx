@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useRef, useState } from "react";
 import { Modal, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import Svg, { Circle, G, Path } from "react-native-svg";
 
 import { Colors } from "@/constants/theme";
 import { useCourse } from "@/contexts/CourseContext";
@@ -9,7 +10,64 @@ import { findSubject, type SubjectId } from "@/product/subjects";
 
 interface Anchor { x: number; y: number; width: number; height: number }
 
-export function SubjectSwitcher() {
+function colorWithAlpha(color: string, alpha: number) {
+  const hex = color.replace("#", "");
+  const red = Number.parseInt(hex.slice(0, 2), 16);
+  const green = Number.parseInt(hex.slice(2, 4), 16);
+  const blue = Number.parseInt(hex.slice(4, 6), 16);
+  return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+}
+
+function SubjectArtwork({ subjectId, color }: { subjectId: SubjectId; color: string }) {
+  return (
+    <View pointerEvents="none" accessible={false} style={styles.artwork}>
+      <Svg width={112} height={62} viewBox="0 0 112 62">
+        <G fill="none" stroke={color} strokeWidth={1.35} strokeLinecap="round" strokeLinejoin="round" opacity={0.72}>
+          {subjectId === "mathematics" ? <>
+            <Path d="M13 49V12M13 49H102" />
+            <Path d="M18 41C31 39 34 20 48 20S65 43 78 41 91 19 101 14" />
+            <Path d="M28 12h9M28 17h9M43 12h9" opacity={0.55} />
+          </> : null}
+          {subjectId === "physics" ? <>
+            <Path d="M16 31c0-11 17-20 38-20s38 9 38 20-17 20-38 20-38-9-38-20Z" />
+            <Path d="M54 11c11 0 20 17 20 20s-9 20-20 20-20-17-20-20 9-20 20-20Z" transform="rotate(55 54 31)" />
+            <Circle cx="54" cy="31" r="3" fill={color} />
+            <Circle cx="89" cy="23" r="2.3" fill={color} />
+          </> : null}
+          {subjectId === "chemistry" ? <>
+            <Path d="m20 31 20-13 21 13 21-13 16 10M40 18v26l21 11 21-11V18" />
+            <Circle cx="20" cy="31" r="3" fill={color} />
+            <Circle cx="40" cy="18" r="3" fill={color} />
+            <Circle cx="61" cy="31" r="3" fill={color} />
+            <Circle cx="82" cy="18" r="3" fill={color} />
+            <Circle cx="82" cy="44" r="3" fill={color} />
+          </> : null}
+          {subjectId === "biology" ? <>
+            <Path d="M30 10c35 8 17 34 52 42M82 10c-35 8-17 34-52 42" />
+            <Path d="m39 15 33 7M34 25l42 9M35 37l40-9M41 47l31-8" opacity={0.8} />
+            <Circle cx="30" cy="10" r="2" fill={color} />
+            <Circle cx="82" cy="52" r="2" fill={color} />
+          </> : null}
+          {subjectId === "computer-science" ? <>
+            <Path d="M18 13h22v13h21v11h23v12h14M18 49h17V37h20M61 13v8h16v9h21" />
+            <Circle cx="18" cy="13" r="2.5" fill={color} />
+            <Circle cx="98" cy="49" r="2.5" fill={color} />
+            <Circle cx="18" cy="49" r="2.5" fill={color} />
+            <Circle cx="98" cy="30" r="2.5" fill={color} />
+          </> : null}
+          {subjectId === "economics" ? <>
+            <Path d="M16 48h80M20 44V14M25 39l19-10 17 5 27-21" />
+            <Path d="M78 13h10v10" />
+            <Circle cx="44" cy="29" r="2" fill={color} />
+            <Circle cx="61" cy="34" r="2" fill={color} />
+          </> : null}
+        </G>
+      </Svg>
+    </View>
+  );
+}
+
+export function SubjectSwitcher({ compact = false }: { compact?: boolean }) {
   const { activeSubjectId, selections } = useCourse();
   const { transitionToSubject } = useSubjectTransition();
   const activeSubject = findSubject(activeSubjectId);
@@ -40,7 +98,7 @@ export function SubjectSwitcher() {
   }
 
   return (
-    <View style={styles.shell}>
+    <View style={[styles.shell, compact && styles.compactShell]}>
       <Text style={styles.heading}>CURRENT SUBJECT</Text>
       <Pressable
         ref={trigger}
@@ -48,16 +106,26 @@ export function SubjectSwitcher() {
         accessibilityLabel={`Current subject ${activeSubject.title}. Change subject`}
         accessibilityState={{ expanded: open }}
         onPress={openMenu}
-        style={({ pressed }) => [styles.trigger, pressed && styles.pressed]}
+        style={({ pressed }) => [
+          styles.trigger,
+          {
+            backgroundColor: colorWithAlpha(activeSubject.color, 0.025),
+            borderColor: colorWithAlpha(activeSubject.color, 0.16),
+          },
+          pressed && styles.pressed,
+        ]}
       >
+        <SubjectArtwork subjectId={activeSubject.id} color={activeSubject.color} />
         <View style={[styles.triggerIcon, { backgroundColor: activeSubject.softColor }]}>
-          <Ionicons name={activeSubject.icon} size={22} color={activeSubject.color} />
+          <Ionicons name={activeSubject.icon} size={21} color={activeSubject.color} />
         </View>
         <View style={styles.triggerCopy}>
           <Text style={styles.triggerTitle}>{activeSubject.title}</Text>
-          <Text style={styles.triggerHint}>Tap to switch subject</Text>
+          <Text style={styles.triggerHint}>Your A Level course</Text>
         </View>
-        <Ionicons name={open ? "chevron-up" : "chevron-down"} size={20} color={Colors.muted} />
+        <View style={[styles.chevronBacking, { backgroundColor: colorWithAlpha(activeSubject.color, 0.07) }]}>
+          <Ionicons name={open ? "chevron-up" : "chevron-down"} size={17} color={activeSubject.color} />
+        </View>
       </Pressable>
 
       <Modal visible={open} transparent animationType="none" statusBarTranslucent onRequestClose={() => setOpen(false)}>
@@ -96,13 +164,16 @@ export function SubjectSwitcher() {
 
 const styles = StyleSheet.create({
   shell: { gap: 9 },
+  compactShell: { gap: 7 },
   heading: { color: Colors.muted, fontSize: 11, fontWeight: "700", letterSpacing: 1.2 },
-  trigger: { minHeight: 70, flexDirection: "row", alignItems: "center", gap: 13, paddingHorizontal: 15, borderRadius: 15, borderWidth: 1, borderColor: Colors.line, backgroundColor: Colors.surface },
-  triggerIcon: { width: 43, height: 43, borderRadius: 11, alignItems: "center", justifyContent: "center" },
-  triggerCopy: { flex: 1, gap: 3 },
+  trigger: { height: 64, flexDirection: "row", alignItems: "center", gap: 11, paddingHorizontal: 13, borderRadius: 15, borderWidth: 1, overflow: "hidden" },
+  triggerIcon: { width: 40, height: 40, borderRadius: 11, alignItems: "center", justifyContent: "center", zIndex: 1 },
+  triggerCopy: { flex: 1, gap: 2, zIndex: 1 },
   triggerTitle: { color: Colors.ink, fontSize: 16, fontWeight: "700" },
-  triggerHint: { color: Colors.muted, fontSize: 12 },
-  pressed: { opacity: 0.72 },
+  triggerHint: { color: "#556174", fontSize: 12 },
+  chevronBacking: { width: 30, height: 30, borderRadius: 15, alignItems: "center", justifyContent: "center", zIndex: 1 },
+  artwork: { position: "absolute", right: 27, top: 0, bottom: 0, width: 112, alignItems: "center", justifyContent: "center", opacity: 0.15 },
+  pressed: { opacity: 0.9, transform: [{ scale: 0.99 }] },
   modal: { flex: 1, backgroundColor: "rgba(17, 31, 55, 0.28)" },
   menu: { position: "absolute", overflow: "hidden", borderRadius: 17, backgroundColor: Colors.surface, shadowColor: Colors.shadow, shadowOffset: { width: 0, height: 12 }, shadowOpacity: 0.2, shadowRadius: 26, elevation: 12 },
   menuHeading: { paddingHorizontal: 18, paddingTop: 16, paddingBottom: 13, color: Colors.muted, fontSize: 11, fontWeight: "700", letterSpacing: 1 },

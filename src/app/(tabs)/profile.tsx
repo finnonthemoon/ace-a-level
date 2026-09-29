@@ -22,7 +22,7 @@ export default function ProfileScreen() {
   }
 
   return (
-    <Screen eyebrow="YOUR PLAN" title="Profile" subtitle={examYear ? `${examYear} exams · ${selections.length} subjects` : `${selections.length} subjects in your A-level plan`}>
+    <Screen tabHeader eyebrow="YOUR PLAN" title="Profile" subtitle={examYear ? `${examYear} exams · ${selections.length} subjects` : `${selections.length} subjects in your A-level plan`}>
       <View style={styles.starPanel}>
         <View style={styles.starTop}>
           <View style={styles.starCopy}><Text style={styles.panelLabel}>MASCOT PREVIEW</Text><Text style={styles.panelTitle}>Your star, your pace.</Text><Text style={styles.panelBody}>As study activity grows, your star warms from red to blue. Choose a stage to preview it across the app.</Text></View>

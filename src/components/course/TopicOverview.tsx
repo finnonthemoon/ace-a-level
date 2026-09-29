@@ -12,13 +12,14 @@ import { getTopicMastery } from "@/core/topic-mastery";
 
 interface TopicOverviewProps {
   topic: CourseTopic;
+  progressTopicId?: string;
   onBack: () => void;
 }
 
-export function TopicOverview({ topic, onBack }: TopicOverviewProps) {
+export function TopicOverview({ topic, progressTopicId, onBack }: TopicOverviewProps) {
   const router = useRouter();
   const { getProgress, isHydrated } = useTopicProgress();
-  const topicId = topic.contentId ?? topic.id;
+  const topicId = progressTopicId ?? topic.contentId ?? topic.id;
   const progress = getProgress(topicId);
   const mastery = getTopicMastery(progress, topic.lessonIds);
   const lessons = topic.lessonIds.map(findLesson).filter((lesson) => lesson !== null);
@@ -59,6 +60,12 @@ export function TopicOverview({ topic, onBack }: TopicOverviewProps) {
               </Pressable>
             );
           })}
+          {lessons.length === 0 ? (
+            <View style={styles.emptyRow}>
+              <View style={styles.itemCopy}><Text style={styles.itemTitle}>Lessons coming soon</Text><Text style={styles.itemMeta}>Learning content for this topic is being prepared.</Text></View>
+              <Ionicons name="time-outline" size={18} color={Colors.muted} />
+            </View>
+          ) : null}
         </View>
       </View>
 
@@ -75,6 +82,12 @@ export function TopicOverview({ topic, onBack }: TopicOverviewProps) {
               <Ionicons name={progress.completedPracticeSessionIds.length > 0 ? "checkmark-circle" : "chevron-forward"} size={18} color={progress.completedPracticeSessionIds.length > 0 ? Colors.success : Colors.primary} />
             </Pressable>
           ))}
+          {practiceSets.length === 0 ? (
+            <View style={styles.emptyRow}>
+              <View style={styles.itemCopy}><Text style={styles.itemTitle}>Practice coming soon</Text><Text style={styles.itemMeta}>Questions and feedback will appear here when ready.</Text></View>
+              <Ionicons name="time-outline" size={18} color={Colors.muted} />
+            </View>
+          ) : null}
         </View>
       </View>
     </Screen>
@@ -102,6 +115,7 @@ const styles = StyleSheet.create({
   sectionSubtitle: { color: Colors.muted, fontSize: 11, lineHeight: 16 },
   itemList: { paddingHorizontal: 16, borderRadius: 16, borderWidth: 1, borderColor: Colors.line, backgroundColor: Colors.surface },
   contentRow: { minHeight: 72, flexDirection: "row", alignItems: "center", gap: 9 },
+  emptyRow: { minHeight: 72, flexDirection: "row", alignItems: "center", gap: 9, opacity: 0.72 },
   itemCopy: { flex: 1, gap: 5 },
   itemTitle: { color: Colors.ink, fontSize: 13, fontWeight: "700" },
   itemMeta: { color: Colors.muted, fontSize: 10 },
