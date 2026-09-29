@@ -4,9 +4,10 @@ import { useEffect } from "react";
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { Screen } from "@/components/Screen";
-import { StarMascot } from "@/components/StarMascot";
+import { SubjectMascot } from "@/components/SubjectMascot";
 import { Colors } from "@/constants/theme";
 import { useCourse } from "@/contexts/CourseContext";
+import { useSubjectTransition } from "@/contexts/SubjectTransitionContext";
 import { findSubject } from "@/product/subjects";
 
 function greeting() {
@@ -16,7 +17,8 @@ function greeting() {
 
 export default function HomeScreen() {
   const router = useRouter();
-  const { activeSubjectId, examYear, isHydrated, selections, setActiveSubject } = useCourse();
+  const { activeSubjectId, examYear, isHydrated, selections } = useCourse();
+  const { transitionToSubject } = useSubjectTransition();
   const subject = findSubject(activeSubjectId);
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export default function HomeScreen() {
       <Pressable accessibilityRole="button" onPress={() => router.push("/(tabs)/learn")} style={({ pressed }) => [styles.hero, pressed && styles.pressed]}>
         <View style={styles.heroTop}>
           <View style={styles.heroKicker}><View style={styles.heroDot} /><Text style={styles.heroKickerText}>PICK UP A SUBJECT</Text></View>
-          <StarMascot size={112} style={styles.heroStar} />
+          <SubjectMascot subjectId={subject.id} size={112} style={styles.heroStar} />
         </View>
         <Text style={styles.heroSubject}>{subject.title}</Text>
         <Text style={styles.heroTitle}>{subject.topics[0]?.title ?? "Explore your course"}</Text>
@@ -60,7 +62,7 @@ export default function HomeScreen() {
               accessibilityRole="button"
               accessibilityState={{ selected: active }}
               key={item.id}
-              onPress={() => void setActiveSubject(item.id)}
+              onPress={() => transitionToSubject(item.id)}
               style={({ pressed }) => [styles.courseRow, index < selections.length - 1 && styles.courseDivider, pressed && styles.pressed]}
             >
               <View style={[styles.courseIcon, { backgroundColor: item.softColor }]}><Ionicons name={item.icon} color={item.color} size={21} /></View>

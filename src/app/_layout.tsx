@@ -6,6 +6,7 @@ import { CourseProvider } from "@/contexts/CourseContext";
 import { AccountProvider } from "@/contexts/AccountContext";
 import { MascotProvider } from "@/contexts/MascotContext";
 import { TopicProgressProvider } from "@/contexts/TopicProgressContext";
+import { SubjectTransitionProvider } from "@/contexts/SubjectTransitionContext";
 
 const aceTheme = {
   ...DefaultTheme,
@@ -26,15 +27,26 @@ export default function RootLayout() {
       <CourseProvider>
         <TopicProgressProvider>
           <MascotProvider>
-            <ThemeProvider value={aceTheme}>
-              <StatusBar style="dark" />
-              <Stack screenOptions={{ headerShown: false }}>
-                <Stack.Screen name="(tabs)" />
-                <Stack.Screen name="onboarding" options={{ animation: "fade", gestureEnabled: false }} />
-                <Stack.Screen name="account" options={{ presentation: "modal" }} />
-                <Stack.Screen name="auth/callback" options={{ animation: "fade" }} />
-              </Stack>
-            </ThemeProvider>
+            <SubjectTransitionProvider>
+              <ThemeProvider value={aceTheme}>
+                <StatusBar style="dark" />
+                <Stack screenOptions={{ headerShown: false }}>
+                  <Stack.Screen name="(tabs)" />
+                  <Stack.Screen
+                    name="onboarding"
+                    options={{ animation: "fade", gestureEnabled: false }}
+                  />
+                  <Stack.Screen
+                    name="account"
+                    options={{ presentation: "modal" }}
+                  />
+                  <Stack.Screen
+                    name="auth/callback"
+                    options={{ animation: "fade" }}
+                  />
+                </Stack>
+              </ThemeProvider>
+            </SubjectTransitionProvider>
           </MascotProvider>
         </TopicProgressProvider>
       </CourseProvider>

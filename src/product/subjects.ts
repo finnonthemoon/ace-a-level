@@ -24,6 +24,7 @@ export interface SubjectDefinition {
   icon: SubjectIcon;
   color: string;
   softColor: string;
+  transitionColor: string;
   status: "foundation";
   topics: SubjectTopic[];
 }
@@ -36,6 +37,7 @@ export const SUBJECTS: SubjectDefinition[] = [
     icon: "calculator-outline",
     color: "#2563EB",
     softColor: "#E8F0FF",
+    transitionColor: "#174FB8",
     status: "foundation",
     topics: [
       { id: "pure", title: "Pure Mathematics", summary: "Algebra, functions, trigonometry and calculus." },
@@ -50,6 +52,7 @@ export const SUBJECTS: SubjectDefinition[] = [
     icon: "planet-outline",
     color: "#3676D8",
     softColor: "#E9F2FF",
+    transitionColor: "#245AA8",
     status: "foundation",
     topics: [
       { id: "measurements", title: "Measurements and uncertainties", summary: "Units, errors, practical skills and data handling." },
@@ -64,6 +67,7 @@ export const SUBJECTS: SubjectDefinition[] = [
     icon: "leaf-outline",
     color: "#27835B",
     softColor: "#E8F7EF",
+    transitionColor: "#176A4A",
     status: "foundation",
     topics: [
       { id: "biological-molecules", title: "Biological molecules", summary: "Carbohydrates, lipids, proteins, water and nucleic acids." },
@@ -78,6 +82,7 @@ export const SUBJECTS: SubjectDefinition[] = [
     icon: "flask-outline",
     color: "#7655C5",
     softColor: "#F0EBFF",
+    transitionColor: "#1C3472",
     status: "foundation",
     topics: [
       { id: "physical", title: "Physical chemistry", summary: "Amounts, bonding, energetics, kinetics and equilibria." },
@@ -92,6 +97,7 @@ export const SUBJECTS: SubjectDefinition[] = [
     icon: "code-slash-outline",
     color: "#157A8A",
     softColor: "#E3F5F7",
+    transitionColor: "#116477",
     status: "foundation",
     topics: [
       { id: "programming", title: "Programming", summary: "Algorithms, data structures and problem solving." },
@@ -106,6 +112,7 @@ export const SUBJECTS: SubjectDefinition[] = [
     icon: "trending-up-outline",
     color: "#C27A18",
     softColor: "#FFF2DA",
+    transitionColor: "#9E5B14",
     status: "foundation",
     topics: [
       { id: "micro", title: "Microeconomics", summary: "Markets, behaviour, firms and market failure." },

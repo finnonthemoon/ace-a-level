@@ -63,6 +63,9 @@ Implemented:
 - Home, Learn, Practice, and Profile tabs;
 - a blue visual system derived from the proven ACE TMUA card, spacing, and hierarchy patterns;
 - a restrained A-level visual refresh and five transparent star mascot PNGs, with a cross-app stage preview in Profile;
+- six subject-specific star mascot PNGs used in Home, Learn, and Practice;
+- the selected blue star on white as the app icon asset for iOS, Android, and web;
+- a subject dropdown and a full-screen, reversible colour-splash transition with transparent illustrated pose frames for each subject (five Chemistry poses, two for each other subject) plus continuous motion between poses;
 - a multi-subject dashboard and 3–5-subject onboarding model;
 - active-subject switching;
 - local study-plan persistence under an `@ace-a-level/...` namespace;
@@ -81,7 +84,7 @@ Not yet implemented:
 - the reusable lesson engine port;
 - production lesson and question content;
 - the practice runner and assessment formats;
-- final A-level branding, icon, legal URLs, or store metadata;
+- final A-level branding beyond the selected icon, legal URLs, or store metadata;
 - ranked mode, friend duels, or competitive leaderboards.
 - study-activity measurement and automatic mascot stage changes (the current stage selector is explicitly a visual preview).
 
@@ -226,7 +229,7 @@ Do not silently choose these during unrelated implementation work:
 - whether early content is board-neutral;
 - A-level pricing and subscription periods;
 - whether an eventual ACE all-access subscription exists;
-- final app icon, name styling, domain, and legal URLs;
+- final name styling, domain, and legal URLs;
 - whether competitive or community features belong in the first release;
 - whether Supabase migrations move into a separate shared backend repository.
 
