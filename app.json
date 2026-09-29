@@ -4,11 +4,11 @@
     "slug": "ace-a-level",
     "version": "0.1.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/app-icons/ace-a-level-blue-white.png",
     "scheme": "acealevel",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/images/icon.png",
+      "icon": "./assets/images/app-icons/ace-a-level-blue-white.png",
       "bundleIdentifier": "com.aceitstudios.acealevel",
       "usesAppleSignIn": true,
       "infoPlist": {
@@ -17,15 +17,15 @@
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#FF6817",
-        "foregroundImage": "./assets/images/icon.png"
+        "backgroundColor": "#FFFFFF",
+        "foregroundImage": "./assets/images/app-icons/ace-a-level-blue-white.png"
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.aceitstudios.acealevel"
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/icon.png"
+      "favicon": "./assets/images/app-icons/ace-a-level-blue-white.png"
     },
     "plugins": [
       "expo-router",
@@ -40,8 +40,8 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#FFF8EE",
-          "image": "./assets/images/icon.png",
+          "backgroundColor": "#FFFFFF",
+          "image": "./assets/images/app-icons/ace-a-level-blue-white.png",
           "imageWidth": 140
         }
       ],

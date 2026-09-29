@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
 
 import { Screen } from "@/components/Screen";
-import { StarMascot } from "@/components/StarMascot";
+import { SubjectMascot } from "@/components/SubjectMascot";
 import { SubjectSwitcher } from "@/components/SubjectSwitcher";
 import { Colors } from "@/constants/theme";
 import { useCourse } from "@/contexts/CourseContext";
@@ -23,7 +23,7 @@ export default function LearnScreen() {
             <Text style={styles.introTitle}>{subject.topics.length} topic areas</Text>
             <Text style={styles.introBody}>Your course outline is ready. Lessons will appear here as they’re released.</Text>
           </View>
-          <StarMascot size={92} />
+          <SubjectMascot subjectId={subject.id} size={92} />
         </View>
 
         <View style={styles.heading}><Text style={styles.headingTitle}>Topic outline</Text><Text style={styles.headingMeta}>{subject.topics.length} topics</Text></View>

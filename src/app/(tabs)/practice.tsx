@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
 
 import { Screen } from "@/components/Screen";
-import { StarMascot } from "@/components/StarMascot";
+import { SubjectMascot } from "@/components/SubjectMascot";
 import { SubjectSwitcher } from "@/components/SubjectSwitcher";
 import { Colors } from "@/constants/theme";
 import { useCourse } from "@/contexts/CourseContext";
@@ -27,7 +27,7 @@ export default function PracticeScreen() {
           <Text style={styles.introTitle}>Practice is on its way.</Text>
           <Text style={styles.introBody}>{subject?.title ?? "Your subject"} question sets will appear here when they’re ready.</Text>
         </View>
-        <StarMascot size={100} />
+        {subject ? <SubjectMascot subjectId={subject.id} size={100} /> : null}
       </View>
 
       <View style={styles.heading}><Text style={styles.headingTitle}>Planned formats</Text><Text style={styles.headingMeta}>Coming soon</Text></View>
