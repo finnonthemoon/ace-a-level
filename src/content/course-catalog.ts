@@ -27,6 +27,7 @@ const topic = (value: CourseTopicInput): CourseTopic => ({
 });
 
 export const QUADRATICS_TOPIC_CONTENT_ID = "a-level:mathematics:ocr-mei-mathematics-b:pure:algebra-and-functions:quadratics";
+export const ALGEBRAIC_VOCABULARY_TOPIC_CONTENT_ID = "a-level:mathematics:ocr-mei-mathematics-b:pure:algebra-and-functions:algebraic-vocabulary-and-notation";
 
 export interface CourseTopicArea {
   id: string;
@@ -50,6 +51,7 @@ const algebraFunctions = topic({
   id: "algebra-and-functions", title: "Algebra and Functions",
   summary: "Expressions, equations, functions and their graphs.", readiness: "available",
   topics: [
+    topic({ id: "algebraic-vocabulary-and-notation", contentId: ALGEBRAIC_VOCABULARY_TOPIC_CONTENT_ID, title: "Algebraic vocabulary & notation", summary: "Read, write and interpret algebraic expressions with confidence.", readiness: "available", lessonIds: ["algebraic-vocabulary-notation"] }),
     topic({ id: "indices-and-surds", title: "Indices and surds", summary: "Laws of indices and exact surd manipulation." }),
     topic({ id: "quadratics", contentId: QUADRATICS_TOPIC_CONTENT_ID, title: "Quadratics", summary: "Solve quadratic equations and interpret their roots and graphs.", readiness: "available", lessonIds: ["quadratics-solving-equations"], practiceSetIds: ["quadratics-foundations"] }),
     topic({ id: "simultaneous-equations", title: "Simultaneous equations", summary: "Solve pairs of equations algebraically and graphically." }),

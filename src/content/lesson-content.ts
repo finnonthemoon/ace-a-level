@@ -1,4 +1,4 @@
-import { QUADRATICS_TOPIC_CONTENT_ID } from "@/content/course-catalog";
+import { ALGEBRAIC_VOCABULARY_TOPIC_CONTENT_ID, QUADRATICS_TOPIC_CONTENT_ID } from "@/content/course-catalog";
 
 export type LessonBlock =
   | { type: "section-heading"; text: string }
@@ -27,6 +27,35 @@ export interface LessonDefinition {
 }
 
 export const LESSONS: readonly LessonDefinition[] = [
+  {
+    id: "algebraic-vocabulary-notation",
+    topicId: ALGEBRAIC_VOCABULARY_TOPIC_CONTENT_ID,
+    courseLabel: "Pure Mathematics",
+    title: "Algebraic vocabulary & notation",
+    description: "Read, write and interpret algebraic expressions with confidence.",
+    estimatedMinutes: 6,
+    blocks: [
+      { type: "section-heading", text: "Expressions, terms and factors" },
+      { type: "text", content: String.raw`An algebraic expression combines numbers, variables and operations. A variable is a letter that represents a number. Terms are separated by addition or subtraction, while factors are multiplied together.` },
+      { type: "math", expression: String.raw`3x^2-5x+2` },
+      { type: "callout", title: "Read the structure", content: "The expression above has three terms: \\(3x^2\\), \\(-5x\\) and \\(2\\). In the first term, the factors are \\(3\\), \\(x\\) and \\(x\\)." },
+
+      { type: "section-heading", text: "Coefficients and like terms" },
+      { type: "text", content: "A coefficient is the numerical factor multiplying a variable. In \\(-4y\\), the coefficient is \\(-4\\); in \\(y\\), it is \\(1\\). Like terms have the same variable part, including the same powers, so only like terms can be collected." },
+      { type: "worked-example", title: "Collect like terms", question: "Simplify \\(4a+3b-2a+5b\\).", steps: ["Group matching variable parts: \\(4a-2a+3b+5b\\).", "Add the coefficients of each group: \\((4-2)a+(3+5)b\\)."], answer: "\\(2a+8b\\)" },
+      { type: "warning", title: "Keep unlike terms separate", content: "\\(2a+3b\\) cannot be simplified to \\(5ab\\). Addition does not turn different variables into a product." },
+
+      { type: "section-heading", text: "Writing and evaluating expressions" },
+      { type: "text", content: "In algebra, multiplication signs are often omitted: \\(4\\times x\\) is written \\(4x\\), and \\(a\\times b\\) is written \\(ab\\). Powers show repeated multiplication, so \\(x^3=x\\times x\\times x\\). To evaluate an expression, substitute the given value everywhere the variable appears, then follow the order of operations." },
+      { type: "worked-example", title: "Substitute carefully", question: "Evaluate \\(2x^2-3x\\) when \\(x=-2\\).", steps: ["Replace every \\(x\\) with \\(-2\\): \\(2(-2)^2-3(-2)\\).", "Evaluate the power first: \\(2(4)+6\\)."], answer: "\\(14\\)" },
+
+      { type: "section-heading", text: "Quick checks" },
+      { type: "check", id: "algebraic-vocabulary-notation-check-01", prompt: "What is the coefficient of \\(x\\) in \\(7-3x+2x^2\\)?", options: [{ id: "a", content: "\\(3\\)" }, { id: "b", content: "\\(-3\\)" }, { id: "c", content: "\\(2\\)" }], correctOptionId: "b", explanation: "The \\(x\\)-term is \\(-3x\\), so its coefficient is \\(-3\\)." },
+      { type: "check", id: "algebraic-vocabulary-notation-check-02", prompt: "Which pair are like terms?", options: [{ id: "a", content: "\\(4m\\) and \\(4m^2\\)" }, { id: "b", content: "\\(3p\\) and \\(-8p\\)" }, { id: "c", content: "\\(2x\\) and \\(2y\\)" }], correctOptionId: "b", explanation: "Both terms have exactly the same variable part, \\(p\\), to the same power." },
+      { type: "check", id: "algebraic-vocabulary-notation-check-03", prompt: "Evaluate \\(x^2+2x\\) when \\(x=-3\\).", options: [{ id: "a", content: "\\(3\\)" }, { id: "b", content: "\\(15\\)" }, { id: "c", content: "\\(-3\\)" }], correctOptionId: "a", explanation: "\\((-3)^2+2(-3)=9-6=3\\). Remember to square the negative value using brackets." },
+      { type: "callout", title: "Key ideas", content: "Terms are joined by \\(+\\) or \\(-\\); coefficients multiply variables; collect only like terms; and use brackets when substituting a negative value." },
+    ],
+  },
   {
     id: "quadratics-solving-equations",
     topicId: QUADRATICS_TOPIC_CONTENT_ID,
