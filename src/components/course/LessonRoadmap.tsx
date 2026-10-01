@@ -35,8 +35,8 @@ const NODE_CENTER_Y = 52;
 const MIN_ROW_HEIGHT = 140;
 const LABEL_WIDTH = 176;
 const MIN_LABEL_WIDTH = 128;
-const LABEL_OUTSET = 52;
-const LABEL_GAP = 8;
+const LABEL_OUTSET = 44;
+const LABEL_GAP = 22;
 const ROW_BOTTOM_SPACE = 18;
 const GUIDE_WIDTH = 64;
 const GUIDE_GAP = 18;
@@ -61,13 +61,17 @@ function getConnectorSide(startX: number, endX: number) {
 }
 
 function getLabelLayout(x: number, nextX: number | undefined, width: number) {
-  const outset = nextX === undefined ? 0 : -getConnectorSide(x, nextX) * Math.min(LABEL_OUTSET, width * 0.16);
+  // Put labels toward the outside of the route. Nodes near an edge use that
+  // same outside edge; central nodes use the side opposite their next bend.
+  const side = Math.abs(x - width / 2) > width * 0.1
+    ? Math.sign(x - width / 2)
+    : nextX === undefined ? 1 : -getConnectorSide(x, nextX);
+  const outset = side * Math.min(LABEL_OUTSET, width * 0.14);
   const inset = Math.min(MIN_LABEL_WIDTH / 2 + SAFE_EDGE, width / 2);
   const center = Math.max(inset, Math.min(width - inset, x + outset));
   const labelWidth = Math.min(LABEL_WIDTH, Math.max(0, Math.min(center - SAFE_EDGE, width - SAFE_EDGE - center) * 2));
   return {
     left: Math.max(SAFE_EDGE, center - labelWidth / 2), width: labelWidth,
-    needsBackdrop: Math.abs(center - (x + outset)) > 0.5,
   };
 }
 
@@ -78,21 +82,13 @@ function getNodeMetrics(state: RoadmapNodeState, checkpoint: boolean) {
   return { frameSize: 74, faceSize: 63 };
 }
 
-interface RoadmapPoint { x: number; y: number; frameSize: number }
+interface RoadmapPoint { x: number; y: number }
 
 function connectorPath(start: RoadmapPoint, end: RoadmapPoint) {
-  const side = getConnectorSide(start.x, end.x);
-  // Attach just inside the lower/upper outer shoulders of the platforms.
-  // One monotonic cubic forms the entire connection: titles never steer it.
-  const startRadius = start.frameSize / 2 - 3;
-  const endRadius = end.frameSize / 2 - 3;
-  const startX = start.x + side * startRadius * 0.85;
-  const startY = start.y + startRadius * 0.527;
-  const endX = end.x + side * endRadius * 0.85;
-  const endY = end.y - endRadius * 0.527;
-  const deltaX = endX - startX;
-  const deltaY = endY - startY;
-  return `M ${startX} ${startY} C ${startX + deltaX * 0.18} ${startY + deltaY * 0.4}, ${endX - deltaX * 0.18} ${endY - deltaY * 0.4}, ${endX} ${endY}`;
+  const deltaY = end.y - start.y;
+  // Nodes are points on the route. Vertical tangents at both centres make
+  // each connection flow smoothly into and out of the circles.
+  return `M ${start.x} ${start.y} C ${start.x} ${start.y + deltaY * 0.42}, ${end.x} ${end.y - deltaY * 0.42}, ${end.x} ${end.y}`;
 }
 
 function getRecommendedLessonIndex(lessons: readonly CourseLessonDefinition[], completedLessonIds: readonly string[]) {
@@ -271,7 +267,6 @@ export function LessonRoadmap({ lessons, progress, isHydrated, onLessonPress, ch
                 <View pointerEvents="none" style={[
                   styles.lessonLabel,
                   { marginLeft: label.left, width: label.width || LABEL_WIDTH },
-                  label.needsBackdrop && styles.labelBackdrop,
                 ]}>
                   <Text style={[styles.lessonTitle, state === "current" && styles.currentTitle, !isLesson && styles.checkpointTitle]}>{title}</Text>
                   {isLesson && item.lesson.durationMinutes ? <Text style={styles.lessonDetail}>~{item.lesson.durationMinutes} min</Text> : null}
@@ -320,7 +315,6 @@ const styles = StyleSheet.create({
   playIcon: { marginLeft: 4 },
   nodeNumber: { color: Colors.primaryDark, fontSize: 17, fontWeight: "600" },
   lessonLabel: { marginTop: LABEL_GAP, alignItems: "center", gap: 4, paddingHorizontal: 14, paddingVertical: 10, borderRadius: 10 },
-  labelBackdrop: { backgroundColor: Colors.cream },
   lessonTitle: { width: "100%", color: Colors.ink, fontSize: 15, lineHeight: 20, fontWeight: "700", textAlign: "center" },
   currentTitle: { color: Colors.primaryDeep, fontWeight: "800" },
   checkpointTitle: { color: Colors.primaryDeep, fontWeight: "800" },
