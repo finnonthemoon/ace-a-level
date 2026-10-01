@@ -15,8 +15,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { MathContent } from "@/components/course/MathContent";
 import { Screen } from "@/components/Screen";
 import { Colors, MaxContentWidth } from "@/constants/theme";
+import { useCourse } from "@/contexts/CourseContext";
 import { useTopicProgress } from "@/contexts/TopicProgressContext";
 import { findLesson, type LessonBlock } from "@/content/lesson-content";
+import { canViewStage } from "@/product/qualification";
 
 interface LessonSection {
   title: string;
@@ -99,6 +101,7 @@ export default function LessonScreen() {
   const lesson = findLesson(lessonId);
   const currentLessonId = lesson?.id ?? "";
   const lessonTopicId = lesson?.topicId ?? "";
+  const { qualificationLevel } = useCourse();
   const { completeLesson, getProgress, isHydrated, recordQuestionAttempt } = useTopicProgress();
   const [sectionProgress, setSectionProgress] = useState({ lessonId: "", index: 0 });
   const [saving, setSaving] = useState(false);
@@ -151,6 +154,21 @@ export default function LessonScreen() {
 
   if (!lesson) {
     return <Screen eyebrow="LESSON" title="Lesson unavailable" subtitle="This lesson could not be found." onBack={goBack} />;
+  }
+
+  if (!canViewStage(qualificationLevel, lesson.stage)) {
+    return <Screen eyebrow="LESSON" title="Lesson unavailable" subtitle="This lesson is not part of your selected qualification." onBack={goBack} />;
+  }
+
+  if (lesson.contentStatus === "planned" || lesson.blocks.length === 0) {
+    return (
+      <Screen eyebrow={lesson.areaTitle.toUpperCase()} title={lesson.title} subtitle={lesson.description} onBack={goBack}>
+        <View style={styles.paragraphCard}>
+          <Text style={styles.blockEyebrow}>LESSON PLANNED</Text>
+          <Text style={styles.comingSoonText}>This lesson is part of the course outline. Its teaching content is being prepared.</Text>
+        </View>
+      </Screen>
+    );
   }
 
   function renderBlock(block: LessonBlock, sectionIndex: number, blockIndex: number) {
@@ -218,7 +236,7 @@ export default function LessonScreen() {
     <SafeAreaView edges={["top", "bottom"]} style={styles.safeArea}>
       <View style={styles.header}>
         <View style={styles.headerTopRow}>
-          <Pressable accessibilityRole="button" accessibilityLabel="Back to topic" onPress={goBack} style={styles.backButton}>
+          <Pressable accessibilityRole="button" accessibilityLabel="Back to learning path" onPress={goBack} style={styles.backButton}>
             <Ionicons name="arrow-back" size={17} color={Colors.ink} />
             <Text style={styles.backLabel}>Back</Text>
           </Pressable>
@@ -228,7 +246,7 @@ export default function LessonScreen() {
         <View style={styles.headerMeta}>
           <View style={styles.metaItem}>
             <Ionicons name="time-outline" size={15} color={Colors.muted} />
-            <Text style={styles.metaText}>{lesson.estimatedMinutes} min</Text>
+            <Text style={styles.metaText}>{lesson.durationMinutes ? `~${lesson.durationMinutes} min` : "Lesson"}</Text>
           </View>
           <View style={styles.metaDivider} />
           <Text style={styles.metaText}>{sectionNumber} of {sectionCount || 1}</Text>
@@ -312,6 +330,7 @@ const styles = StyleSheet.create({
   exampleCard: { gap: 11, padding: 15, borderRadius: 16, backgroundColor: Colors.surface, borderWidth: 1, borderColor: Colors.line, shadowColor: Colors.shadow, shadowOffset: { width: 0, height: 3 }, shadowOpacity: 0.045, shadowRadius: 9, elevation: 1 },
   blockEyebrow: { color: Colors.primary, fontSize: 9, fontWeight: "800", letterSpacing: 0.8 },
   exampleTitle: { color: Colors.ink, fontSize: 15, fontWeight: "700" },
+  comingSoonText: { color: Colors.muted, fontSize: 13, lineHeight: 20 },
   steps: { gap: 10, marginTop: 2 },
   stepRow: { flexDirection: "row", alignItems: "flex-start", gap: 9 },
   stepNumber: { width: 22, height: 22, flexShrink: 0, alignItems: "center", justifyContent: "center", borderRadius: 8, backgroundColor: Colors.primarySoft },

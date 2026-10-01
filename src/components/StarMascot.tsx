@@ -10,12 +10,13 @@ const images = {
   blue: require("../../assets/images/mascot/star-blue.png"),
 } as const;
 
-export function StarMascot({ stage, size = 96, style }: { stage?: StarStage; size?: number; style?: StyleProp<ImageStyle> }) {
+export function StarMascot({ stage, size = 96, style, decorative = false }: { stage?: StarStage; size?: number; style?: StyleProp<ImageStyle>; decorative?: boolean }) {
   const mascot = useMascot();
   const shownStage = stage ?? mascot.stage;
   return (
     <Image
-      accessibilityLabel={`${shownStage} star mascot`}
+      accessible={!decorative}
+      accessibilityLabel={decorative ? undefined : `${shownStage} star mascot`}
       source={images[shownStage]}
       resizeMode="contain"
       style={[{ width: size, height: size }, style]}

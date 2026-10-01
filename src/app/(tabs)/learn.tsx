@@ -9,8 +9,7 @@ import { SubjectSwitcher } from "@/components/SubjectSwitcher";
 import { Colors } from "@/constants/theme";
 import { useCourse } from "@/contexts/CourseContext";
 import { useTopicProgress } from "@/contexts/TopicProgressContext";
-import { LESSONS } from "@/content/lesson-content";
-import { findSpecification, type CourseTopic } from "@/content/course-catalog";
+import { countAreaLessons, findSpecification, getTopicProgressId, getVisibleAreaTopics, getVisibleLessons } from "@/content/course-catalog";
 import { findSubject } from "@/product/subjects";
 
 const areaIcons = {
@@ -24,14 +23,6 @@ const areaAccents = {
   statistics: { color: "#7758E8", soft: "#F0ECFF", wash: "#F8F6FF", border: "#EBE5FF", formula: "μ   Σ", motif: "statistics" },
   mechanics: { color: "#3477E8", soft: "#E8F2FF", wash: "#F3F8FF", border: "#DFEBFC", formula: "v = u + at", motif: "mechanics" },
 } as const;
-
-function collectTopics(topics: readonly CourseTopic[]): CourseTopic[] {
-  return topics.flatMap((topic) => [topic, ...collectTopics(topic.topics ?? [])]);
-}
-
-function countLessons(topics: readonly CourseTopic[]): number {
-  return topics.reduce((total, topic) => total + topic.lessonIds.length + countLessons(topic.topics ?? []), 0);
-}
 
 function AreaArtwork({ motif, color, formula }: { motif: "pure" | "statistics" | "mechanics"; color: string; formula: string }) {
   return (
@@ -80,12 +71,14 @@ function AreaArtwork({ motif, color, formula }: { motif: "pure" | "statistics" |
 
 export default function LearnScreen() {
   const router = useRouter();
-  const { activeSubjectId } = useCourse();
+  const { activeSubjectId, qualificationLevel } = useCourse();
   const { getProgress } = useTopicProgress();
   const subject = findSubject(activeSubjectId);
   const specification = subject ? findSpecification(subject.id) : null;
-  const availableLessons = subject?.id === "mathematics" ? LESSONS : [];
-  const completedLessons = availableLessons.filter((lesson) => getProgress(lesson.topicId).completedLessonIds.includes(lesson.id)).length;
+  const availableLessons = specification
+    ? specification.topicAreas.flatMap((area) => getVisibleAreaTopics(area, qualificationLevel).flatMap(({ group, topic }) => getVisibleLessons(topic, qualificationLevel).map((lesson) => ({ area, group, lesson, topic }))))
+    : [];
+  const completedLessons = availableLessons.filter(({ area, group, lesson, topic }) => getProgress(getTopicProgressId(specification!, area, group, topic)).completedLessonIds.includes(lesson.id)).length;
   const progressPercent = availableLessons.length ? Math.round((completedLessons / availableLessons.length) * 100) : 0;
 
   return (
@@ -118,13 +111,12 @@ export default function LearnScreen() {
         <View style={styles.topicList}>
           {subject.topics.map((topic, index) => {
             const area = specification?.topicAreas.find((candidate) => candidate.id === topic.id);
-            const descendants = area ? collectTopics(area.topics) : [];
-            const lessonCount = area ? countLessons(area.topics) : 0;
-            const areaLessonIds = area ? collectTopics(area.topics).flatMap((item) => item.lessonIds) : [];
-            const completedAreaLessons = areaLessonIds.filter((lessonId) => {
-              const lesson = LESSONS.find((candidate) => candidate.id === lessonId);
-              return lesson ? getProgress(lesson.topicId).completedLessonIds.includes(lessonId) : false;
-            }).length;
+            const descendants = area ? getVisibleAreaTopics(area, qualificationLevel) : [];
+            const lessonCount = area ? countAreaLessons(area, qualificationLevel) : 0;
+            const completedAreaLessons = descendants.reduce((total, { topic: courseTopic, group }) => {
+              const topicProgress = getProgress(getTopicProgressId(specification!, area!, group, courseTopic));
+              return total + getVisibleLessons(courseTopic, qualificationLevel).filter((lesson) => topicProgress.completedLessonIds.includes(lesson.id)).length;
+            }, 0);
             const areaProgress = lessonCount ? Math.round((completedAreaLessons / lessonCount) * 100) : 0;
             const themed = subject.id === "mathematics" ? areaAccents[topic.id as keyof typeof areaAccents] : undefined;
             const isMathArea = Boolean(themed);

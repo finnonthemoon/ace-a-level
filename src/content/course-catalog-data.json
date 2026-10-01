@@ -1,0 +1,4192 @@
+{
+  "id": "ocr-mei-mathematics-b",
+  "version": "3.1",
+  "qualification": {
+    "id": "a-level",
+    "title": "AS & A Level",
+    "specifications": [
+      {
+        "level": "as",
+        "code": "H630",
+        "title": "Mathematics B (MEI) AS Level"
+      },
+      {
+        "level": "a-level",
+        "code": "H640",
+        "title": "Mathematics B (MEI) A Level"
+      }
+    ]
+  },
+  "subject": {
+    "id": "mathematics",
+    "title": "Mathematics"
+  },
+  "examBoard": {
+    "id": "ocr-mei",
+    "title": "OCR MEI"
+  },
+  "title": "Mathematics B",
+  "topicAreas": [
+    {
+      "id": "pure",
+      "title": "Pure Mathematics",
+      "summary": "Explore algebra, functions, graphs, geometry, calculus and vectors.",
+      "topicGroups": [
+        {
+          "id": "proof",
+          "title": "Proof",
+          "topics": [
+            {
+              "id": "mathematical-proof",
+              "title": "Mathematical proof",
+              "summary": "Build rigorous mathematical arguments and learn the major forms of proof used at A Level.",
+              "lessons": [
+                {
+                  "id": "mathematical-proof-structure-of-mathematical-proof",
+                  "title": "Structure of mathematical proof",
+                  "description": "Explore structure of mathematical proof in mathematical proof.",
+                  "scope": [
+                    "assumptions",
+                    "logical steps",
+                    "conclusions",
+                    "proof by deduction"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mp1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "mathematical-proof-proof-by-exhaustion",
+                  "title": "Proof by exhaustion",
+                  "description": "Explore proof by exhaustion in mathematical proof.",
+                  "scope": [
+                    "systematic proof through all possible cases",
+                    "deciding when exhaustion is appropriate"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mp1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "mathematical-proof-disproving-with-counterexamples",
+                  "title": "Disproving with counterexamples",
+                  "description": "Explore disproving with counterexamples in mathematical proof.",
+                  "scope": [
+                    "conjectures",
+                    "finding a valid counterexample",
+                    "why one counterexample is sufficient to disprove a universal claim"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "p2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "mathematical-proof-proof-by-contradiction",
+                  "title": "Proof by contradiction",
+                  "description": "Explore proof by contradiction in mathematical proof.",
+                  "scope": [
+                    "assume the opposite",
+                    "derive a contradiction",
+                    "standard examples such as irrationality/infinite primes",
+                    "unfamiliar proofs"
+                  ],
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "p3"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        },
+        {
+          "id": "algebra-and-functions",
+          "title": "Algebra and Functions",
+          "topics": [
+            {
+              "id": "algebraic-language-and-equations",
+              "title": "Algebraic language & equations",
+              "summary": "Use algebraic notation confidently, manipulate formulae and solve linear equations.",
+              "lessons": [
+                {
+                  "id": "algebraic-language-and-equations-algebraic-vocabulary-and-notation",
+                  "title": "Algebraic vocabulary & notation",
+                  "description": "Explore algebraic vocabulary & notation in algebraic language & equations.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Ma1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "algebraic-language-and-equations-solving-linear-equations",
+                  "title": "Solving linear equations",
+                  "description": "Explore solving linear equations in algebraic language & equations.",
+                  "scope": [
+                    "brackets",
+                    "fractions",
+                    "unknown on both sides"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "AS-prior-linear-equations"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "algebraic-language-and-equations-rearranging-formulae",
+                  "title": "Rearranging formulae",
+                  "description": "Explore rearranging formulae in algebraic language & equations.",
+                  "scope": [
+                    "changing the subject",
+                    "subject on both sides",
+                    "squares",
+                    "square roots",
+                    "reciprocals"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "AS-prior-change-subject"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "algebraic-language-and-equations-linear-simultaneous-equations",
+                  "title": "Linear simultaneous equations",
+                  "description": "Explore linear simultaneous equations in algebraic language & equations.",
+                  "scope": [
+                    "elimination",
+                    "substitution"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "a4"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "quadratics",
+              "contentId": "a-level:mathematics:ocr-mei-mathematics-b:pure:algebra-and-functions:quadratics",
+              "title": "Quadratics",
+              "summary": "Solve quadratic equations, interpret their roots and graphs, and work with inequalities and intersections.",
+              "lessons": [
+                {
+                  "id": "quadratics-solving-equations",
+                  "title": "Quadratic equations & roots",
+                  "description": "Understand quadratic equations, roots and graphical solutions.",
+                  "scope": [
+                    "meaning of roots",
+                    "graphical solutions",
+                    "quadratic equations in a function of the unknown"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Ma2"
+                  ],
+                  "contentStatus": "ready",
+                  "durationMinutes": 6
+                },
+                {
+                  "id": "quadratics-solving-factorising",
+                  "title": "Solving by factorising",
+                  "description": "Factorise quadratic expressions and use the factors to solve equations.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Ma2"
+                  ],
+                  "contentStatus": "ready",
+                  "durationMinutes": 8
+                },
+                {
+                  "id": "quadratics-completing-square",
+                  "title": "Completing the square",
+                  "description": "Rewrite quadratics in completed-square form and use it to solve equations.",
+                  "scope": [
+                    "completed-square form",
+                    "solving",
+                    "turning point",
+                    "line of symmetry",
+                    "sketching parabolas"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Ma2",
+                    "C3"
+                  ],
+                  "contentStatus": "ready",
+                  "durationMinutes": 8
+                },
+                {
+                  "id": "quadratics-formula",
+                  "title": "The quadratic formula",
+                  "description": "Solve quadratic equations using the quadratic formula.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Ma2"
+                  ],
+                  "contentStatus": "ready",
+                  "durationMinutes": 7
+                },
+                {
+                  "id": "quadratics-discriminant",
+                  "title": "The discriminant",
+                  "description": "Use b² − 4ac to determine the number and nature of real roots.",
+                  "scope": [
+                    "b² - 4ac",
+                    "two distinct real roots",
+                    "repeated root",
+                    "no real roots",
+                    "do not teach complex roots as part of this specification"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "a3"
+                  ],
+                  "contentStatus": "ready",
+                  "durationMinutes": 6
+                },
+                {
+                  "id": "quadratics-function-substitution",
+                  "title": "Quadratics in a function",
+                  "description": "Recognise and solve equations that become quadratic after substitution.",
+                  "scope": [
+                    "substitution",
+                    "equations that become quadratic in another expression"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Ma2"
+                  ],
+                  "contentStatus": "ready",
+                  "durationMinutes": 8
+                },
+                {
+                  "id": "quadratics-simultaneous-intersections",
+                  "title": "Linear-quadratic simultaneous equations",
+                  "description": "Solve systems containing one linear and one quadratic equation and interpret graph intersections.",
+                  "scope": [
+                    "substitution",
+                    "elimination",
+                    "intersections as solutions"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "a5",
+                    "a6"
+                  ],
+                  "contentStatus": "ready",
+                  "durationMinutes": 9
+                },
+                {
+                  "id": "quadratics-inequalities",
+                  "title": "Quadratic inequalities",
+                  "description": "Solve and interpret quadratic inequalities algebraically and graphically.",
+                  "scope": [
+                    "algebraic solution",
+                    "graphical interpretation",
+                    "included/excluded boundaries",
+                    "and/or notation",
+                    "set notation where appropriate"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "a8",
+                    "a9"
+                  ],
+                  "contentStatus": "ready",
+                  "durationMinutes": 9
+                }
+              ],
+              "practiceSetIds": [
+                "quadratics-foundations"
+              ],
+              "readiness": "ready"
+            },
+            {
+              "id": "linear-inequalities",
+              "title": "Linear inequalities",
+              "summary": "Solve and represent linear inequalities algebraically and graphically.",
+              "lessons": [
+                {
+                  "id": "linear-inequalities-solving-linear-inequalities",
+                  "title": "Solving linear inequalities",
+                  "description": "Explore solving linear inequalities in linear inequalities.",
+                  "scope": [
+                    "brackets",
+                    "fractions",
+                    "one variable"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "a7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "linear-inequalities-graphical-inequalities",
+                  "title": "Graphical inequalities",
+                  "description": "Explore graphical inequalities in linear inequalities.",
+                  "scope": [
+                    "inequalities involving straight lines",
+                    "interpreting regions"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "a7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "linear-inequalities-writing-solution-sets",
+                  "title": "Writing solution sets",
+                  "description": "Explore writing solution sets in linear inequalities.",
+                  "scope": [
+                    "and",
+                    "or",
+                    "set notation"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "a9"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "surds-and-indices",
+              "title": "Surds & indices",
+              "summary": "Manipulate exact expressions involving surds and rational indices.",
+              "lessons": [
+                {
+                  "id": "surds-and-indices-manipulating-surds",
+                  "title": "Manipulating surds",
+                  "description": "Explore manipulating surds in surds & indices.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "a10"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "surds-and-indices-rationalising-denominators",
+                  "title": "Rationalising denominators",
+                  "description": "Explore rationalising denominators in surds & indices.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "a11"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "surds-and-indices-laws-of-indices",
+                  "title": "Laws of indices",
+                  "description": "Explore laws of indices in surds & indices.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "a12"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "surds-and-indices-negative-zero-and-fractional-indices",
+                  "title": "Negative, zero & fractional indices",
+                  "description": "Explore negative, zero & fractional indices in surds & indices.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "a13"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "proportion",
+              "title": "Proportion",
+              "summary": "Model direct and inverse relationships involving powers and roots.",
+              "lessons": [
+                {
+                  "id": "proportion-direct-proportion",
+                  "title": "Direct proportion",
+                  "description": "Explore direct proportion in proportion.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "a14"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "proportion-inverse-proportion",
+                  "title": "Inverse proportion",
+                  "description": "Explore inverse proportion in proportion.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "a14"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "proportion-proportional-graphs-and-modelling",
+                  "title": "Proportional graphs & modelling",
+                  "description": "Explore proportional graphs & modelling in proportion.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "a14"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "polynomials-and-the-factor-theorem",
+              "title": "Polynomials & the factor theorem",
+              "summary": "Manipulate polynomial expressions and use the factor theorem to find factors and roots.",
+              "lessons": [
+                {
+                  "id": "polynomials-and-the-factor-theorem-polynomial-operations",
+                  "title": "Polynomial operations",
+                  "description": "Explore polynomial operations in polynomials & the factor theorem.",
+                  "scope": [
+                    "addition",
+                    "subtraction",
+                    "multiplication",
+                    "division"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mf1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "polynomials-and-the-factor-theorem-the-factor-theorem",
+                  "title": "The factor theorem",
+                  "description": "Explore the factor theorem in polynomials & the factor theorem.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "f2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "polynomials-and-the-factor-theorem-factorising-polynomials-and-finding-roots",
+                  "title": "Factorising polynomials & finding roots",
+                  "description": "Explore factorising polynomials & finding roots in polynomials & the factor theorem.",
+                  "scope": [
+                    "polynomial equations",
+                    "repeated use of factors where appropriate"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "f2"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "partial-fractions-and-rational-expressions",
+              "title": "Partial fractions & rational expressions",
+              "summary": "Decompose algebraic fractions and simplify rational expressions.",
+              "lessons": [
+                {
+                  "id": "partial-fractions-and-rational-expressions-partial-fractions-with-distinct-linear-factors",
+                  "title": "Partial fractions with distinct linear factors",
+                  "description": "Explore partial fractions with distinct linear factors in partial fractions & rational expressions.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "a15"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "partial-fractions-and-rational-expressions-repeated-linear-factors",
+                  "title": "Repeated linear factors",
+                  "description": "Explore repeated linear factors in partial fractions & rational expressions.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "a15"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "partial-fractions-and-rational-expressions-simplifying-rational-expressions",
+                  "title": "Simplifying rational expressions",
+                  "description": "Explore simplifying rational expressions in partial fractions & rational expressions.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "a16"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "partial-fractions-and-rational-expressions-algebraic-division",
+                  "title": "Algebraic division",
+                  "description": "Explore algebraic division in partial fractions & rational expressions.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "a16"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "functions-composites-and-inverses",
+              "title": "Functions, composites & inverses",
+              "summary": "Understand functions as mappings and work with domains, ranges, composites and inverses.",
+              "lessons": [
+                {
+                  "id": "functions-composites-and-inverses-functions-domains-and-ranges",
+                  "title": "Functions, domains & ranges",
+                  "description": "Explore functions, domains & ranges in functions, composites & inverses.",
+                  "scope": [
+                    "mapping",
+                    "many-to-one",
+                    "one-to-one",
+                    "domain",
+                    "range"
+                  ],
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "f3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "functions-composites-and-inverses-composite-functions",
+                  "title": "Composite functions",
+                  "description": "Explore composite functions in functions, composites & inverses.",
+                  "scope": [
+                    "composition",
+                    "valid domains"
+                  ],
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "f4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "functions-composites-and-inverses-inverse-functions",
+                  "title": "Inverse functions",
+                  "description": "Explore inverse functions in functions, composites & inverses.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "f5"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "functions-composites-and-inverses-graphs-of-inverse-functions",
+                  "title": "Graphs of inverse functions",
+                  "description": "Explore graphs of inverse functions in functions, composites & inverses.",
+                  "scope": [
+                    "reflection in y = x",
+                    "domains/ranges"
+                  ],
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "f5"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "modulus-and-function-modelling",
+              "title": "Modulus & function modelling",
+              "summary": "Work with modulus functions and use functions to model real situations.",
+              "lessons": [
+                {
+                  "id": "modulus-and-function-modelling-the-modulus-function",
+                  "title": "The modulus function",
+                  "description": "Explore the modulus function in modulus & function modelling.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "f6"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "modulus-and-function-modelling-graphs-involving-modulus",
+                  "title": "Graphs involving modulus",
+                  "description": "Explore graphs involving modulus in modulus & function modelling.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "f6"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "modulus-and-function-modelling-modulus-inequalities",
+                  "title": "Modulus inequalities",
+                  "description": "Explore modulus inequalities in modulus & function modelling.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "f7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "modulus-and-function-modelling-functions-as-models",
+                  "title": "Functions as models",
+                  "description": "Explore functions as models in modulus & function modelling.",
+                  "scope": [
+                    "assumptions",
+                    "limitations",
+                    "refinements"
+                  ],
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "f8"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        },
+        {
+          "id": "graphs",
+          "title": "Graphs",
+          "topics": [
+            {
+              "id": "graphs-and-curve-sketching",
+              "title": "Graphs & curve sketching",
+              "summary": "Interpret and sketch important function graphs using roots, asymptotes and stationary points.",
+              "lessons": [
+                {
+                  "id": "graphs-and-curve-sketching-understanding-function-graphs",
+                  "title": "Understanding function graphs",
+                  "description": "Explore understanding function graphs in graphs & curve sketching.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "MC1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "graphs-and-curve-sketching-axis-intersections-and-roots",
+                  "title": "Axis intersections & roots",
+                  "description": "Explore axis intersections & roots in graphs & curve sketching.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "C2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "graphs-and-curve-sketching-polynomial-curve-sketching",
+                  "title": "Polynomial curve sketching",
+                  "description": "Explore polynomial curve sketching in graphs & curve sketching.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "C4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "graphs-and-curve-sketching-stationary-points-in-curve-sketching",
+                  "title": "Stationary points in curve sketching",
+                  "description": "Explore stationary points in curve sketching in graphs & curve sketching.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "C5"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "graphs-and-curve-sketching-reciprocal-and-inverse-square-graphs",
+                  "title": "Reciprocal and inverse-square graphs",
+                  "description": "Explore reciprocal and inverse-square graphs in graphs & curve sketching.",
+                  "scope": [
+                    "vertical asymptotes",
+                    "horizontal asymptotes",
+                    "proportional relationships"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "C6"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "graph-transformations",
+              "title": "Graph transformations",
+              "summary": "Recognise and construct transformed graphs from known functions.",
+              "lessons": [
+                {
+                  "id": "graph-transformations-translations",
+                  "title": "Translations",
+                  "description": "Explore translations in graph transformations.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "MC7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "graph-transformations-stretches",
+                  "title": "Stretches",
+                  "description": "Explore stretches in graph transformations.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "MC7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "graph-transformations-reflections",
+                  "title": "Reflections",
+                  "description": "Explore reflections in graph transformations.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "MC7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "graph-transformations-forming-equations-after-one-transformation",
+                  "title": "Forming equations after one transformation",
+                  "description": "Explore forming equations after one transformation in graph transformations.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "MC7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "graph-transformations-combined-graph-transformations",
+                  "title": "Combined graph transformations",
+                  "description": "Explore combined graph transformations in graph transformations.",
+                  "scope": [
+                    "combinations",
+                    "identifying transformations from an equation",
+                    "identifying transformations from a graph"
+                  ],
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "C8"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "advanced-curve-sketching",
+              "title": "Advanced curve sketching",
+              "summary": "Use higher derivatives and points of inflection to analyse curve shape.",
+              "lessons": [
+                {
+                  "id": "advanced-curve-sketching-stationary-points-of-inflection",
+                  "title": "Stationary points of inflection",
+                  "description": "Explore stationary points of inflection in advanced curve sketching.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "C9",
+                    "c18"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-curve-sketching-non-stationary-points-of-inflection",
+                  "title": "Non-stationary points of inflection",
+                  "description": "Explore non-stationary points of inflection in advanced curve sketching.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c18"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-curve-sketching-concavity-and-curve-shape",
+                  "title": "Concavity and curve shape",
+                  "description": "Explore concavity and curve shape in advanced curve sketching.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c17"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        },
+        {
+          "id": "coordinate-geometry",
+          "title": "Coordinate Geometry",
+          "topics": [
+            {
+              "id": "straight-lines",
+              "title": "Straight lines",
+              "summary": "Work with gradients, equations, distances and intersections of straight lines.",
+              "lessons": [
+                {
+                  "id": "straight-lines-gradients-parallel-and-perpendicular-lines",
+                  "title": "Gradients, parallel & perpendicular lines",
+                  "description": "Explore gradients, parallel & perpendicular lines in straight lines.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mg1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "straight-lines-distance-and-midpoint",
+                  "title": "Distance & midpoint",
+                  "description": "Explore distance & midpoint in straight lines.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "g2",
+                    "g3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "straight-lines-equations-of-straight-lines",
+                  "title": "Equations of straight lines",
+                  "description": "Explore equations of straight lines in straight lines.",
+                  "scope": [
+                    "y = mx + c",
+                    "point-gradient form",
+                    "ax + by + c = 0"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "g4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "straight-lines-drawing-straight-line-graphs",
+                  "title": "Drawing straight-line graphs",
+                  "description": "Explore drawing straight-line graphs in straight lines.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "g5"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "straight-lines-intersections-of-straight-lines",
+                  "title": "Intersections of straight lines",
+                  "description": "Explore intersections of straight lines in straight lines.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "g6"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "straight-lines-straight-line-modelling",
+                  "title": "Straight-line modelling",
+                  "description": "Explore straight-line modelling in straight lines.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "g7"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "circles-and-curve-intersections",
+              "title": "Circles & curve intersections",
+              "summary": "Use coordinate geometry with circles, curves and their intersections.",
+              "lessons": [
+                {
+                  "id": "circles-and-curve-intersections-intersections-of-lines-and-curves",
+                  "title": "Intersections of lines & curves",
+                  "description": "Explore intersections of lines & curves in circles & curve intersections.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mg8"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "circles-and-curve-intersections-lines-and-circles",
+                  "title": "Lines and circles",
+                  "description": "Explore lines and circles in circles & curve intersections.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "g9"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "circles-and-curve-intersections-equation-of-a-circle",
+                  "title": "Equation of a circle",
+                  "description": "Explore equation of a circle in circles & curve intersections.",
+                  "scope": [
+                    "centre",
+                    "radius",
+                    "completing the square"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "g10"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "circles-and-curve-intersections-circle-geometry-in-coordinates",
+                  "title": "Circle geometry in coordinates",
+                  "description": "Explore circle geometry in coordinates in circles & curve intersections.",
+                  "scope": [
+                    "angle in a semicircle",
+                    "perpendicular radius/tangent",
+                    "centre-to-chord properties"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "g11"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "parametric-equations",
+              "title": "Parametric equations",
+              "summary": "Represent curves parametrically and connect parametric, Cartesian and differential forms.",
+              "lessons": [
+                {
+                  "id": "parametric-equations-parameters-and-parametric-equations",
+                  "title": "Parameters & parametric equations",
+                  "description": "Explore parameters & parametric equations in parametric equations.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "g12"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "parametric-equations-cartesian-and-parametric-forms",
+                  "title": "Cartesian and parametric forms",
+                  "description": "Explore cartesian and parametric forms in parametric equations.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "g13"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "parametric-equations-parametric-circles",
+                  "title": "Parametric circles",
+                  "description": "Explore parametric circles in parametric equations.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "g14"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "parametric-equations-differentiating-parametric-curves",
+                  "title": "Differentiating parametric curves",
+                  "description": "Explore differentiating parametric curves in parametric equations.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "g15"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "parametric-equations-parametric-modelling",
+                  "title": "Parametric modelling",
+                  "description": "Explore parametric modelling in parametric equations.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "g16"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        },
+        {
+          "id": "sequences-and-series",
+          "title": "Sequences and Series",
+          "topics": [
+            {
+              "id": "binomial-expansion",
+              "title": "Binomial expansion",
+              "summary": "Expand binomial expressions and use expansions to approximate functions.",
+              "lessons": [
+                {
+                  "id": "binomial-expansion-positive-integer-binomial-expansions",
+                  "title": "Positive integer binomial expansions",
+                  "description": "Explore positive integer binomial expansions in binomial expansion.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Ms1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "binomial-expansion-factorials-and-combinations",
+                  "title": "Factorials and combinations",
+                  "description": "Explore factorials and combinations in binomial expansion.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "s2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "binomial-expansion-rational-binomial-expansions",
+                  "title": "Rational binomial expansions",
+                  "description": "Explore rational binomial expansions in binomial expansion.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "s3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "binomial-expansion-rewriting-expressions-for-expansion",
+                  "title": "Rewriting expressions for expansion",
+                  "description": "Explore rewriting expressions for expansion in binomial expansion.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "s4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "binomial-expansion-binomial-approximations",
+                  "title": "Binomial approximations",
+                  "description": "Explore binomial approximations in binomial expansion.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "s5"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "sequences-and-sigma-notation",
+              "title": "Sequences & sigma notation",
+              "summary": "Describe, generate and analyse finite and infinite sequences and series.",
+              "lessons": [
+                {
+                  "id": "sequences-and-sigma-notation-finite-and-infinite-sequences",
+                  "title": "Finite & infinite sequences",
+                  "description": "Explore finite & infinite sequences in sequences & sigma notation.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "Ms6"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "sequences-and-sigma-notation-term-to-term-and-position-to-term-rules",
+                  "title": "Term-to-term and position-to-term rules",
+                  "description": "Explore term-to-term and position-to-term rules in sequences & sigma notation.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "s7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "sequences-and-sigma-notation-series",
+                  "title": "Series",
+                  "description": "Explore series in sequences & sigma notation.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "s8"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "sequences-and-sigma-notation-sigma-notation",
+                  "title": "Sigma notation",
+                  "description": "Explore sigma notation in sequences & sigma notation.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "s9"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "sequences-and-sigma-notation-increasing-decreasing-and-periodic-sequences",
+                  "title": "Increasing, decreasing & periodic sequences",
+                  "description": "Explore increasing, decreasing & periodic sequences in sequences & sigma notation.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "s10"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "sequences-and-sigma-notation-convergence-and-divergence",
+                  "title": "Convergence & divergence",
+                  "description": "Explore convergence & divergence in sequences & sigma notation.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "s11"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "arithmetic-and-geometric-series",
+              "title": "Arithmetic & geometric series",
+              "summary": "Use arithmetic and geometric sequences and series in mathematical models.",
+              "lessons": [
+                {
+                  "id": "arithmetic-and-geometric-series-arithmetic-sequences",
+                  "title": "Arithmetic sequences",
+                  "description": "Explore arithmetic sequences in arithmetic & geometric series.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "s12",
+                    "s13"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "arithmetic-and-geometric-series-arithmetic-series",
+                  "title": "Arithmetic series",
+                  "description": "Explore arithmetic series in arithmetic & geometric series.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "s12",
+                    "s13"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "arithmetic-and-geometric-series-geometric-sequences",
+                  "title": "Geometric sequences",
+                  "description": "Explore geometric sequences in arithmetic & geometric series.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "s14",
+                    "s15"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "arithmetic-and-geometric-series-geometric-series",
+                  "title": "Geometric series",
+                  "description": "Explore geometric series in arithmetic & geometric series.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "s14",
+                    "s15"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "arithmetic-and-geometric-series-sum-to-infinity",
+                  "title": "Sum to infinity",
+                  "description": "Explore sum to infinity in arithmetic & geometric series.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "s16"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "arithmetic-and-geometric-series-modelling-with-sequences-and-series",
+                  "title": "Modelling with sequences & series",
+                  "description": "Explore modelling with sequences & series in arithmetic & geometric series.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "s17"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        },
+        {
+          "id": "trigonometry",
+          "title": "Trigonometry",
+          "topics": [
+            {
+              "id": "trigonometric-functions-and-exact-values",
+              "title": "Trigonometric functions & exact values",
+              "summary": "Understand sine, cosine and tangent for general angles and interpret their graphs.",
+              "lessons": [
+                {
+                  "id": "trigonometric-functions-and-exact-values-trigonometric-functions-using-the-unit-circle",
+                  "title": "Trigonometric functions using the unit circle",
+                  "description": "Explore trigonometric functions using the unit circle in trigonometric functions & exact values.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mt1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "trigonometric-functions-and-exact-values-sine-cosine-and-tangent-graphs",
+                  "title": "Sine, cosine & tangent graphs",
+                  "description": "Explore sine, cosine & tangent graphs in trigonometric functions & exact values.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "t2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "trigonometric-functions-and-exact-values-symmetry-and-periodicity",
+                  "title": "Symmetry & periodicity",
+                  "description": "Explore symmetry & periodicity in trigonometric functions & exact values.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "t2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "trigonometric-functions-and-exact-values-exact-trigonometric-values-in-degrees",
+                  "title": "Exact trigonometric values in degrees",
+                  "description": "Explore exact trigonometric values in degrees in trigonometric functions & exact values.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "AS-exact-trig-values"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "triangle-trigonometry",
+              "title": "Triangle trigonometry",
+              "summary": "Solve non-right-angled triangles and calculate areas.",
+              "lessons": [
+                {
+                  "id": "triangle-trigonometry-area-using-1-2-ab-sin-c",
+                  "title": "Area using 1/2 ab sin C",
+                  "description": "Explore area using 1/2 ab sin c in triangle trigonometry.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "t3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "triangle-trigonometry-the-sine-rule",
+                  "title": "The sine rule",
+                  "description": "Explore the sine rule in triangle trigonometry.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "t4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "triangle-trigonometry-the-cosine-rule",
+                  "title": "The cosine rule",
+                  "description": "Explore the cosine rule in triangle trigonometry.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "t4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "triangle-trigonometry-bearings-and-triangle-problems",
+                  "title": "Bearings & triangle problems",
+                  "description": "Explore bearings & triangle problems in triangle trigonometry.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "t4"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "trigonometric-identities-and-equations",
+              "title": "Trigonometric identities & equations",
+              "summary": "Use fundamental identities to manipulate expressions and solve trigonometric equations.",
+              "lessons": [
+                {
+                  "id": "trigonometric-identities-and-equations-tan-sin-cos",
+                  "title": "tan θ = sin θ / cos θ",
+                  "description": "Explore tan θ = sin θ / cos θ in trigonometric identities & equations.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "t5"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "trigonometric-identities-and-equations-sin-cos-1",
+                  "title": "sin²θ + cos²θ = 1",
+                  "description": "Explore sin²θ + cos²θ = 1 in trigonometric identities & equations.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "t6"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "trigonometric-identities-and-equations-solving-trigonometric-equations",
+                  "title": "Solving trigonometric equations",
+                  "description": "Explore solving trigonometric equations in trigonometric identities & equations.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "t7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "trigonometric-identities-and-equations-equations-involving-multiples-and-quadratics",
+                  "title": "Equations involving multiples & quadratics",
+                  "description": "Explore equations involving multiples & quadratics in trigonometric identities & equations.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "t7"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "radians-inverse-and-reciprocal-trig",
+              "title": "Radians, inverse & reciprocal trig",
+              "summary": "Extend trigonometry to radians, inverse functions and reciprocal trigonometric functions.",
+              "lessons": [
+                {
+                  "id": "radians-inverse-and-reciprocal-trig-exact-values-in-radians",
+                  "title": "Exact values in radians",
+                  "description": "Explore exact values in radians in radians, inverse & reciprocal trig.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "Mt8"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "radians-inverse-and-reciprocal-trig-inverse-trigonometric-functions",
+                  "title": "Inverse trigonometric functions",
+                  "description": "Explore inverse trigonometric functions in radians, inverse & reciprocal trig.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "t9"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "radians-inverse-and-reciprocal-trig-radians-and-degree-conversion",
+                  "title": "Radians & degree conversion",
+                  "description": "Explore radians & degree conversion in radians, inverse & reciprocal trig.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "t10"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "radians-inverse-and-reciprocal-trig-arc-length-and-sector-area",
+                  "title": "Arc length & sector area",
+                  "description": "Explore arc length & sector area in radians, inverse & reciprocal trig.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "t11"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "radians-inverse-and-reciprocal-trig-small-angle-approximations",
+                  "title": "Small-angle approximations",
+                  "description": "Explore small-angle approximations in radians, inverse & reciprocal trig.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "t12"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "radians-inverse-and-reciprocal-trig-secant-cosecant-and-cotangent",
+                  "title": "Secant, cosecant & cotangent",
+                  "description": "Explore secant, cosecant & cotangent in radians, inverse & reciprocal trig.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "t13",
+                    "t14",
+                    "t15"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "compound-and-double-angles",
+              "title": "Compound & double angles",
+              "summary": "Use compound-angle and double-angle identities to transform and solve expressions.",
+              "lessons": [
+                {
+                  "id": "compound-and-double-angles-compound-angle-identities",
+                  "title": "Compound-angle identities",
+                  "description": "Explore compound-angle identities in compound & double angles.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "Mt16"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "compound-and-double-angles-double-angle-identities",
+                  "title": "Double-angle identities",
+                  "description": "Explore double-angle identities in compound & double angles.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "t17"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "compound-and-double-angles-choosing-and-applying-trig-identities",
+                  "title": "Choosing and applying trig identities",
+                  "description": "Explore choosing and applying trig identities in compound & double angles.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "t19"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "r-form-trig-proofs-and-modelling",
+              "title": "R-form, trig proofs & modelling",
+              "summary": "Rewrite trigonometric expressions, prove identities and solve contextual problems.",
+              "lessons": [
+                {
+                  "id": "r-form-trig-proofs-and-modelling-rsin-and-rcos",
+                  "title": "Rsin(θ ± α) and Rcos(θ ± α)",
+                  "description": "Explore rsin(θ ± α) and rcos(θ ± α) in r-form, trig proofs & modelling.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "t18"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "r-form-trig-proofs-and-modelling-maximum-minimum-values-using-r-form",
+                  "title": "Maximum/minimum values using R-form",
+                  "description": "Explore maximum/minimum values using r-form in r-form, trig proofs & modelling.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "t18"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "r-form-trig-proofs-and-modelling-equations-using-r-form",
+                  "title": "Equations using R-form",
+                  "description": "Explore equations using r-form in r-form, trig proofs & modelling.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "t18"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "r-form-trig-proofs-and-modelling-trigonometric-proofs",
+                  "title": "Trigonometric proofs",
+                  "description": "Explore trigonometric proofs in r-form, trig proofs & modelling.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "t20"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "r-form-trig-proofs-and-modelling-trigonometric-modelling-and-problem-solving",
+                  "title": "Trigonometric modelling & problem solving",
+                  "description": "Explore trigonometric modelling & problem solving in r-form, trig proofs & modelling.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "t21"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        },
+        {
+          "id": "exponentials-and-logarithms",
+          "title": "Exponentials and Logarithms",
+          "topics": [
+            {
+              "id": "exponentials-and-logarithms",
+              "title": "Exponentials & logarithms",
+              "summary": "Understand exponential and logarithmic functions and solve equations using logarithms.",
+              "lessons": [
+                {
+                  "id": "exponentials-and-logarithms-exponential-functions-and-graphs",
+                  "title": "Exponential functions and graphs",
+                  "description": "Explore exponential functions and graphs in exponentials & logarithms.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "ME1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "exponentials-and-logarithms-index-and-logarithmic-form",
+                  "title": "Index and logarithmic form",
+                  "description": "Explore index and logarithmic form in exponentials & logarithms.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "E2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "exponentials-and-logarithms-logarithms-as-inverse-functions",
+                  "title": "Logarithms as inverse functions",
+                  "description": "Explore logarithms as inverse functions in exponentials & logarithms.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "E3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "exponentials-and-logarithms-laws-of-logarithms",
+                  "title": "Laws of logarithms",
+                  "description": "Explore laws of logarithms in exponentials & logarithms.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "E4",
+                    "E5"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "exponentials-and-logarithms-solving-exponential-equations",
+                  "title": "Solving exponential equations",
+                  "description": "Explore solving exponential equations in exponentials & logarithms.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "E6"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "exponentials-and-logarithms-linearising-exponential-and-power-models",
+                  "title": "Linearising exponential & power models",
+                  "description": "Explore linearising exponential & power models in exponentials & logarithms.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "E7"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "e-ln-growth-and-decay",
+              "title": "e, ln, growth & decay",
+              "summary": "Use natural exponentials and logarithms to model continuous growth and decay.",
+              "lessons": [
+                {
+                  "id": "e-ln-growth-and-decay-the-exponential-function-e-x",
+                  "title": "The exponential function e^x",
+                  "description": "Explore the exponential function e^x in e, ln, growth & decay.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "ME8",
+                    "E9"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "e-ln-growth-and-decay-natural-logarithms",
+                  "title": "Natural logarithms",
+                  "description": "Explore natural logarithms in e, ln, growth & decay.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "E10"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "e-ln-growth-and-decay-exponential-growth",
+                  "title": "Exponential growth",
+                  "description": "Explore exponential growth in e, ln, growth & decay.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "E11"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "e-ln-growth-and-decay-exponential-decay",
+                  "title": "Exponential decay",
+                  "description": "Explore exponential decay in e, ln, growth & decay.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "E11"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "e-ln-growth-and-decay-modelling-limitations-and-long-term-behaviour",
+                  "title": "Modelling, limitations & long-term behaviour",
+                  "description": "Explore modelling, limitations & long-term behaviour in e, ln, growth & decay.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "E11"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        },
+        {
+          "id": "calculus",
+          "title": "Calculus",
+          "topics": [
+            {
+              "id": "differentiation-fundamentals",
+              "title": "Differentiation fundamentals",
+              "summary": "Understand derivatives as gradients and rates of change and differentiate powers of x.",
+              "lessons": [
+                {
+                  "id": "differentiation-fundamentals-gradient-of-a-curve",
+                  "title": "Gradient of a curve",
+                  "description": "Explore gradient of a curve in differentiation fundamentals.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mc1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "differentiation-fundamentals-differentiation-from-first-principles",
+                  "title": "Differentiation from first principles",
+                  "description": "Explore differentiation from first principles in differentiation fundamentals.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "c2",
+                    "c5"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "differentiation-fundamentals-the-derivative-as-a-rate-of-change",
+                  "title": "The derivative as a rate of change",
+                  "description": "Explore the derivative as a rate of change in differentiation fundamentals.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "c3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "differentiation-fundamentals-gradient-functions",
+                  "title": "Gradient functions",
+                  "description": "Explore gradient functions in differentiation fundamentals.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "c4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "differentiation-fundamentals-differentiating-powers",
+                  "title": "Differentiating powers",
+                  "description": "Explore differentiating powers in differentiation fundamentals.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "c5"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "differentiation-fundamentals-second-derivatives",
+                  "title": "Second derivatives",
+                  "description": "Explore second derivatives in differentiation fundamentals.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "c6"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "applications-of-differentiation",
+              "title": "Applications of differentiation",
+              "summary": "Use derivatives to analyse curves and solve optimisation and tangent problems.",
+              "lessons": [
+                {
+                  "id": "applications-of-differentiation-stationary-points",
+                  "title": "Stationary points",
+                  "description": "Explore stationary points in applications of differentiation.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "c7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "applications-of-differentiation-maximum-and-minimum-points",
+                  "title": "Maximum & minimum points",
+                  "description": "Explore maximum & minimum points in applications of differentiation.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "c7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "applications-of-differentiation-increasing-and-decreasing-functions",
+                  "title": "Increasing & decreasing functions",
+                  "description": "Explore increasing & decreasing functions in applications of differentiation.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "c8"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "applications-of-differentiation-tangents-and-normals",
+                  "title": "Tangents & normals",
+                  "description": "Explore tangents & normals in applications of differentiation.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "c9"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "integration-fundamentals",
+              "title": "Integration fundamentals",
+              "summary": "Use integration as reverse differentiation and find areas under curves.",
+              "lessons": [
+                {
+                  "id": "integration-fundamentals-integration-as-reverse-differentiation",
+                  "title": "Integration as reverse differentiation",
+                  "description": "Explore integration as reverse differentiation in integration fundamentals.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mc19"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "integration-fundamentals-integrating-powers",
+                  "title": "Integrating powers",
+                  "description": "Explore integrating powers in integration fundamentals.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "c20"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "integration-fundamentals-constants-of-integration",
+                  "title": "Constants of integration",
+                  "description": "Explore constants of integration in integration fundamentals.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "c21"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "integration-fundamentals-definite-and-indefinite-integrals",
+                  "title": "Definite & indefinite integrals",
+                  "description": "Explore definite & indefinite integrals in integration fundamentals.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "c22"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "integration-fundamentals-area-between-a-curve-and-the-x-axis",
+                  "title": "Area between a curve and the x-axis",
+                  "description": "Explore area between a curve and the x-axis in integration fundamentals.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "c23"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "integration-fundamentals-areas-crossing-the-x-axis",
+                  "title": "Areas crossing the x-axis",
+                  "description": "Explore areas crossing the x-axis in integration fundamentals.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "c23"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "advanced-differentiation",
+              "title": "Advanced differentiation",
+              "summary": "Differentiate exponential, logarithmic, trigonometric, composite and implicit functions.",
+              "lessons": [
+                {
+                  "id": "advanced-differentiation-differentiating-exponentials-and-logarithms",
+                  "title": "Differentiating exponentials & logarithms",
+                  "description": "Explore differentiating exponentials & logarithms in advanced differentiation.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "Mc10"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-differentiation-differentiating-trig-functions",
+                  "title": "Differentiating trig functions",
+                  "description": "Explore differentiating trig functions in advanced differentiation.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c11"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-differentiation-product-rule",
+                  "title": "Product rule",
+                  "description": "Explore product rule in advanced differentiation.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c12"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-differentiation-quotient-rule",
+                  "title": "Quotient rule",
+                  "description": "Explore quotient rule in advanced differentiation.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c13"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-differentiation-chain-rule",
+                  "title": "Chain rule",
+                  "description": "Explore chain rule in advanced differentiation.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c14"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-differentiation-connected-rates-of-change",
+                  "title": "Connected rates of change",
+                  "description": "Explore connected rates of change in advanced differentiation.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c15"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-differentiation-differentiating-inverse-functions",
+                  "title": "Differentiating inverse functions",
+                  "description": "Explore differentiating inverse functions in advanced differentiation.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c15"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-differentiation-implicit-differentiation",
+                  "title": "Implicit differentiation",
+                  "description": "Explore implicit differentiation in advanced differentiation.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c16"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-differentiation-concavity",
+                  "title": "Concavity",
+                  "description": "Explore concavity in advanced differentiation.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c17"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-differentiation-points-of-inflection",
+                  "title": "Points of inflection",
+                  "description": "Explore points of inflection in advanced differentiation.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c18"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "advanced-integration",
+              "title": "Advanced integration",
+              "summary": "Apply advanced integration techniques to functions, areas and algebraic expressions.",
+              "lessons": [
+                {
+                  "id": "advanced-integration-integrating-exponentials-1-x-and-trig-functions",
+                  "title": "Integrating exponentials, 1/x and trig functions",
+                  "description": "Explore integrating exponentials, 1/x and trig functions in advanced integration.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "Mc24"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-integration-integration-as-a-limit-of-a-sum",
+                  "title": "Integration as a limit of a sum",
+                  "description": "Explore integration as a limit of a sum in advanced integration.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c25"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-integration-area-between-two-curves",
+                  "title": "Area between two curves",
+                  "description": "Explore area between two curves in advanced integration.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c26"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-integration-integration-with-respect-to-y",
+                  "title": "Integration with respect to y",
+                  "description": "Explore integration with respect to y in advanced integration.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c26"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-integration-integration-by-substitution",
+                  "title": "Integration by substitution",
+                  "description": "Explore integration by substitution in advanced integration.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c27",
+                    "c28"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-integration-integration-by-parts",
+                  "title": "Integration by parts",
+                  "description": "Explore integration by parts in advanced integration.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c29"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-integration-integration-using-partial-fractions",
+                  "title": "Integration using partial fractions",
+                  "description": "Explore integration using partial fractions in advanced integration.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c30"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "differential-equations",
+              "title": "Differential equations",
+              "summary": "Form, solve and interpret first-order differential equations.",
+              "lessons": [
+                {
+                  "id": "differential-equations-forming-differential-equations",
+                  "title": "Forming differential equations",
+                  "description": "Explore forming differential equations in differential equations.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c31"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "differential-equations-separation-of-variables",
+                  "title": "Separation of variables",
+                  "description": "Explore separation of variables in differential equations.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c32"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "differential-equations-general-and-particular-solutions",
+                  "title": "General & particular solutions",
+                  "description": "Explore general & particular solutions in differential equations.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c32"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "differential-equations-interpreting-differential-equation-models",
+                  "title": "Interpreting differential-equation models",
+                  "description": "Explore interpreting differential-equation models in differential equations.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c33"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        },
+        {
+          "id": "numerical-methods",
+          "title": "Numerical Methods",
+          "topics": [
+            {
+              "id": "numerical-root-finding",
+              "title": "Numerical root finding",
+              "summary": "Approximate roots of equations using sign changes and iterative methods.",
+              "lessons": [
+                {
+                  "id": "numerical-root-finding-locating-roots-by-sign-changes",
+                  "title": "Locating roots by sign changes",
+                  "description": "Explore locating roots by sign changes in numerical root finding.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "Me1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "numerical-root-finding-limitations-of-sign-change-methods",
+                  "title": "Limitations of sign-change methods",
+                  "description": "Explore limitations of sign-change methods in numerical root finding.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "e2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "numerical-root-finding-fixed-point-iteration",
+                  "title": "Fixed-point iteration",
+                  "description": "Explore fixed-point iteration in numerical root finding.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "e3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "numerical-root-finding-staircase-and-cobweb-diagrams",
+                  "title": "Staircase & cobweb diagrams",
+                  "description": "Explore staircase & cobweb diagrams in numerical root finding.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "e3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "numerical-root-finding-newton-raphson",
+                  "title": "Newton-Raphson",
+                  "description": "Explore newton-raphson in numerical root finding.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "e4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "numerical-root-finding-convergence-and-failure-of-iterations",
+                  "title": "Convergence & failure of iterations",
+                  "description": "Explore convergence & failure of iterations in numerical root finding.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "e5"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "numerical-root-finding-numerical-methods-in-context",
+                  "title": "Numerical methods in context",
+                  "description": "Explore numerical methods in context in numerical root finding.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "Me6"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "numerical-integration",
+              "title": "Numerical integration",
+              "summary": "Approximate definite integrals and bound areas numerically.",
+              "lessons": [
+                {
+                  "id": "numerical-integration-trapezium-rule",
+                  "title": "Trapezium rule",
+                  "description": "Explore trapezium rule in numerical integration.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "Mc34"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "numerical-integration-overestimates-and-underestimates",
+                  "title": "Overestimates & underestimates",
+                  "description": "Explore overestimates & underestimates in numerical integration.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "Mc34"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "numerical-integration-rectangle-bounds",
+                  "title": "Rectangle bounds",
+                  "description": "Explore rectangle bounds in numerical integration.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "c35"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        },
+        {
+          "id": "vectors",
+          "title": "Vectors",
+          "topics": [
+            {
+              "id": "two-dimensional-vectors",
+              "title": "Two-dimensional vectors",
+              "summary": "Represent and manipulate vectors in two dimensions.",
+              "lessons": [
+                {
+                  "id": "two-dimensional-vectors-vector-language-and-notation",
+                  "title": "Vector language & notation",
+                  "description": "Explore vector language & notation in two-dimensional vectors.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mv1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "two-dimensional-vectors-adding-and-subtracting-vectors",
+                  "title": "Adding & subtracting vectors",
+                  "description": "Explore adding & subtracting vectors in two-dimensional vectors.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "v2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "two-dimensional-vectors-scalar-multiplication",
+                  "title": "Scalar multiplication",
+                  "description": "Explore scalar multiplication in two-dimensional vectors.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "v2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "two-dimensional-vectors-magnitude-and-direction",
+                  "title": "Magnitude & direction",
+                  "description": "Explore magnitude & direction in two-dimensional vectors.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "v3"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "position-vectors-and-applications",
+              "title": "Position vectors & applications",
+              "summary": "Use position vectors to represent geometry and solve mathematical and mechanics problems.",
+              "lessons": [
+                {
+                  "id": "position-vectors-and-applications-position-vectors",
+                  "title": "Position vectors",
+                  "description": "Explore position vectors in position vectors & applications.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "v4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "position-vectors-and-applications-distance-using-vectors",
+                  "title": "Distance using vectors",
+                  "description": "Explore distance using vectors in position vectors & applications.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "v5"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "position-vectors-and-applications-vector-problem-solving",
+                  "title": "Vector problem solving",
+                  "description": "Explore vector problem solving in position vectors & applications.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "v6"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "position-vectors-and-applications-resultant-forces-using-vectors",
+                  "title": "Resultant forces using vectors",
+                  "description": "Explore resultant forces using vectors in position vectors & applications.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "v6"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "three-dimensional-vectors",
+              "title": "Three-dimensional vectors",
+              "summary": "Extend vector notation and techniques to three dimensions.",
+              "lessons": [
+                {
+                  "id": "three-dimensional-vectors-3d-vector-notation",
+                  "title": "3D vector notation",
+                  "description": "Explore 3d vector notation in three-dimensional vectors.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "Mv7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "three-dimensional-vectors-magnitude-and-direction-in-3d",
+                  "title": "Magnitude & direction in 3D",
+                  "description": "Explore magnitude & direction in 3d in three-dimensional vectors.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "Mv7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "three-dimensional-vectors-position-vectors-and-problems-in-3d",
+                  "title": "Position vectors & problems in 3D",
+                  "description": "Explore position vectors & problems in 3d in three-dimensional vectors.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "Mv7"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "statistics",
+      "title": "Statistics",
+      "summary": "Explore data, probability, distributions and statistical tests.",
+      "topicGroups": [
+        {
+          "id": "sampling-and-data",
+          "title": "Sampling and Data",
+          "topics": [
+            {
+              "id": "sampling",
+              "title": "Sampling",
+              "summary": "Understand populations, samples, sampling methods and sources of bias.",
+              "lessons": [
+                {
+                  "id": "sampling-populations-and-samples",
+                  "title": "Populations & samples",
+                  "description": "Explore populations & samples in sampling.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mp21"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "sampling-making-inferences-from-samples",
+                  "title": "Making inferences from samples",
+                  "description": "Explore making inferences from samples in sampling.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "p22"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "sampling-simple-random-sampling",
+                  "title": "Simple random sampling",
+                  "description": "Explore simple random sampling in sampling.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "p23"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "sampling-sampling-techniques",
+                  "title": "Sampling techniques",
+                  "description": "Explore sampling techniques in sampling.",
+                  "scope": [
+                    "opportunity",
+                    "systematic",
+                    "stratified",
+                    "quota",
+                    "cluster",
+                    "self-selected"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "p24"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "sampling-evaluating-samples-and-bias",
+                  "title": "Evaluating samples & bias",
+                  "description": "Explore evaluating samples & bias in sampling.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "p25"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "data-types-and-diagrams",
+              "title": "Data types & diagrams",
+              "summary": "Choose, interpret and critique graphical representations of statistical data.",
+              "lessons": [
+                {
+                  "id": "data-types-and-diagrams-types-of-data",
+                  "title": "Types of data",
+                  "description": "Explore types of data in data types & diagrams.",
+                  "scope": [
+                    "categorical",
+                    "discrete",
+                    "continuous",
+                    "ranked"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "MD1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "data-types-and-diagrams-bar-charts-dot-plots-and-frequency-charts",
+                  "title": "Bar charts, dot plots & frequency charts",
+                  "description": "Explore bar charts, dot plots & frequency charts in data types & diagrams.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "MD1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "data-types-and-diagrams-stem-and-leaf-pie-charts-and-box-plots",
+                  "title": "Stem-and-leaf, pie charts & box plots",
+                  "description": "Explore stem-and-leaf, pie charts & box plots in data types & diagrams.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "MD1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "data-types-and-diagrams-histograms-and-frequency-density",
+                  "title": "Histograms & frequency density",
+                  "description": "Explore histograms & frequency density in data types & diagrams.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "D2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "data-types-and-diagrams-cumulative-frequency",
+                  "title": "Cumulative frequency",
+                  "description": "Explore cumulative frequency in data types & diagrams.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "D3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "data-types-and-diagrams-shape-and-skew-of-distributions",
+                  "title": "Shape & skew of distributions",
+                  "description": "Explore shape & skew of distributions in data types & diagrams.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "D4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "data-types-and-diagrams-sample-size-and-theoretical-distributions",
+                  "title": "Sample size & theoretical distributions",
+                  "description": "Explore sample size & theoretical distributions in data types & diagrams.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "MD5"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "bivariate-data-and-correlation",
+              "title": "Bivariate data & correlation",
+              "summary": "Interpret relationships between two variables and evaluate statistical diagrams and models.",
+              "lessons": [
+                {
+                  "id": "bivariate-data-and-correlation-scatter-diagrams",
+                  "title": "Scatter diagrams",
+                  "description": "Explore scatter diagrams in bivariate data & correlation.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "D6"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "bivariate-data-and-correlation-regression-lines-and-best-fit-models",
+                  "title": "Regression lines & best-fit models",
+                  "description": "Explore regression lines & best-fit models in bivariate data & correlation.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "D6"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "bivariate-data-and-correlation-interpolation-and-extrapolation",
+                  "title": "Interpolation & extrapolation",
+                  "description": "Explore interpolation & extrapolation in bivariate data & correlation.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "D6"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "bivariate-data-and-correlation-outliers-and-distinct-groups",
+                  "title": "Outliers and distinct groups",
+                  "description": "Explore outliers and distinct groups in bivariate data & correlation.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "D7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "bivariate-data-and-correlation-correlation-and-causation",
+                  "title": "Correlation & causation",
+                  "description": "Explore correlation & causation in bivariate data & correlation.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "D8"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "bivariate-data-and-correlation-choosing-and-critiquing-data-presentation",
+                  "title": "Choosing & critiquing data presentation",
+                  "description": "Explore choosing & critiquing data presentation in bivariate data & correlation.",
+                  "scope": [
+                    "including time-series graphs"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "D9"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "summary-statistics-and-data-cleaning",
+              "title": "Summary statistics & data cleaning",
+              "summary": "Calculate and interpret measures of centre and spread and identify problematic data.",
+              "lessons": [
+                {
+                  "id": "summary-statistics-and-data-cleaning-measures-of-central-tendency",
+                  "title": "Measures of central tendency",
+                  "description": "Explore measures of central tendency in summary statistics & data cleaning.",
+                  "scope": [
+                    "mean",
+                    "weighted mean",
+                    "median",
+                    "mode",
+                    "midrange"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "MD10"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "summary-statistics-and-data-cleaning-measures-of-spread",
+                  "title": "Measures of spread",
+                  "description": "Explore measures of spread in summary statistics & data cleaning.",
+                  "scope": [
+                    "range",
+                    "percentiles",
+                    "quartiles",
+                    "IQR"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "D11"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "summary-statistics-and-data-cleaning-variance-and-standard-deviation",
+                  "title": "Variance & standard deviation",
+                  "description": "Explore variance & standard deviation in summary statistics & data cleaning.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "MD12"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "summary-statistics-and-data-cleaning-grouped-data-summary-statistics",
+                  "title": "Grouped-data summary statistics",
+                  "description": "Explore grouped-data summary statistics in summary statistics & data cleaning.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "MD12"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "summary-statistics-and-data-cleaning-identifying-outliers",
+                  "title": "Identifying outliers",
+                  "description": "Explore identifying outliers in summary statistics & data cleaning.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "D13"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "summary-statistics-and-data-cleaning-cleaning-data",
+                  "title": "Cleaning data",
+                  "description": "Explore cleaning data in summary statistics & data cleaning.",
+                  "scope": [
+                    "missing values",
+                    "errors",
+                    "outliers"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "D14"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        },
+        {
+          "id": "probability",
+          "title": "Probability",
+          "topics": [
+            {
+              "id": "probability-basics",
+              "title": "Probability basics",
+              "summary": "Calculate probabilities involving complements, mutually exclusive events and independence.",
+              "lessons": [
+                {
+                  "id": "probability-basics-events-and-complementary-events",
+                  "title": "Events & complementary events",
+                  "description": "Explore events & complementary events in probability basics.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "AS-probability-basics"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "probability-basics-expected-frequencies",
+                  "title": "Expected frequencies",
+                  "description": "Explore expected frequencies in probability basics.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "AS-expected-frequency"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "probability-basics-tree-sample-space-and-venn-diagrams",
+                  "title": "Tree, sample-space & Venn diagrams",
+                  "description": "Explore tree, sample-space & venn diagrams in probability basics.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "AS-probability-diagrams"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "probability-basics-mutually-exclusive-events",
+                  "title": "Mutually exclusive events",
+                  "description": "Explore mutually exclusive events in probability basics.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mu1",
+                    "u2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "probability-basics-independent-events",
+                  "title": "Independent events",
+                  "description": "Explore independent events in probability basics.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mu1",
+                    "u3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "probability-basics-at-least-one-problems",
+                  "title": "'At least one' problems",
+                  "description": "Explore 'at least one' problems in probability basics.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "u3"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "conditional-probability",
+              "title": "Conditional probability",
+              "summary": "Calculate probabilities for overlapping and conditional events.",
+              "lessons": [
+                {
+                  "id": "conditional-probability-general-addition-rule",
+                  "title": "General addition rule",
+                  "description": "Explore general addition rule in conditional probability.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "u4",
+                    "u5"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "conditional-probability-venn-diagrams-with-up-to-three-events",
+                  "title": "Venn diagrams with up to three events",
+                  "description": "Explore venn diagrams with up to three events in conditional probability.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "u5"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "conditional-probability-conditional-probability",
+                  "title": "Conditional probability",
+                  "description": "Explore conditional probability in conditional probability.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "u6"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "conditional-probability-reverse-conditional-probability",
+                  "title": "Reverse conditional probability",
+                  "description": "Explore reverse conditional probability in conditional probability.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "u6"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "conditional-probability-conditional-probability-and-independence",
+                  "title": "Conditional probability & independence",
+                  "description": "Explore conditional probability & independence in conditional probability.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "u7"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        },
+        {
+          "id": "probability-distributions",
+          "title": "Probability Distributions",
+          "topics": [
+            {
+              "id": "binomial-and-discrete-distributions",
+              "title": "Binomial & discrete distributions",
+              "summary": "Model discrete random variables and situations using probability and the binomial distribution.",
+              "lessons": [
+                {
+                  "id": "binomial-and-discrete-distributions-recognising-a-binomial-model",
+                  "title": "Recognising a binomial model",
+                  "description": "Explore recognising a binomial model in binomial & discrete distributions.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "MR1",
+                    "R2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "binomial-and-discrete-distributions-binomial-probabilities",
+                  "title": "Binomial probabilities",
+                  "description": "Explore binomial probabilities in binomial & discrete distributions.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "R3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "binomial-and-discrete-distributions-mean-of-a-binomial-distribution",
+                  "title": "Mean of a binomial distribution",
+                  "description": "Explore mean of a binomial distribution in binomial & discrete distributions.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "R4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "binomial-and-discrete-distributions-expected-frequencies",
+                  "title": "Expected frequencies",
+                  "description": "Explore expected frequencies in binomial & discrete distributions.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "R5"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "binomial-and-discrete-distributions-discrete-random-variables",
+                  "title": "Discrete random variables",
+                  "description": "Explore discrete random variables in binomial & discrete distributions.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "R6"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "binomial-and-discrete-distributions-discrete-probability-distributions",
+                  "title": "Discrete probability distributions",
+                  "description": "Explore discrete probability distributions in binomial & discrete distributions.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "R6",
+                    "R7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "binomial-and-discrete-distributions-discrete-uniform-distributions",
+                  "title": "Discrete uniform distributions",
+                  "description": "Explore discrete uniform distributions in binomial & discrete distributions.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "R7"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "normal-distribution",
+              "title": "Normal distribution",
+              "summary": "Use and interpret the Normal distribution as a continuous probability model.",
+              "lessons": [
+                {
+                  "id": "normal-distribution-the-normal-model",
+                  "title": "The Normal model",
+                  "description": "Explore the normal model in normal distribution.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "MR8"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "normal-distribution-normal-approximation-to-discrete-data",
+                  "title": "Normal approximation to discrete data",
+                  "description": "Explore normal approximation to discrete data in normal distribution.",
+                  "scope": [
+                    "continuity correction",
+                    "recognising approximate Normal behaviour"
+                  ],
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "MR8"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "normal-distribution-shape-and-properties-of-the-normal-curve",
+                  "title": "Shape & properties of the Normal curve",
+                  "description": "Explore shape & properties of the normal curve in normal distribution.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "R9",
+                    "R11"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "normal-distribution-linear-transformations-of-normal-variables",
+                  "title": "Linear transformations of Normal variables",
+                  "description": "Explore linear transformations of normal variables in normal distribution.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "R10"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "normal-distribution-standardising-normal-variables",
+                  "title": "Standardising Normal variables",
+                  "description": "Explore standardising normal variables in normal distribution.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "R10"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "normal-distribution-normal-probabilities",
+                  "title": "Normal probabilities",
+                  "description": "Explore normal probabilities in normal distribution.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "R12"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "normal-distribution-modelling-with-binomial-and-normal-distributions",
+                  "title": "Modelling with Binomial & Normal distributions",
+                  "description": "Explore modelling with binomial & normal distributions in normal distribution.",
+                  "scope": [
+                    "assumptions",
+                    "suitability",
+                    "limitations"
+                  ],
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "R13"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        },
+        {
+          "id": "hypothesis-testing",
+          "title": "Hypothesis Testing",
+          "topics": [
+            {
+              "id": "binomial-hypothesis-testing",
+              "title": "Binomial hypothesis testing",
+              "summary": "Use binomial models to test claims about population probabilities.",
+              "lessons": [
+                {
+                  "id": "binomial-hypothesis-testing-hypothesis-testing-language",
+                  "title": "Hypothesis-testing language",
+                  "description": "Explore hypothesis-testing language in binomial hypothesis testing.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "MH1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "binomial-hypothesis-testing-one-tailed-and-two-tailed-tests",
+                  "title": "One-tailed & two-tailed tests",
+                  "description": "Explore one-tailed & two-tailed tests in binomial hypothesis testing.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "H2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "binomial-hypothesis-testing-significance-and-inference",
+                  "title": "Significance & inference",
+                  "description": "Explore significance & inference in binomial hypothesis testing.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "H3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "binomial-hypothesis-testing-null-and-alternative-hypotheses",
+                  "title": "Null & alternative hypotheses",
+                  "description": "Explore null & alternative hypotheses in binomial hypothesis testing.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "H4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "binomial-hypothesis-testing-conducting-a-binomial-hypothesis-test",
+                  "title": "Conducting a binomial hypothesis test",
+                  "description": "Explore conducting a binomial hypothesis test in binomial hypothesis testing.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "H5"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "binomial-hypothesis-testing-critical-and-acceptance-regions",
+                  "title": "Critical & acceptance regions",
+                  "description": "Explore critical & acceptance regions in binomial hypothesis testing.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "H6"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "binomial-hypothesis-testing-conclusions-in-context",
+                  "title": "Conclusions in context",
+                  "description": "Explore conclusions in context in binomial hypothesis testing.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "H5"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "hypothesis-tests-for-a-normal-mean",
+              "title": "Hypothesis tests for a Normal mean",
+              "summary": "Test hypotheses about a population mean using the Normal distribution.",
+              "lessons": [
+                {
+                  "id": "hypothesis-tests-for-a-normal-mean-distribution-of-the-sample-mean",
+                  "title": "Distribution of the sample mean",
+                  "description": "Explore distribution of the sample mean in hypothesis tests for a normal mean.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "MH7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "hypothesis-tests-for-a-normal-mean-hypothesis-tests-for-a-population-mean",
+                  "title": "Hypothesis tests for a population mean",
+                  "description": "Explore hypothesis tests for a population mean in hypothesis tests for a normal mean.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "H8"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "hypothesis-tests-for-a-normal-mean-critical-regions-and-p-values",
+                  "title": "Critical regions & p-values",
+                  "description": "Explore critical regions & p-values in hypothesis tests for a normal mean.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "H8",
+                    "H9"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "hypothesis-tests-for-a-normal-mean-conclusions-in-context",
+                  "title": "Conclusions in context",
+                  "description": "Explore conclusions in context in hypothesis tests for a normal mean.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "H8"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "correlation-and-association-tests",
+              "title": "Correlation & association tests",
+              "summary": "Use correlation statistics to make statistical inferences about populations.",
+              "lessons": [
+                {
+                  "id": "correlation-and-association-tests-correlation-coefficients",
+                  "title": "Correlation coefficients",
+                  "description": "Explore correlation coefficients in correlation & association tests.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "MH10"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "correlation-and-association-tests-rank-correlation",
+                  "title": "Rank correlation",
+                  "description": "Explore rank correlation in correlation & association tests.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "MH10"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "correlation-and-association-tests-testing-correlation-or-association",
+                  "title": "Testing correlation or association",
+                  "description": "Explore testing correlation or association in correlation & association tests.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "H11"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "correlation-and-association-tests-using-p-values-and-critical-values",
+                  "title": "Using p-values & critical values",
+                  "description": "Explore using p-values & critical values in correlation & association tests.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "H11"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "correlation-and-association-tests-drawing-contextual-conclusions",
+                  "title": "Drawing contextual conclusions",
+                  "description": "Explore drawing contextual conclusions in correlation & association tests.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "H11"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        },
+        {
+          "id": "large-data-set",
+          "title": "Large Data Set",
+          "topics": [
+            {
+              "id": "large-data-set-skills",
+              "title": "Large data set skills",
+              "summary": "Use technology and the Cambridge OCR large data set to explore, model and interpret real data. This is cross-cutting specification content rather than a numbered learning-outcome block.",
+              "lessons": [
+                {
+                  "id": "large-data-set-skills-exploring-the-large-data-set",
+                  "title": "Exploring the large data set",
+                  "description": "Explore exploring the large data set in large data set skills.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "2b-large-data-set"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "large-data-set-skills-statistical-diagrams-using-technology",
+                  "title": "Statistical diagrams using technology",
+                  "description": "Explore statistical diagrams using technology in large data set skills.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "2b-large-data-set"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "large-data-set-skills-statistical-calculations-using-technology",
+                  "title": "Statistical calculations using technology",
+                  "description": "Explore statistical calculations using technology in large data set skills.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "2b-large-data-set"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "large-data-set-skills-investigating-relationships-and-correlation",
+                  "title": "Investigating relationships & correlation",
+                  "description": "Explore investigating relationships & correlation in large data set skills.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "2b-large-data-set"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "large-data-set-skills-repeated-sampling-and-variability",
+                  "title": "Repeated sampling & variability",
+                  "description": "Explore repeated sampling & variability in large data set skills.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "2b-large-data-set"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "large-data-set-skills-modelling-with-real-data",
+                  "title": "Modelling with real data",
+                  "description": "Explore modelling with real data in large data set skills.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "2b-large-data-set"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "large-data-set-skills-hypothesis-testing-with-the-large-data-set",
+                  "title": "Hypothesis testing with the large data set",
+                  "description": "Explore hypothesis testing with the large data set in large data set skills.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "2b-large-data-set"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mechanics",
+      "title": "Mechanics",
+      "summary": "Model motion, forces and rigid bodies.",
+      "topicGroups": [
+        {
+          "id": "modelling-and-motion",
+          "title": "Modelling and Motion",
+          "topics": [
+            {
+              "id": "mechanics-models-quantities-and-units",
+              "title": "Mechanics models, quantities & units",
+              "summary": "Use standard mechanical models and appropriate SI quantities and units.",
+              "lessons": [
+                {
+                  "id": "mechanics-models-quantities-and-units-modelling-assumptions",
+                  "title": "Modelling assumptions",
+                  "description": "Explore modelling assumptions in mechanics models, quantities & units.",
+                  "scope": [
+                    "light",
+                    "smooth",
+                    "uniform",
+                    "particle",
+                    "inextensible",
+                    "thin",
+                    "rigid",
+                    "long-term"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mp31"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "mechanics-models-quantities-and-units-the-particle-model",
+                  "title": "The particle model",
+                  "description": "Explore the particle model in mechanics models, quantities & units.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "p32"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "mechanics-models-quantities-and-units-fundamental-si-quantities",
+                  "title": "Fundamental SI quantities",
+                  "description": "Explore fundamental si quantities in mechanics models, quantities & units.",
+                  "scope": [
+                    "length",
+                    "time",
+                    "mass"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "p33"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "mechanics-models-quantities-and-units-derived-mechanical-quantities",
+                  "title": "Derived mechanical quantities",
+                  "description": "Explore derived mechanical quantities in mechanics models, quantities & units.",
+                  "scope": [
+                    "velocity",
+                    "acceleration",
+                    "force",
+                    "weight"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "p34"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "one-dimensional-kinematics",
+              "title": "One-dimensional kinematics",
+              "summary": "Describe and model motion along a straight line using graphs, calculus and constant-acceleration formulae.",
+              "lessons": [
+                {
+                  "id": "one-dimensional-kinematics-position-displacement-and-distance",
+                  "title": "Position, displacement & distance",
+                  "description": "Explore position, displacement & distance in one-dimensional kinematics.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mk1",
+                    "k2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "one-dimensional-kinematics-speed-velocity-and-acceleration",
+                  "title": "Speed, velocity & acceleration",
+                  "description": "Explore speed, velocity & acceleration in one-dimensional kinematics.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mk1",
+                    "k3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "one-dimensional-kinematics-average-speed-and-average-velocity",
+                  "title": "Average speed & average velocity",
+                  "description": "Explore average speed & average velocity in one-dimensional kinematics.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mk1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "one-dimensional-kinematics-kinematics-graphs",
+                  "title": "Kinematics graphs",
+                  "description": "Explore kinematics graphs in one-dimensional kinematics.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "k4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "one-dimensional-kinematics-gradients-and-areas-of-motion-graphs",
+                  "title": "Gradients & areas of motion graphs",
+                  "description": "Explore gradients & areas of motion graphs in one-dimensional kinematics.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "k4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "one-dimensional-kinematics-differentiation-in-kinematics",
+                  "title": "Differentiation in kinematics",
+                  "description": "Explore differentiation in kinematics in one-dimensional kinematics.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "k5"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "one-dimensional-kinematics-integration-in-kinematics",
+                  "title": "Integration in kinematics",
+                  "description": "Explore integration in kinematics in one-dimensional kinematics.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "k6"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "one-dimensional-kinematics-constant-acceleration-formulae",
+                  "title": "Constant-acceleration formulae",
+                  "description": "Explore constant-acceleration formulae in one-dimensional kinematics.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "k7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "one-dimensional-kinematics-solving-1d-motion-problems",
+                  "title": "Solving 1D motion problems",
+                  "description": "Explore solving 1d motion problems in one-dimensional kinematics.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "k8"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "two-dimensional-kinematics",
+              "title": "Two-dimensional kinematics",
+              "summary": "Extend kinematics to motion in a plane using vectors and calculus.",
+              "lessons": [
+                {
+                  "id": "two-dimensional-kinematics-motion-in-two-dimensions",
+                  "title": "Motion in two dimensions",
+                  "description": "Explore motion in two dimensions in two-dimensional kinematics.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "Mk9"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "two-dimensional-kinematics-position-velocity-and-acceleration-vectors",
+                  "title": "Position, velocity & acceleration vectors",
+                  "description": "Explore position, velocity & acceleration vectors in two-dimensional kinematics.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "k10"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "two-dimensional-kinematics-calculus-in-2d-kinematics",
+                  "title": "Calculus in 2D kinematics",
+                  "description": "Explore calculus in 2d kinematics in two-dimensional kinematics.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "k10"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "two-dimensional-kinematics-constant-acceleration-in-vector-form",
+                  "title": "Constant acceleration in vector form",
+                  "description": "Explore constant acceleration in vector form in two-dimensional kinematics.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "k10"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "two-dimensional-kinematics-cartesian-equation-of-a-path",
+                  "title": "Cartesian equation of a path",
+                  "description": "Explore cartesian equation of a path in two-dimensional kinematics.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "k11"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "two-dimensional-kinematics-relative-position-and-vector-problems",
+                  "title": "Relative position & vector problems",
+                  "description": "Explore relative position & vector problems in two-dimensional kinematics.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "k12"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "projectiles",
+              "title": "Projectiles",
+              "summary": "Model projectile motion under gravity in two dimensions.",
+              "lessons": [
+                {
+                  "id": "projectiles-projectile-modelling-assumptions",
+                  "title": "Projectile modelling assumptions",
+                  "description": "Explore projectile modelling assumptions in projectiles.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "My1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "projectiles-projectile-equations-of-motion",
+                  "title": "Projectile equations of motion",
+                  "description": "Explore projectile equations of motion in projectiles.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "My1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "projectiles-position-and-velocity-of-a-projectile",
+                  "title": "Position & velocity of a projectile",
+                  "description": "Explore position & velocity of a projectile in projectiles.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "y2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "projectiles-range-and-maximum-height",
+                  "title": "Range & maximum height",
+                  "description": "Explore range & maximum height in projectiles.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "y2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "projectiles-finding-initial-velocity",
+                  "title": "Finding initial velocity",
+                  "description": "Explore finding initial velocity in projectiles.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "y3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "projectiles-equation-of-a-trajectory",
+                  "title": "Equation of a trajectory",
+                  "description": "Explore equation of a trajectory in projectiles.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "y4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "projectiles-projectile-problem-solving",
+                  "title": "Projectile problem solving",
+                  "description": "Explore projectile problem solving in projectiles.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "y5"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        },
+        {
+          "id": "forces-and-newton-s-laws",
+          "title": "Forces and Newton's Laws",
+          "topics": [
+            {
+              "id": "forces-and-equilibrium",
+              "title": "Forces & equilibrium",
+              "summary": "Identify forces, construct force diagrams and determine resultants and equilibrium.",
+              "lessons": [
+                {
+                  "id": "forces-and-equilibrium-types-of-forces",
+                  "title": "Types of forces",
+                  "description": "Explore types of forces in forces & equilibrium.",
+                  "scope": [
+                    "weight",
+                    "tension",
+                    "thrust/compression",
+                    "normal reaction",
+                    "friction",
+                    "resistance",
+                    "driving force"
+                  ],
+                  "stage": "as",
+                  "specificationRefs": [
+                    "MF1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "forces-and-equilibrium-acceleration-due-to-gravity",
+                  "title": "Acceleration due to gravity",
+                  "description": "Explore acceleration due to gravity in forces & equilibrium.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "F2"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "forces-and-equilibrium-force-diagrams",
+                  "title": "Force diagrams",
+                  "description": "Explore force diagrams in forces & equilibrium.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "F3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "forces-and-equilibrium-internal-and-external-forces",
+                  "title": "Internal & external forces",
+                  "description": "Explore internal & external forces in forces & equilibrium.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "F3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "forces-and-equilibrium-resultant-forces",
+                  "title": "Resultant forces",
+                  "description": "Explore resultant forces in forces & equilibrium.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "F4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "forces-and-equilibrium-particle-equilibrium",
+                  "title": "Particle equilibrium",
+                  "description": "Explore particle equilibrium in forces & equilibrium.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "F5"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "advanced-equilibrium-and-friction",
+              "title": "Advanced equilibrium & friction",
+              "summary": "Resolve forces in general directions and model friction on rough surfaces.",
+              "lessons": [
+                {
+                  "id": "advanced-equilibrium-and-friction-resolving-forces",
+                  "title": "Resolving forces",
+                  "description": "Explore resolving forces in advanced equilibrium & friction.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "MF6"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-equilibrium-and-friction-equilibrium-with-resolved-forces",
+                  "title": "Equilibrium with resolved forces",
+                  "description": "Explore equilibrium with resolved forces in advanced equilibrium & friction.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "F7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-equilibrium-and-friction-polygons-of-forces",
+                  "title": "Polygons of forces",
+                  "description": "Explore polygons of forces in advanced equilibrium & friction.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "F8",
+                    "F9"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-equilibrium-and-friction-normal-contact-force",
+                  "title": "Normal contact force",
+                  "description": "Explore normal contact force in advanced equilibrium & friction.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "F10"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-equilibrium-and-friction-modelling-friction",
+                  "title": "Modelling friction",
+                  "description": "Explore modelling friction in advanced equilibrium & friction.",
+                  "scope": [
+                    "F <= μR",
+                    "limiting friction",
+                    "sliding",
+                    "coefficient of friction"
+                  ],
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "F11"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "advanced-equilibrium-and-friction-newton-s-laws-with-friction",
+                  "title": "Newton's laws with friction",
+                  "description": "Explore newton's laws with friction in advanced equilibrium & friction.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "F12"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "newton-s-laws-and-connected-particles",
+              "title": "Newton's laws & connected particles",
+              "summary": "Apply Newton's laws to particles and connected systems.",
+              "lessons": [
+                {
+                  "id": "newton-s-laws-and-connected-particles-newton-s-three-laws",
+                  "title": "Newton's three laws",
+                  "description": "Explore newton's three laws in newton's laws & connected particles.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "Mn1"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "newton-s-laws-and-connected-particles-equations-of-motion",
+                  "title": "Equations of motion",
+                  "description": "Explore equations of motion in newton's laws & connected particles.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "n2",
+                    "n3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "newton-s-laws-and-connected-particles-motion-under-gravity",
+                  "title": "Motion under gravity",
+                  "description": "Explore motion under gravity in newton's laws & connected particles.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "n3"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "newton-s-laws-and-connected-particles-connected-particle-models",
+                  "title": "Connected-particle models",
+                  "description": "Explore connected-particle models in newton's laws & connected particles.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "n4"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "newton-s-laws-and-connected-particles-equations-for-connected-particles",
+                  "title": "Equations for connected particles",
+                  "description": "Explore equations for connected particles in newton's laws & connected particles.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "n5"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "newton-s-laws-and-connected-particles-treating-systems-as-a-single-particle",
+                  "title": "Treating systems as a single particle",
+                  "description": "Explore treating systems as a single particle in newton's laws & connected particles.",
+                  "stage": "as",
+                  "specificationRefs": [
+                    "n6"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            },
+            {
+              "id": "newton-s-laws-in-a-plane",
+              "title": "Newton's laws in a plane",
+              "summary": "Apply Newton's second law to motion involving two-dimensional forces.",
+              "lessons": [
+                {
+                  "id": "newton-s-laws-in-a-plane-equations-of-motion-in-a-plane",
+                  "title": "Equations of motion in a plane",
+                  "description": "Explore equations of motion in a plane in newton's laws in a plane.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "n7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "newton-s-laws-in-a-plane-resultant-force-vectors",
+                  "title": "Resultant force vectors",
+                  "description": "Explore resultant force vectors in newton's laws in a plane.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "n7"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "newton-s-laws-in-a-plane-two-dimensional-dynamics-problems",
+                  "title": "Two-dimensional dynamics problems",
+                  "description": "Explore two-dimensional dynamics problems in newton's laws in a plane.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "n7"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        },
+        {
+          "id": "rigid-bodies",
+          "title": "Rigid Bodies",
+          "topics": [
+            {
+              "id": "moments-and-rigid-body-equilibrium",
+              "title": "Moments & rigid-body equilibrium",
+              "summary": "Calculate moments and analyse static equilibrium of rods and rectangular laminas.",
+              "lessons": [
+                {
+                  "id": "moments-and-rigid-body-equilibrium-moment-of-a-force",
+                  "title": "Moment of a force",
+                  "description": "Explore moment of a force in moments & rigid-body equilibrium.",
+                  "scope": [
+                    "N m",
+                    "moment about a point/axis"
+                  ],
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "Mp35",
+                    "MF13"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "moments-and-rigid-body-equilibrium-resultant-moment",
+                  "title": "Resultant moment",
+                  "description": "Explore resultant moment in moments & rigid-body equilibrium.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "F15"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "moments-and-rigid-body-equilibrium-rigid-body-equilibrium",
+                  "title": "Rigid-body equilibrium",
+                  "description": "Explore rigid-body equilibrium in moments & rigid-body equilibrium.",
+                  "scope": [
+                    "resultant force zero",
+                    "total moment zero"
+                  ],
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "F14"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "moments-and-rigid-body-equilibrium-weight-and-centre-of-mass",
+                  "title": "Weight & centre of mass",
+                  "description": "Explore weight & centre of mass in moments & rigid-body equilibrium.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "F16"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "moments-and-rigid-body-equilibrium-equilibrium-problems-with-rods",
+                  "title": "Equilibrium problems with rods",
+                  "description": "Explore equilibrium problems with rods in moments & rigid-body equilibrium.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "MF13",
+                    "F14",
+                    "F16"
+                  ],
+                  "contentStatus": "planned"
+                },
+                {
+                  "id": "moments-and-rigid-body-equilibrium-rectangular-lamina-problems",
+                  "title": "Rectangular lamina problems",
+                  "description": "Explore rectangular lamina problems in moments & rigid-body equilibrium.",
+                  "stage": "a-level",
+                  "specificationRefs": [
+                    "MF13",
+                    "F14",
+                    "F16"
+                  ],
+                  "contentStatus": "planned"
+                }
+              ],
+              "practiceSetIds": [],
+              "readiness": "planned"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "crossLinkedSpecificationRefs": [
+    {
+      "reference": "C7",
+      "areaId": "pure",
+      "topicGroupId": "graphs",
+      "topicId": "graph-transformations",
+      "lessonId": "graph-transformations-combined-graph-transformations",
+      "reason": "Covered with combined graph transformations rather than a duplicate topic."
+    },
+    {
+      "reference": "g8",
+      "areaId": "pure",
+      "topicGroupId": "coordinate-geometry",
+      "topicId": "circles-and-curve-intersections",
+      "lessonId": "circles-and-curve-intersections-intersections-of-lines-and-curves",
+      "reason": "Covered in the shared line and curve intersection lesson."
+    },
+    {
+      "reference": "s6",
+      "areaId": "pure",
+      "topicGroupId": "sequences-and-series",
+      "topicId": "sequences-and-sigma-notation",
+      "lessonId": "sequences-and-sigma-notation-finite-and-infinite-sequences",
+      "reason": "Covered with the introduction to finite and infinite sequences."
+    },
+    {
+      "reference": "t8",
+      "areaId": "pure",
+      "topicGroupId": "trigonometry",
+      "topicId": "radians-inverse-and-reciprocal-trig",
+      "lessonId": "radians-inverse-and-reciprocal-trig-exact-values-in-radians",
+      "reason": "Covered alongside exact trigonometric values in radians."
+    },
+    {
+      "reference": "t16",
+      "areaId": "pure",
+      "topicGroupId": "trigonometry",
+      "topicId": "compound-and-double-angles",
+      "lessonId": "compound-and-double-angles-compound-angle-identities",
+      "reason": "Covered with the compound-angle identities lesson."
+    },
+    {
+      "reference": "E8",
+      "areaId": "pure",
+      "topicGroupId": "exponentials-and-logarithms",
+      "topicId": "e-ln-growth-and-decay",
+      "lessonId": "e-ln-growth-and-decay-the-exponential-function-e-x",
+      "reason": "Covered in the exponential function and natural logarithm sequence."
+    },
+    {
+      "reference": "c10",
+      "areaId": "pure",
+      "topicGroupId": "calculus",
+      "topicId": "advanced-differentiation",
+      "lessonId": "advanced-differentiation-differentiating-exponentials-and-logarithms",
+      "reason": "Covered with differentiation of exponential and logarithmic functions."
+    },
+    {
+      "reference": "c19",
+      "areaId": "pure",
+      "topicGroupId": "calculus",
+      "topicId": "integration-fundamentals",
+      "lessonId": "integration-fundamentals-integration-as-reverse-differentiation",
+      "reason": "Covered with the introduction to integration as reverse differentiation."
+    },
+    {
+      "reference": "c24",
+      "areaId": "pure",
+      "topicGroupId": "calculus",
+      "topicId": "advanced-integration",
+      "lessonId": "advanced-integration-integrating-exponentials-1-x-and-trig-functions",
+      "reason": "Covered with the advanced standard integration forms."
+    },
+    {
+      "reference": "e6",
+      "areaId": "pure",
+      "topicGroupId": "numerical-methods",
+      "topicId": "numerical-root-finding",
+      "lessonId": "numerical-root-finding-numerical-methods-in-context",
+      "reason": "Covered in numerical methods problem solving in context."
+    },
+    {
+      "reference": "v7",
+      "areaId": "pure",
+      "topicGroupId": "vectors",
+      "topicId": "three-dimensional-vectors",
+      "lessonId": "three-dimensional-vectors-3d-vector-notation",
+      "reason": "Covered as an extension of the shared vector notation lesson."
+    },
+    {
+      "reference": "D5",
+      "areaId": "statistics",
+      "topicGroupId": "sampling-and-data",
+      "topicId": "data-types-and-diagrams",
+      "lessonId": "data-types-and-diagrams-sample-size-and-theoretical-distributions",
+      "reason": "Covered with sample size and theoretical distributions."
+    },
+    {
+      "reference": "D10",
+      "areaId": "statistics",
+      "topicGroupId": "sampling-and-data",
+      "topicId": "summary-statistics-and-data-cleaning",
+      "lessonId": "summary-statistics-and-data-cleaning-measures-of-central-tendency",
+      "reason": "Covered with measures of central tendency."
+    },
+    {
+      "reference": "D12",
+      "areaId": "statistics",
+      "topicGroupId": "sampling-and-data",
+      "topicId": "summary-statistics-and-data-cleaning",
+      "lessonId": "summary-statistics-and-data-cleaning-variance-and-standard-deviation",
+      "reason": "Covered with variance and standard deviation."
+    },
+    {
+      "reference": "R8",
+      "areaId": "statistics",
+      "topicGroupId": "probability-distributions",
+      "topicId": "normal-distribution",
+      "lessonId": "normal-distribution-the-normal-model",
+      "reason": "Covered with the Normal model and its approximation contexts."
+    },
+    {
+      "reference": "H7",
+      "areaId": "statistics",
+      "topicGroupId": "hypothesis-testing",
+      "topicId": "hypothesis-tests-for-a-normal-mean",
+      "lessonId": "hypothesis-tests-for-a-normal-mean-distribution-of-the-sample-mean",
+      "reason": "Covered with the distribution of the sample mean."
+    },
+    {
+      "reference": "H10",
+      "areaId": "statistics",
+      "topicGroupId": "hypothesis-testing",
+      "topicId": "correlation-and-association-tests",
+      "lessonId": "correlation-and-association-tests-correlation-coefficients",
+      "reason": "Covered with correlation and association testing."
+    },
+    {
+      "reference": "p35",
+      "areaId": "mechanics",
+      "topicGroupId": "modelling-and-motion",
+      "topicId": "mechanics-models-quantities-and-units",
+      "lessonId": "mechanics-models-quantities-and-units-derived-mechanical-quantities",
+      "reason": "Covered with derived mechanical quantities and units."
+    },
+    {
+      "reference": "k9",
+      "areaId": "mechanics",
+      "topicGroupId": "modelling-and-motion",
+      "topicId": "one-dimensional-kinematics",
+      "lessonId": "one-dimensional-kinematics-solving-1d-motion-problems",
+      "reason": "Covered in contextual one-dimensional motion problems."
+    },
+    {
+      "reference": "F6",
+      "areaId": "mechanics",
+      "topicGroupId": "forces-and-newton-s-laws",
+      "topicId": "advanced-equilibrium-and-friction",
+      "lessonId": "advanced-equilibrium-and-friction-resolving-forces",
+      "reason": "Covered with resolving forces and equilibrium."
+    },
+    {
+      "reference": "F13",
+      "areaId": "mechanics",
+      "topicGroupId": "rigid-bodies",
+      "topicId": "moments-and-rigid-body-equilibrium",
+      "lessonId": "moments-and-rigid-body-equilibrium-moment-of-a-force",
+      "reason": "Covered with moments of a force in the rigid-body section."
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import { QUADRATICS_TOPIC_CONTENT_ID } from "@/content/course-catalog";
+import { canViewStage, type QualificationLevel, type QualificationStage } from "@/product/qualification";
 
 export interface SingleChoiceQuestion {
   id: string;
@@ -15,6 +16,7 @@ export interface PracticeSetDefinition {
   topicId: string;
   title: string;
   description: string;
+  stage: QualificationStage;
   questionIds: readonly string[];
 }
 
@@ -23,7 +25,8 @@ export const PRACTICE_SETS: readonly PracticeSetDefinition[] = [
     id: "quadratics-foundations",
     topicId: QUADRATICS_TOPIC_CONTENT_ID,
     title: "Quadratics foundations",
-    description: "Six questions on factorisation, roots and the quadratic formula.",
+    description: "Six questions on quadratic equations, roots and the quadratic formula.",
+    stage: "as",
     questionIds: [
       "quadratics-factorise-roots-01",
       "quadratics-factorise-roots-02",
@@ -124,6 +127,12 @@ export const PRACTICE_QUESTIONS: readonly SingleChoiceQuestion[] = [
 
 export function findPracticeSet(practiceSetId: string) {
   return PRACTICE_SETS.find((practiceSet) => practiceSet.id === practiceSetId) ?? null;
+}
+
+export function getVisiblePracticeSets(practiceSetIds: readonly string[], qualification: QualificationLevel) {
+  return practiceSetIds
+    .map(findPracticeSet)
+    .filter((practiceSet): practiceSet is PracticeSetDefinition => Boolean(practiceSet && canViewStage(qualification, practiceSet.stage)));
 }
 
 export function findQuestions(questionIds: readonly string[]) {

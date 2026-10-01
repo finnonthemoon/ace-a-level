@@ -4,14 +4,17 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { Screen } from "@/components/Screen";
 import { Colors } from "@/constants/theme";
+import { useCourse } from "@/contexts/CourseContext";
 import {
   findSpecification,
+  getTopicProgressId,
+  getVisibleTopics,
   resolveCoursePath,
-  type ContentReadiness,
+  type ContentStatus,
   type CourseTopic,
   type CourseTopicArea,
 } from "@/content/course-catalog";
-import { findPracticeSet, findQuestions } from "@/content/practice-content";
+import { findPracticeSet, findQuestions, getVisiblePracticeSets } from "@/content/practice-content";
 import { useTopicProgress } from "@/contexts/TopicProgressContext";
 import { findSubject, type SubjectId } from "@/product/subjects";
 
@@ -28,10 +31,10 @@ function ownQuestionCount(topic: CourseTopic) {
 }
 
 function questionCount(topic: CourseTopic): number {
-  return ownQuestionCount(topic) + (topic.topics ?? []).reduce((total, child) => total + questionCount(child), 0);
+  return ownQuestionCount(topic);
 }
 
-function statusLabel(readiness: ContentReadiness, questions: number) {
+function statusLabel(readiness: ContentStatus, questions: number) {
   if (questions > 0) return "Ready to practise";
   return readiness === "planned" ? "Planned" : "Coming soon";
 }
@@ -49,7 +52,7 @@ interface TopicCardProps {
   summary: string;
   childCount: number;
   questions: number;
-  readiness: ContentReadiness;
+  readiness: ContentStatus;
   color: string;
   softColor: string;
   onPress: () => void;
@@ -86,12 +89,18 @@ function TopicCard({ title, summary, childCount, questions, readiness, color, so
 export function TopicPracticeCourseScreen({ subjectId, path }: TopicPracticeCourseScreenProps) {
   const router = useRouter();
   const { getProgress, isHydrated } = useTopicProgress();
+  const { qualificationLevel } = useCourse();
   const subject = findSubject(subjectId as SubjectId);
   const specification = findSpecification(subjectId);
-  const resolved = path.length > 0 ? resolveCoursePath(subjectId, path) : null;
+  const resolved = path.length > 0 ? resolveCoursePath(subjectId, path, qualificationLevel) : null;
   const area = resolved?.area ?? null;
   const selectedTopic = resolved?.selectedTopic ?? null;
-  const currentItems: readonly CourseTopic[] = resolved?.children ?? [];
+  const selectedGroup = resolved?.selectedGroup ?? null;
+  const currentItems: readonly CourseTopic[] = resolved?.selectedGroup
+    ? resolved.children
+    : area
+      ? area.topicGroups.flatMap((group) => getVisibleTopics(group, qualificationLevel))
+      : [];
 
   function goBack() {
     if (router.canGoBack()) router.back();
@@ -135,22 +144,16 @@ export function TopicPracticeCourseScreen({ subjectId, path }: TopicPracticeCour
   }
 
   if (area && selectedTopic && currentItems.length === 0) {
-    const progressTopicId = selectedTopic.contentId ?? [
-      specification.qualification.id,
-      specification.subject.id,
-      specification.id,
-      ...path,
-    ].join(":");
+    const progressTopicId = getTopicProgressId(specification, area, selectedGroup!, selectedTopic);
     const progress = getProgress(progressTopicId);
-    const practiceSets = selectedTopic.practiceSetIds
-      .map(findPracticeSet)
-      .filter((set) => set !== null)
+    const practiceSets = getVisiblePracticeSets(selectedTopic.practiceSetIds, qualificationLevel)
       .map((set) => ({ set, questions: findQuestions(set.questionIds).length }))
       .filter(({ questions }) => questions > 0);
     const availableQuestions = practiceSets.reduce((total, { questions }) => total + questions, 0);
     const parentPath = path.slice(0, -1);
-    const parentTopic = parentPath.length > 1 ? resolveCoursePath(subjectId, parentPath)?.selectedTopic : null;
-    const breadcrumb = [subject.title, area.title, ...(parentTopic ? [parentTopic.title] : [])].join(" / ");
+    const parentPathResult = parentPath.length > 1 ? resolveCoursePath(subjectId, parentPath, qualificationLevel) : null;
+    const parentTitle = parentPathResult?.selectedGroup?.title ?? parentPathResult?.selectedTopic?.title;
+    const breadcrumb = [subject.title, area.title, ...(parentTitle ? [parentTitle] : [])].join(" / ");
     const accuracy = progress.questionsAttempted > 0
       ? Math.round((progress.questionsCorrect / progress.questionsAttempted) * 100)
       : 0;
@@ -242,9 +245,9 @@ export function TopicPracticeCourseScreen({ subjectId, path }: TopicPracticeCour
   const subtitle = isRoot
     ? "Choose a course area, then follow the topic path to a focused practice session."
     : selectedTopic?.summary ?? area?.summary ?? "Choose a topic to practise.";
-  const availableQuestions = items.reduce((total, item) => total + ("lessonIds" in item
-    ? questionCount(item)
-    : item.topics.reduce((sum, topic) => sum + questionCount(topic), 0)), 0);
+  const availableQuestions = isRoot
+    ? specification.topicAreas.reduce((total, courseArea) => total + courseArea.topicGroups.reduce((sum, group) => sum + getVisibleTopics(group, qualificationLevel).reduce((groupTotal, topic) => groupTotal + questionCount(topic), 0), 0), 0)
+    : currentItems.reduce((total, topic) => total + questionCount(topic), 0);
 
   return (
     <Screen eyebrow="TOPIC PRACTICE" title={title} subtitle={subtitle} onBack={goBack}>
@@ -268,10 +271,12 @@ export function TopicPracticeCourseScreen({ subjectId, path }: TopicPracticeCour
 
       <View style={styles.topicList}>
         {items.map((item) => {
-          const children = item.topics?.length ?? 0;
-          const questions = "lessonIds" in item
-            ? questionCount(item)
-            : item.topics.reduce((total, topic) => total + questionCount(topic), 0);
+          const isArea = "topicGroups" in item;
+          const children = isArea ? item.topicGroups.length : 0;
+          const questions = isArea
+            ? item.topicGroups.reduce((total, group) => total + getVisibleTopics(group, qualificationLevel).reduce((sum, topic) => sum + questionCount(topic), 0), 0)
+            : questionCount(item);
+          const readiness: ContentStatus = questions > 0 || (!isArea && item.readiness === "ready") ? "ready" : "planned";
           return (
             <TopicCard
               key={item.id}
@@ -279,7 +284,7 @@ export function TopicPracticeCourseScreen({ subjectId, path }: TopicPracticeCour
               summary={item.summary}
               childCount={children}
               questions={questions}
-              readiness={item.readiness}
+              readiness={readiness}
               color={subject.color}
               softColor={subject.softColor}
               onPress={() => openPath(item.id)}

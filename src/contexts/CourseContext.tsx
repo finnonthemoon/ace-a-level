@@ -10,6 +10,7 @@ import {
 } from "react";
 
 import { storageKey } from "@/product/config";
+import type { QualificationLevel } from "@/product/qualification";
 import { SUBJECTS, type SubjectId } from "@/product/subjects";
 import { useAccount } from "@/contexts/AccountContext";
 import {
@@ -30,6 +31,7 @@ export interface SubjectSelection {
 interface CourseSettings extends SyncedCourseSettings {
   activeSubjectId: SubjectId | null;
   examYear: number | null;
+  qualificationLevel: QualificationLevel;
   selections: SubjectSelection[];
 }
 
@@ -38,12 +40,14 @@ interface CourseContextValue extends CourseSettings {
   isSyncing: boolean;
   syncError: string | null;
   setActiveSubject: (subjectId: SubjectId) => Promise<void>;
+  setQualificationLevel: (level: QualificationLevel) => Promise<void>;
   saveSelections: (selections: SubjectSelection[], examYear: number | null) => Promise<void>;
 }
 
 const EMPTY_SETTINGS: CourseSettings = {
   activeSubjectId: null,
   examYear: null,
+  qualificationLevel: "a-level",
   selections: [],
 };
 
@@ -74,6 +78,7 @@ function normaliseSettings(value: unknown): CourseSettings {
       typeof candidate.examYear === "number" && Number.isInteger(candidate.examYear)
         ? candidate.examYear
         : null,
+    qualificationLevel: candidate.qualificationLevel === "as" ? "as" : "a-level",
     selections,
   };
 }
@@ -108,7 +113,9 @@ export function CourseProvider({ children }: PropsWithChildren) {
       .then(async (remote) => {
         if (!active) return;
         if (remote) {
-          const next = normaliseSettings(remote);
+          const local = await AsyncStorage.getItem(SETTINGS_KEY);
+          const localQualification = local ? normaliseSettings(JSON.parse(local)).qualificationLevel : "a-level";
+          const next = { ...normaliseSettings(remote), qualificationLevel: localQualification };
           setSettings(next);
           await AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(next));
         } else {
@@ -155,6 +162,13 @@ export function CourseProvider({ children }: PropsWithChildren) {
     [persist, settings],
   );
 
+  const setQualificationLevel = useCallback(
+    async (qualificationLevel: QualificationLevel) => {
+      await persist({ ...settings, qualificationLevel });
+    },
+    [persist, settings],
+  );
+
   const saveSelections = useCallback(
     async (selections: SubjectSelection[], examYear: number | null) => {
       const activeSubjectId = selections.some(
@@ -162,14 +176,14 @@ export function CourseProvider({ children }: PropsWithChildren) {
       )
         ? settings.activeSubjectId
         : selections[0]?.subjectId ?? null;
-      await persist({ activeSubjectId, examYear, selections });
+      await persist({ activeSubjectId, examYear, qualificationLevel: settings.qualificationLevel, selections });
     },
-    [persist, settings.activeSubjectId],
+    [persist, settings.activeSubjectId, settings.qualificationLevel],
   );
 
   const value = useMemo(
-    () => ({ ...settings, isHydrated, isSyncing, syncError, saveSelections, setActiveSubject }),
-    [isHydrated, isSyncing, saveSelections, setActiveSubject, settings, syncError],
+    () => ({ ...settings, isHydrated, isSyncing, syncError, saveSelections, setActiveSubject, setQualificationLevel }),
+    [isHydrated, isSyncing, saveSelections, setActiveSubject, setQualificationLevel, settings, syncError],
   );
 
   return <CourseContext.Provider value={value}>{children}</CourseContext.Provider>;

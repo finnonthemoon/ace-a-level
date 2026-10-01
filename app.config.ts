@@ -38,6 +38,12 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     plugins.push([GOOGLE_PLUGIN, { iosUrlScheme }]);
   }
 
+  if (!plugins.some((plugin) =>
+    Array.isArray(plugin) ? plugin[0] === "expo-widgets" : plugin === "expo-widgets",
+  )) {
+    plugins.push("expo-widgets");
+  }
+
   return {
     ...config,
     plugins,

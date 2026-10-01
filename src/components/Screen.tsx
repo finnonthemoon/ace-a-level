@@ -10,6 +10,7 @@ interface ScreenProps {
   title: string;
   subtitle?: string;
   trailing?: ReactNode;
+  eyebrowAccessory?: ReactNode;
   onBack?: () => void;
   compact?: boolean;
   tabHeader?: boolean;
@@ -21,6 +22,7 @@ export function Screen({
   title,
   subtitle,
   trailing,
+  eyebrowAccessory,
   onBack,
   compact = false,
   tabHeader = false,
@@ -36,7 +38,12 @@ export function Screen({
         ) : null}
         <View style={[styles.header, tabHeader && (compact ? styles.compactTabHeader : styles.regularTabHeader)]}>
           <View style={[styles.heading, tabHeader && styles.tabHeading]}>
-            {eyebrow ? <Text style={[styles.eyebrow, tabHeader && styles.tabEyebrow]}>{eyebrow}</Text> : null}
+            {eyebrow ? (
+              <View style={styles.eyebrowRow}>
+                <Text style={[styles.eyebrow, tabHeader && styles.tabEyebrow]}>{eyebrow}</Text>
+                {eyebrowAccessory}
+              </View>
+            ) : null}
             <Text style={[styles.title, tabHeader && styles.tabTitle]}>{title}</Text>
             {subtitle ? <Text style={[styles.subtitle, tabHeader && styles.tabSubtitle]}>{subtitle}</Text> : null}
           </View>
@@ -60,6 +67,7 @@ const styles = StyleSheet.create({
   backButton: { minHeight: 40, alignSelf: "flex-start", flexDirection: "row", alignItems: "center", gap: 7, paddingHorizontal: 2 },
   backLabel: { color: Colors.ink, fontSize: 13, fontWeight: "600" },
   heading: { flex: 1, gap: 7 },
+  eyebrowRow: { flexDirection: "row", alignItems: "center", gap: 9 },
   tabHeading: { gap: 0 },
   eyebrow: { color: Colors.primary, fontSize: 11, fontWeight: "700", letterSpacing: 1.1, textTransform: "uppercase" },
   tabEyebrow: { color: Colors.primary, fontSize: 10, lineHeight: 13, letterSpacing: 1.45, marginBottom: 4 },
