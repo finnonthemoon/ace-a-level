@@ -17,6 +17,8 @@ The live TMUA `entitlements` table and its RevenueCat Edge Functions are hard-co
 
 The migration creates only `a_level_*` tables and does not modify existing TMUA progress.
 
+The additional `supabase/migrations/20261001000000_a_level_study_plan.sql` adds a nullable `study_plan` JSON column to `a_level_user_settings`. Copy it into the canonical migration history before deployment. Until deployed, the app continues syncing the existing course columns and explicitly reports that the new study-plan fields are stored locally. Device notification permission and opt-in are never synced. See `STUDY_PLAN.md` for the payload and compatibility behavior.
+
 ## RevenueCat
 
 1. Open the existing RevenueCat project.

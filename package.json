@@ -77,7 +77,8 @@
     "typecheck": "tsc --noEmit",
     "check:web": "npm run typecheck && npm run lint && npm run web:export",
     "lint": "expo lint",
-    "validate:catalog": "node scripts/validate-course-catalog.mjs"
+    "validate:catalog": "node scripts/validate-course-catalog.mjs",
+    "test:study-plan": "node --test scripts/test-study-plan.mjs"
   },
   "private": true
 }

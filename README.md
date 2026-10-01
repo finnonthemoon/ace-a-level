@@ -7,6 +7,8 @@ Ace A Level is the multi-subject A-level study app from Ace It Studios. This rep
 - Expo SDK 57 and Expo Router
 - Home, Learn, Practice, and Profile tabs
 - First-launch selection for a 3–5-subject A-level plan
+- Resumable onboarding, academic grades/specifications, weekly study goals, editable schedules and optional local reminders
+- Shared onboarding/Edit Plan controls and Profile study-plan summary
 - Blue ACE visual system with active-subject focus and an all-course dashboard
 - Mathematics, Physics, Biology, Chemistry, Computer Science, and Economics registry
 - Subject-aware topic outlines
@@ -32,6 +34,8 @@ Quality checks:
 npm run typecheck
 npm run lint
 npm run web:export
+npm run validate:catalog
+npm run test:study-plan
 ```
 
 ## Architecture
@@ -43,3 +47,4 @@ npm run web:export
 - `supabase/migrations` contains reviewed changes to apply to the shared database; migrations are never applied merely by running the app.
 
 See [docs/SHARED_SERVICES_SETUP.md](docs/SHARED_SERVICES_SETUP.md) before connecting production services.
+See [docs/STUDY_PLAN.md](docs/STUDY_PLAN.md) for onboarding, persistence migration, reminder lifecycle, test coverage and future personalisation foundations.

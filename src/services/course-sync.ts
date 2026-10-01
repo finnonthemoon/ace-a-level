@@ -1,34 +1,24 @@
 import { requireSupabase } from "@/lib/supabase";
-import { SUBJECTS, type SubjectId } from "@/product/subjects";
+import type { SubjectId } from "@/product/subjects";
+import { isSubjectId, normaliseGrade, normaliseStudyPlan, type StudyPlan, type Grade, type SubjectSelection } from "@/core/study-plan";
 
-export type TargetGrade = "A*" | "A" | "B" | "C" | "D" | "E";
+export type TargetGrade = Grade;
 
-export interface SyncedSubjectSelection {
-  subjectId: SubjectId;
-  specificationId: string | null;
-  targetGrade: TargetGrade | null;
-}
+export type SyncedSubjectSelection = SubjectSelection;
 
 export interface SyncedCourseSettings {
   activeSubjectId: SubjectId | null;
   examYear: number | null;
   selections: SyncedSubjectSelection[];
+  studyPlan?: StudyPlan;
 }
 
-function isSubjectId(value: unknown): value is SubjectId {
-  return typeof value === "string" && SUBJECTS.some((subject) => subject.id === value);
-}
-
-function isTargetGrade(value: unknown): value is TargetGrade {
-  return ["A*", "A", "B", "C", "D", "E"].includes(String(value));
-}
-
-export async function fetchRemoteCourseSettings(userId: string) {
+export async function fetchRemoteCourseSettings(userId: string): Promise<SyncedCourseSettings | null> {
   const client = requireSupabase();
   const [settingsResult, selectionsResult] = await Promise.all([
     client
       .from("a_level_user_settings")
-      .select("active_subject_id, exam_year")
+      .select("*")
       .eq("user_id", userId)
       .maybeSingle(),
     client
@@ -45,13 +35,14 @@ export async function fetchRemoteCourseSettings(userId: string) {
     .map((row) => ({
       subjectId: row.subject_id as SubjectId,
       specificationId: typeof row.specification_id === "string" ? row.specification_id : null,
-      targetGrade: isTargetGrade(row.target_grade) ? row.target_grade : null,
+      targetGrade: normaliseGrade(row.target_grade),
+      predictedGrade: null,
     }));
-  const activeSubjectId = isSubjectId(settingsResult.data.active_subject_id)
-    ? settingsResult.data.active_subject_id
+  const activeSubjectId: SubjectId | null = isSubjectId(settingsResult.data.active_subject_id)
+    ? settingsResult.data.active_subject_id as SubjectId
     : selections[0]?.subjectId ?? null;
 
-  return {
+  const base = {
     activeSubjectId,
     examYear:
       typeof settingsResult.data.exam_year === "number"
@@ -59,6 +50,16 @@ export async function fetchRemoteCourseSettings(userId: string) {
         : null,
     selections,
   } satisfies SyncedCourseSettings;
+  const rawExtension: unknown = settingsResult.data.study_plan;
+  const extension = rawExtension && typeof rawExtension === "object" && !Array.isArray(rawExtension) ? rawExtension as Record<string, unknown> : null;
+  if (!extension || typeof extension !== "object" || Array.isArray(extension)) return base;
+  const rawPredicted = extension.predictedGrades;
+  const predicted = rawPredicted && typeof rawPredicted === "object" && !Array.isArray(rawPredicted) ? rawPredicted as Record<string, unknown> : {};
+  const plan = normaliseStudyPlan({
+    ...extension, ...base,
+    selections: selections.map((selection) => ({ ...selection, predictedGrade: predicted[selection.subjectId] })),
+  });
+  return { ...base, selections: plan.selections, studyPlan: plan } satisfies SyncedCourseSettings;
 }
 
 export async function saveRemoteCourseSettings(
@@ -98,10 +99,30 @@ export async function saveRemoteCourseSettings(
 
   // Write this marker last. If an account's first upload fails part-way through,
   // the next sign-in retries the local seed instead of accepting incomplete cloud data.
-  const { error: settingsError } = await client.from("a_level_user_settings").upsert({
+  const row = {
     user_id: userId,
     active_subject_id: settings.activeSubjectId,
     exam_year: settings.examYear,
-  });
-  if (settingsError) throw settingsError;
+  };
+  const plan = settings.studyPlan;
+  const extension = plan ? {
+    schemaVersion: 2,
+    qualificationLevel: plan.qualificationLevel,
+    predictedGrades: Object.fromEntries(plan.selections.map((selection) => [selection.subjectId, selection.predictedGrade])),
+    goals: plan.goals,
+    studyPreferences: { ...plan.studyPreferences, notificationsEnabled: undefined },
+    onboarding: plan.onboarding,
+    updatedAt: plan.updatedAt,
+  } : undefined;
+  const settingsRow: typeof row & { study_plan?: typeof extension } = { ...row };
+  if (extension) settingsRow.study_plan = extension;
+  const { error: settingsError } = await client.from("a_level_user_settings").upsert(settingsRow);
+  if (settingsError) {
+    if (extension && ["42703", "PGRST204"].includes(settingsError.code) && settingsError.message.includes("study_plan")) {
+      const legacy = await client.from("a_level_user_settings").upsert(row);
+      if (legacy.error) throw legacy.error;
+      throw new Error("Courses synced. New study settings are saved on this device until the study-plan database migration is deployed.");
+    }
+    throw settingsError;
+  }
 }

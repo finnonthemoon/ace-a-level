@@ -1,6 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { useEffect } from "react";
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { Screen } from "@/components/Screen";
@@ -20,10 +19,6 @@ export default function HomeScreen() {
   const { activeSubjectId, examYear, isHydrated, selections } = useCourse();
   const { transitionToSubject } = useSubjectTransition();
   const subject = findSubject(activeSubjectId);
-
-  useEffect(() => {
-    if (isHydrated && selections.length === 0) router.replace("/onboarding");
-  }, [isHydrated, router, selections.length]);
 
   if (!isHydrated || !subject) {
     return <View style={styles.loading}><ActivityIndicator color={Colors.primary} /><Text style={styles.loadingText}>Opening your study plan…</Text></View>;

@@ -34,7 +34,7 @@ The first subjects are:
 5. Computer Science
 6. Economics
 
-A learner's active study plan contains 3–5 subjects. Onboarding enforces this range, while the main experience combines an all-subject dashboard with a single active subject for focused Learn and Practice views.
+A new learner's study plan contains 3–5 subjects. Onboarding enforces this range; legacy smaller plans remain usable and editable. The main experience combines an all-subject dashboard with a single active subject for focused Learn and Practice views.
 
 The app should be exam-board-ready even when early content is temporarily board-neutral. Use this content hierarchy:
 
@@ -58,7 +58,9 @@ Implemented:
 
 - Expo SDK 57 and Expo Router;
 - separate A-level app identity;
-- first-launch subject selection and exam-year choice;
+- twelve-step onboarding with resumable academic and weekly study-plan preferences, catalogue specifications, predicted/target grades, personal goals, study days and local reminder opt-in;
+- Profile and Edit Plan sharing the same persisted study-plan model and controls;
+- category-isolated weekly local notification scheduling using the existing Expo Notifications dependency;
 - central registry for six subjects and starter topic outlines;
 - Home, Learn, Practice, and Profile tabs;
 - a blue visual system derived from the proven ACE TMUA card, spacing, and hierarchy patterns;
@@ -80,13 +82,14 @@ Not yet implemented:
 - social sign-in and the final cross-product account-deletion lifecycle;
 - production RevenueCat paywall and purchase flow;
 - dedicated A-level RevenueCat webhook/sync functions;
-- exam-board selection and target-grade editing;
 - the reusable lesson engine port;
 - production lesson and question content;
 - the practice runner and assessment formats;
 - final A-level branding beyond the selected icon, legal URLs, or store metadata;
 - ranked mode, friend duels, or competitive leaderboards.
 - study-activity measurement and automatic mascot stage changes (the current stage selector is explicitly a visual preview).
+
+See `docs/STUDY_PLAN.md` for the v2 study-plan data model, the additive cloud migration (not deployed), legacy fallback, notification strategy, test coverage and remaining device verification. Only OCR MEI Mathematics B currently has a catalogue specification; other subjects can be kept in the plan with their board unset. Diagnostic routes currently remain preparation previews. Future weekly recommendations and automatic mascot progression are types/foundations only.
 
 Before implementation work, inspect `README.md` and the relevant source rather than assuming the app has feature parity with ACE TMUA.
 

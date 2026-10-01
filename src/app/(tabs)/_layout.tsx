@@ -1,9 +1,14 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
+import { ActivityIndicator, View } from "react-native";
 
 import { Colors } from "@/constants/theme";
+import { useCourse } from "@/contexts/CourseContext";
 
 export default function TabLayout() {
+  const { isHydrated, onboarding } = useCourse();
+  if (!isHydrated) return <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: Colors.cream }}><ActivityIndicator accessibilityLabel="Loading your plan" color={Colors.primary} /></View>;
+  if (!onboarding.completed) return <Redirect href="/onboarding" />;
   return (
     <Tabs
       screenOptions={{
