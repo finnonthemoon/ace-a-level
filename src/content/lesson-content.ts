@@ -1,12 +1,19 @@
 import { findCourseLesson, type CourseLessonDefinition } from "@/content/course-catalog";
 
+export interface LessonStepHint {
+  /** Zero-based index of the solution step this caution explains. */
+  stepIndex: number;
+  title: string;
+  content: string;
+}
+
 export type LessonBlock =
   | { type: "section-heading"; text: string }
   | { type: "text"; content: string }
   | { type: "math"; expression: string }
   | { type: "callout"; title: string; content: string }
   | { type: "warning"; title: string; content: string }
-  | { type: "worked-example"; title: string; question: string; steps: readonly string[]; answer: string }
+  | { type: "worked-example"; title: string; question: string; steps: readonly string[]; answer: string; hints?: readonly LessonStepHint[] }
   | {
       type: "check";
       id: string;
@@ -16,9 +23,21 @@ export type LessonBlock =
       explanation: string;
     };
 
+type LessonTeachingBlock = Extract<LessonBlock, { type: "text" | "math" | "callout" | "warning" }>;
+type LessonCheckBlock = Extract<LessonBlock, { type: "check" }>;
+
+export type LessonPage =
+  | { id: string; type: "teaching"; title: string; blocks: readonly LessonTeachingBlock[] }
+  | { id: string; type: "worked-example"; title: string; question: string; steps: readonly string[]; answer: string; hints?: readonly LessonStepHint[] }
+  | { id: string; type: "check"; check: LessonCheckBlock }
+  | { id: string; type: "recap"; title: string; points: readonly string[] };
+
 interface LessonBodyDefinition {
   id: string;
-  blocks: readonly LessonBlock[];
+  /** New lessons can be authored directly as teaching/example/check/recap pages. */
+  pages?: readonly LessonPage[];
+  /** Legacy content is converted into pages until it is migrated. */
+  blocks?: readonly LessonBlock[];
 }
 
 export type LessonDefinition = CourseLessonDefinition & {
@@ -27,7 +46,50 @@ export type LessonDefinition = CourseLessonDefinition & {
   areaTitle: string;
   courseLabel: string;
   blocks: readonly LessonBlock[];
+  pages: readonly LessonPage[];
 };
+
+function createLessonPages(blocks: readonly LessonBlock[]): LessonPage[] {
+  const pages: LessonPage[] = [];
+  let sectionTitle = "Lesson";
+  let teachingBlocks: LessonTeachingBlock[] = [];
+
+  function flushTeaching() {
+    if (teachingBlocks.length === 0) return;
+    const recap = teachingBlocks.find((block) => block.type === "callout" && /^(key ideas|remember)$/i.test(block.title));
+    const content = teachingBlocks.filter((block) => block !== recap);
+    if (content.length > 0) {
+      pages.push({ id: `teaching-${pages.length + 1}`, type: "teaching", title: sectionTitle, blocks: content });
+    }
+    if (recap?.type === "callout") {
+      pages.push({
+        id: "recap",
+        type: "recap",
+        title: recap.title,
+        points: recap.content.split(/;\s*/).map((point) => point.trim()).filter(Boolean),
+      });
+    }
+    teachingBlocks = [];
+  }
+
+  for (let index = 0; index < blocks.length; index += 1) {
+    const block = blocks[index];
+    if (block.type === "section-heading") {
+      flushTeaching();
+      sectionTitle = block.text;
+    } else if (block.type === "check") {
+      flushTeaching();
+      pages.push({ id: `check-${block.id}`, type: "check", check: block });
+    } else if (block.type === "worked-example") {
+      flushTeaching();
+      pages.push({ id: `example-${pages.length + 1}`, type: "worked-example", title: block.title, question: block.question, steps: block.steps, answer: block.answer, hints: block.hints });
+    } else {
+      teachingBlocks.push(block);
+    }
+  }
+  flushTeaching();
+  return pages;
+}
 
 export const LESSONS: readonly LessonBodyDefinition[] = [
   {
@@ -40,16 +102,18 @@ export const LESSONS: readonly LessonBodyDefinition[] = [
 
       { type: "section-heading", text: "Coefficients and like terms" },
       { type: "text", content: "A coefficient is the numerical factor multiplying a variable. In \\(-4y\\), the coefficient is \\(-4\\); in \\(y\\), it is \\(1\\). Like terms have the same variable part, including the same powers, so only like terms can be collected." },
-      { type: "worked-example", title: "Collect like terms", question: "Simplify \\(4a+3b-2a+5b\\).", steps: ["Group matching variable parts: \\(4a-2a+3b+5b\\).", "Add the coefficients of each group: \\((4-2)a+(3+5)b\\)."], answer: "\\(2a+8b\\)" },
-      { type: "warning", title: "Keep unlike terms separate", content: "\\(2a+3b\\) cannot be simplified to \\(5ab\\). Addition does not turn different variables into a product." },
+      { type: "check", id: "algebraic-vocabulary-notation-check-01", prompt: "What is the coefficient of \\(x\\) in \\(7-3x+2x^2\\)?", options: [{ id: "a", content: "\\(3\\)" }, { id: "b", content: "\\(-3\\)" }, { id: "c", content: "\\(2\\)" }], correctOptionId: "b", explanation: "The \\(x\\)-term is \\(-3x\\), so its coefficient is \\(-3\\)." },
+      {
+        type: "worked-example", title: "Collect like terms", question: "Simplify \\(4a+3b-2a+5b\\).",
+        steps: ["Group matching variable parts: \\(4a-2a+3b+5b\\).", "Add the coefficients of each group: \\((4-2)a+(3+5)b\\)."],
+        answer: "\\(2a+8b\\)",
+        hints: [{ stepIndex: 0, title: "Keep unlike terms separate", content: "\\(2a+3b\\) cannot be simplified to \\(5ab\\). Addition does not turn different variables into a product." }],
+      },
+      { type: "check", id: "algebraic-vocabulary-notation-check-02", prompt: "Which pair are like terms?", options: [{ id: "a", content: "\\(4m\\) and \\(4m^2\\)" }, { id: "b", content: "\\(3p\\) and \\(-8p\\)" }, { id: "c", content: "\\(2x\\) and \\(2y\\)" }], correctOptionId: "b", explanation: "Both terms have exactly the same variable part, \\(p\\), to the same power." },
 
       { type: "section-heading", text: "Writing and evaluating expressions" },
       { type: "text", content: "In algebra, multiplication signs are often omitted: \\(4\\times x\\) is written \\(4x\\), and \\(a\\times b\\) is written \\(ab\\). Powers show repeated multiplication, so \\(x^3=x\\times x\\times x\\). To evaluate an expression, substitute the given value everywhere the variable appears, then follow the order of operations." },
       { type: "worked-example", title: "Substitute carefully", question: "Evaluate \\(2x^2-3x\\) when \\(x=-2\\).", steps: ["Replace every \\(x\\) with \\(-2\\): \\(2(-2)^2-3(-2)\\).", "Evaluate the power first: \\(2(4)+6\\)."], answer: "\\(14\\)" },
-
-      { type: "section-heading", text: "Quick checks" },
-      { type: "check", id: "algebraic-vocabulary-notation-check-01", prompt: "What is the coefficient of \\(x\\) in \\(7-3x+2x^2\\)?", options: [{ id: "a", content: "\\(3\\)" }, { id: "b", content: "\\(-3\\)" }, { id: "c", content: "\\(2\\)" }], correctOptionId: "b", explanation: "The \\(x\\)-term is \\(-3x\\), so its coefficient is \\(-3\\)." },
-      { type: "check", id: "algebraic-vocabulary-notation-check-02", prompt: "Which pair are like terms?", options: [{ id: "a", content: "\\(4m\\) and \\(4m^2\\)" }, { id: "b", content: "\\(3p\\) and \\(-8p\\)" }, { id: "c", content: "\\(2x\\) and \\(2y\\)" }], correctOptionId: "b", explanation: "Both terms have exactly the same variable part, \\(p\\), to the same power." },
       { type: "check", id: "algebraic-vocabulary-notation-check-03", prompt: "Evaluate \\(x^2+2x\\) when \\(x=-3\\).", options: [{ id: "a", content: "\\(3\\)" }, { id: "b", content: "\\(15\\)" }, { id: "c", content: "\\(-3\\)" }], correctOptionId: "a", explanation: "\\((-3)^2+2(-3)=9-6=3\\). Remember to square the negative value using brackets." },
       { type: "callout", title: "Key ideas", content: "Terms are joined by \\(+\\) or \\(-\\); coefficients multiply variables; collect only like terms; and use brackets when substituting a negative value." },
     ],
@@ -221,9 +285,11 @@ export function findLesson(lessonId: string) {
   const definition = findCourseLesson(lessonId);
   if (!definition) return null;
   const content = LESSONS.find((lesson) => lesson.id === lessonId);
+  const blocks = content?.blocks ?? [];
   return {
     ...definition,
     courseLabel: definition.areaTitle,
-    blocks: content?.blocks ?? [],
+    blocks,
+    pages: content?.pages ?? createLessonPages(blocks),
   } satisfies LessonDefinition;
 }

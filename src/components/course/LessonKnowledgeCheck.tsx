@@ -1,60 +1,73 @@
-import { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { MathContent } from "@/components/course/MathContent";
-import { Colors } from "@/constants/theme";
+import { LessonColors as Colors, LessonSpacing as Space, LessonTypography as Type } from "@/constants/theme";
 import type { LessonBlock } from "@/content/lesson-content";
 
 interface LessonKnowledgeCheckProps {
   block: Extract<LessonBlock, { type: "check" }>;
   disabled: boolean;
-  onAnswered: (correct: boolean) => void;
+  selectedOptionId: string | null;
+  submitted: boolean;
+  onSelect: (optionId: string) => void;
 }
 
-/** Reusable multiple-choice check with immediate marking and a short explanation. */
-export function LessonKnowledgeCheck({ block, disabled, onAnswered }: LessonKnowledgeCheckProps) {
-  const [selected, setSelected] = useState<string | null>(null);
-  const correct = selected === block.correctOptionId;
-
-  function chooseOption(optionId: string) {
-    if (selected !== null || disabled) return;
-    setSelected(optionId);
-    onAnswered(optionId === block.correctOptionId);
-  }
-
+/** Controlled check: selection is neutral; answer feedback appears only after submission. */
+export function LessonKnowledgeCheck({ block, disabled, selectedOptionId, submitted, onSelect }: LessonKnowledgeCheckProps) {
+  const correct = selectedOptionId === block.correctOptionId;
   return (
-    <View style={styles.checkCard}>
-      <Text style={styles.blockEyebrow}>CHECK YOUR UNDERSTANDING</Text>
-      <MathContent content={block.prompt} />
+    <View style={styles.checkPage}>
+      <MathContent content={block.prompt} size={Type.question.fontSize} color={Colors.text} textStyle={Type.question} />
       <View style={styles.checkOptions}>
-        {block.options.map((option) => {
-          const isSelected = selected === option.id;
-          const isCorrectAnswer = selected !== null && option.id === block.correctOptionId;
+        {block.options.map((option, index) => {
+          const isSelected = selectedOptionId === option.id;
+          const isCorrectAnswer = submitted && option.id === block.correctOptionId;
+          const isIncorrectAnswer = submitted && isSelected && !correct;
+          const answerState = isCorrectAnswer ? "Correct answer" : isIncorrectAnswer ? "Incorrect answer" : undefined;
           return (
             <Pressable
               key={option.id}
               accessibilityRole="button"
-              accessibilityState={{ disabled: disabled || selected !== null, selected: isSelected }}
-              disabled={disabled || selected !== null}
-              onPress={() => chooseOption(option.id)}
-              style={[
+              accessibilityState={{ disabled: disabled || submitted, selected: isSelected }}
+              accessibilityHint={answerState}
+              disabled={disabled || submitted}
+              onPress={() => onSelect(option.id)}
+              style={({ pressed }) => [
                 styles.checkOption,
-                isSelected && (correct ? styles.correctOption : styles.incorrectOption),
+                pressed && !isSelected && styles.pressedOption,
+                isSelected && styles.selectedOption,
                 isCorrectAnswer && styles.correctOption,
+                isIncorrectAnswer && styles.incorrectOption,
                 disabled && styles.disabledOption,
               ]}
             >
-              <MathContent content={option.content} size={14} />
+              <View style={[
+                styles.optionBadge,
+                isSelected && styles.selectedBadge,
+                isCorrectAnswer && styles.correctBadge,
+                isIncorrectAnswer && styles.incorrectBadge,
+              ]}>
+                {isCorrectAnswer || isIncorrectAnswer ? (
+                  <Ionicons name={isCorrectAnswer ? "checkmark" : "close"} size={18} color={Colors.surface} accessibilityLabel={answerState} />
+                ) : (
+                  <Text style={[styles.optionLetter, isSelected && styles.selectedLetter]}>{String.fromCharCode(65 + index)}</Text>
+                )}
+              </View>
+              <View style={styles.optionCopy}>
+                <MathContent content={option.content} size={Type.option.fontSize} color={Colors.text} textStyle={Type.option} />
+              </View>
             </Pressable>
           );
         })}
       </View>
-      {selected !== null ? (
-        <View style={[styles.feedback, correct ? styles.correctFeedback : styles.incorrectFeedback]}>
-          <Text style={[styles.feedbackTitle, correct ? styles.correctText : styles.incorrectText]}>
-            {correct ? "That's right" : "Not quite"}
-          </Text>
-          <MathContent content={block.explanation} size={12} />
+      {submitted ? (
+        <View accessibilityLiveRegion="polite" style={[styles.feedback, correct ? styles.correctFeedback : styles.incorrectFeedback]}>
+          <View style={styles.feedbackHeading}>
+            <Ionicons name={correct ? "checkmark-circle-outline" : "information-circle-outline"} size={24} color={correct ? Colors.success : Colors.incorrect} />
+            <Text style={[styles.feedbackTitle, correct ? styles.correctText : styles.incorrectText]}>{correct ? "That's right" : "Not quite"}</Text>
+          </View>
+          <MathContent content={block.explanation} size={Type.body.fontSize} color={Colors.bodyText} textStyle={Type.body} />
         </View>
       ) : null}
     </View>
@@ -62,17 +75,26 @@ export function LessonKnowledgeCheck({ block, disabled, onAnswered }: LessonKnow
 }
 
 const styles = StyleSheet.create({
-  checkCard: { gap: 11, padding: 15, borderRadius: 16, backgroundColor: Colors.surface, borderWidth: 1, borderColor: "#DCE6F6" },
-  blockEyebrow: { color: Colors.primary, fontSize: 9, fontWeight: "800", letterSpacing: 0.8 },
-  checkOptions: { gap: 8 },
-  checkOption: { minHeight: 44, justifyContent: "center", paddingHorizontal: 12, paddingVertical: 9, borderRadius: 11, borderWidth: 1, borderColor: Colors.line, backgroundColor: "#FFFFFF" },
+  checkPage: { gap: Space.extraLarge },
+  checkOptions: { gap: Space.regular },
+  checkOption: { minHeight: 76, flexDirection: "row", alignItems: "center", gap: Space.regular, padding: Space.regular, borderRadius: 20, borderWidth: 2, borderColor: Colors.border, backgroundColor: Colors.surface },
+  pressedOption: { backgroundColor: Colors.soft },
+  selectedOption: { borderColor: Colors.primary, backgroundColor: Colors.soft },
   correctOption: { borderColor: Colors.success, backgroundColor: Colors.successSoft },
-  incorrectOption: { borderColor: Colors.danger, backgroundColor: "#FFF1EF" },
+  incorrectOption: { borderColor: Colors.incorrect, backgroundColor: Colors.incorrectSoft },
   disabledOption: { opacity: 0.65 },
-  feedback: { gap: 5, padding: 11, borderRadius: 10 },
+  optionBadge: { width: 32, height: 32, flexShrink: 0, alignItems: "center", justifyContent: "center", borderRadius: 16, borderWidth: 1, borderColor: Colors.soft, backgroundColor: Colors.soft },
+  selectedBadge: { backgroundColor: Colors.surface, borderColor: Colors.primary },
+  correctBadge: { backgroundColor: Colors.success, borderColor: Colors.success },
+  incorrectBadge: { backgroundColor: Colors.incorrect, borderColor: Colors.incorrect },
+  optionLetter: { color: Colors.primary, fontSize: 14, fontWeight: "800" },
+  selectedLetter: { color: Colors.primary, fontWeight: "900" },
+  optionCopy: { flex: 1 },
+  feedback: { gap: Space.medium, padding: Space.large, borderRadius: 20 },
+  feedbackHeading: { flexDirection: "row", alignItems: "center", gap: Space.small },
   correctFeedback: { backgroundColor: Colors.successSoft },
-  incorrectFeedback: { backgroundColor: "#FFF1EF" },
-  feedbackTitle: { fontSize: 12, fontWeight: "700" },
+  incorrectFeedback: { backgroundColor: Colors.incorrectSoft },
+  feedbackTitle: { fontSize: 18, lineHeight: 26, fontWeight: "700" },
   correctText: { color: Colors.success },
-  incorrectText: { color: Colors.danger },
+  incorrectText: { color: Colors.incorrect },
 });
