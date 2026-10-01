@@ -13,6 +13,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { MathContent } from "@/components/course/MathContent";
+import { LessonKnowledgeCheck } from "@/components/course/LessonKnowledgeCheck";
 import { Screen } from "@/components/Screen";
 import { Colors, MaxContentWidth } from "@/constants/theme";
 import { useCourse } from "@/contexts/CourseContext";
@@ -36,63 +37,6 @@ function groupLessonSections(blocks: readonly LessonBlock[]): LessonSection[] {
     }
   }
   return sections;
-}
-
-function LessonCheck({
-  block,
-  disabled,
-  onAnswered,
-}: {
-  block: Extract<LessonBlock, { type: "check" }>;
-  disabled: boolean;
-  onAnswered: (correct: boolean) => void;
-}) {
-  const [selected, setSelected] = useState<string | null>(null);
-  const correct = selected === block.correctOptionId;
-
-  function chooseOption(optionId: string) {
-    if (selected !== null || disabled) return;
-    setSelected(optionId);
-    onAnswered(optionId === block.correctOptionId);
-  }
-
-  return (
-    <View style={styles.checkCard}>
-      <Text style={styles.blockEyebrow}>CHECK YOUR UNDERSTANDING</Text>
-      <MathContent content={block.prompt} />
-      <View style={styles.checkOptions}>
-        {block.options.map((option) => {
-          const isSelected = selected === option.id;
-          const isCorrectAnswer = selected !== null && option.id === block.correctOptionId;
-          return (
-            <Pressable
-              key={option.id}
-              accessibilityRole="button"
-              accessibilityState={{ disabled: disabled || selected !== null, selected: isSelected }}
-              disabled={disabled || selected !== null}
-              onPress={() => chooseOption(option.id)}
-              style={[
-                styles.checkOption,
-                isSelected && (correct ? styles.correctOption : styles.incorrectOption),
-                isCorrectAnswer && styles.correctOption,
-                disabled && styles.disabledOption,
-              ]}
-            >
-              <MathContent content={option.content} size={14} />
-            </Pressable>
-          );
-        })}
-      </View>
-      {selected !== null ? (
-        <View style={[styles.feedback, correct ? styles.correctFeedback : styles.incorrectFeedback]}>
-          <Text style={[styles.feedbackTitle, correct ? styles.correctText : styles.incorrectText]}>
-            {correct ? "That's right" : "Not quite"}
-          </Text>
-          <MathContent content={block.explanation} size={12} />
-        </View>
-      ) : null}
-    </View>
-  );
 }
 
 export default function LessonScreen() {
@@ -221,7 +165,7 @@ export default function LessonScreen() {
       );
     }
     return (
-      <LessonCheck
+      <LessonKnowledgeCheck
         key={key}
         block={block}
         disabled={!isHydrated}
@@ -336,18 +280,6 @@ const styles = StyleSheet.create({
   stepNumber: { width: 22, height: 22, flexShrink: 0, alignItems: "center", justifyContent: "center", borderRadius: 8, backgroundColor: Colors.primarySoft },
   stepNumberText: { color: Colors.primary, fontSize: 10, fontWeight: "700" },
   exampleAnswer: { padding: 11, borderRadius: 11, backgroundColor: "#F4F7FC" },
-  checkCard: { gap: 11, padding: 15, borderRadius: 16, backgroundColor: Colors.surface, borderWidth: 1, borderColor: "#DCE6F6" },
-  checkOptions: { gap: 8 },
-  checkOption: { minHeight: 44, justifyContent: "center", paddingHorizontal: 12, paddingVertical: 9, borderRadius: 11, borderWidth: 1, borderColor: Colors.line, backgroundColor: "#FFFFFF" },
-  correctOption: { borderColor: Colors.success, backgroundColor: Colors.successSoft },
-  incorrectOption: { borderColor: Colors.danger, backgroundColor: "#FFF1EF" },
-  disabledOption: { opacity: 0.65 },
-  feedback: { gap: 5, padding: 11, borderRadius: 10 },
-  correctFeedback: { backgroundColor: Colors.successSoft },
-  incorrectFeedback: { backgroundColor: "#FFF1EF" },
-  feedbackTitle: { fontSize: 12, fontWeight: "700" },
-  correctText: { color: Colors.success },
-  incorrectText: { color: Colors.danger },
   completionArea: { gap: 10, marginTop: 2 },
   completionError: { color: Colors.danger, fontSize: 12, lineHeight: 17, textAlign: "center" },
   finishButton: { minHeight: 51, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 9, paddingHorizontal: 18, borderRadius: 14, backgroundColor: Colors.primary },

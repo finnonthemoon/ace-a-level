@@ -120,12 +120,13 @@
                 {
                   "id": "algebraic-language-and-equations-algebraic-vocabulary-and-notation",
                   "title": "Algebraic vocabulary & notation",
-                  "description": "Explore algebraic vocabulary & notation in algebraic language & equations.",
+                  "description": "Read, write and interpret algebraic expressions with confidence.",
+                  "durationMinutes": 6,
                   "stage": "as",
                   "specificationRefs": [
                     "Ma1"
                   ],
-                  "contentStatus": "planned"
+                  "contentStatus": "ready"
                 },
                 {
                   "id": "algebraic-language-and-equations-solving-linear-equations",
@@ -175,7 +176,7 @@
                 }
               ],
               "practiceSetIds": [],
-              "readiness": "planned"
+              "readiness": "ready"
             },
             {
               "id": "quadratics",
