@@ -135,15 +135,15 @@ function SubjectTransitionScene({ subject, onCovered, onComplete }: { subject: S
     let cancelled = false;
     const running: Animated.CompositeAnimation[] = [];
     const start = (animation: Animated.CompositeAnimation) => { running.push(animation); animation.start(); };
-    const fill = Animated.timing(splashScale, { toValue: fullScale, duration: 800, easing: Easing.out(Easing.cubic), useNativeDriver: true });
+    const fill = Animated.timing(splashScale, { toValue: fullScale, duration: 650, easing: Easing.out(Easing.cubic), useNativeDriver: true });
     running.push(fill);
     fill.start(({ finished }) => {
       if (!finished || cancelled) return;
       callbacks.current.onCovered();
       const enter = Animated.parallel([
         Animated.spring(mascotEntrance, { toValue: 1, friction: 7, tension: 100, useNativeDriver: true }),
-        Animated.timing(mascotOpacity, { toValue: 1, duration: 260, useNativeDriver: true }),
-        Animated.timing(copyOpacity, { toValue: 1, duration: 340, useNativeDriver: true }),
+        Animated.timing(mascotOpacity, { toValue: 1, duration: 220, useNativeDriver: true }),
+        Animated.timing(copyOpacity, { toValue: 1, duration: 280, useNativeDriver: true }),
       ]);
       running.push(enter);
       enter.start(({ finished: entered }) => {
@@ -160,21 +160,21 @@ function SubjectTransitionScene({ subject, onCovered, onComplete }: { subject: S
           Animated.timing(breathe, { toValue: 1, duration: 1250, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
           Animated.timing(breathe, { toValue: 0, duration: 1050, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
         ])));
-        start(Animated.timing(effect, { toValue: 1, duration: 1750, easing: Easing.linear, useNativeDriver: true }));
-        start(Animated.timing(pose, { toValue: subject.id === "chemistry" ? 4 : 1, duration: 1750, easing: Easing.linear, useNativeDriver: true }));
+        start(Animated.timing(effect, { toValue: 1, duration: 1400, easing: Easing.linear, useNativeDriver: true }));
+        start(Animated.timing(pose, { toValue: subject.id === "chemistry" ? 4 : 1, duration: 1400, easing: Easing.linear, useNativeDriver: true }));
 
-        const hold = Animated.delay(1900);
+        const hold = Animated.delay(1500);
         running.push(hold);
         hold.start(({ finished: held }) => {
           if (!held || cancelled) return;
           const leave = Animated.parallel([
-            Animated.timing(mascotOpacity, { toValue: 0, duration: 190, useNativeDriver: true }),
-            Animated.timing(copyOpacity, { toValue: 0, duration: 190, useNativeDriver: true }),
+            Animated.timing(mascotOpacity, { toValue: 0, duration: 160, useNativeDriver: true }),
+            Animated.timing(copyOpacity, { toValue: 0, duration: 160, useNativeDriver: true }),
           ]);
           running.push(leave);
           leave.start(({ finished: left }) => {
             if (!left || cancelled) return;
-            const reverse = Animated.timing(splashScale, { toValue: 0.015, duration: 750, easing: Easing.inOut(Easing.cubic), useNativeDriver: true });
+            const reverse = Animated.timing(splashScale, { toValue: 0.015, duration: 600, easing: Easing.inOut(Easing.cubic), useNativeDriver: true });
             running.push(reverse);
             reverse.start(({ finished: reversed }) => {
               if (reversed && !cancelled) callbacks.current.onComplete();
