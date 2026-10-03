@@ -4,7 +4,6 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { QualificationStageBadge } from "@/components/QualificationStageBadge";
-import { LessonRoadmap, type CheckpointRoadmapItem } from "@/components/course/LessonRoadmap";
 import { Colors, MaxContentWidth } from "@/constants/theme";
 import { useCourse } from "@/contexts/CourseContext";
 import { useTopicProgress } from "@/contexts/TopicProgressContext";
@@ -40,7 +39,7 @@ export default function TopicLearnScreen() {
             <Ionicons name="arrow-back" size={18} color={Colors.ink} />
             <Text style={styles.backLabel}>Back</Text>
           </Pressable>
-          <Text style={styles.errorTitle}>Lesson roadmap unavailable</Text>
+          <Text style={styles.errorTitle}>Lessons unavailable</Text>
           <Text style={styles.context}>This topic could not be found for your selected qualification.</Text>
         </View>
       </SafeAreaView>
@@ -56,18 +55,7 @@ export default function TopicLearnScreen() {
   const practiceSets = getVisiblePracticeSets(topic.practiceSetIds, qualificationLevel)
     .map((set) => ({ set, questionCount: findQuestions(set.questionIds).length }))
     .filter(({ questionCount }) => questionCount > 0);
-  const checkpoints: CheckpointRoadmapItem[] = practiceSets.length > 0 ? [{
-    type: "checkpoint",
-    id: `${progressTopicId}:practice`,
-    title: "Topic Practice",
-    questionCount: practiceSets.reduce((total, { questionCount }) => total + questionCount, 0),
-    completed: progress.completedPracticeSessionIds.length > 0,
-    // Match TopicOverview's practice action; use the existing topic chooser
-    // when more than one real set is available. Practice has no lesson lock.
-    onPress: () => router.push((practiceSets.length === 1
-      ? `/practice/${practiceSets[0].set.id}`
-      : `/practice/course/${subjectId}/${areaId}/${groupId}/${topicId}`) as Href),
-  }] : [];
+  const practiceQuestionCount = practiceSets.reduce((total, { questionCount }) => total + questionCount, 0);
 
   return (
     <SafeAreaView edges={["top", "right", "bottom", "left"]} style={styles.safeArea}>
@@ -99,13 +87,30 @@ export default function TopicLearnScreen() {
         </View>
 
         {lessons.length > 0 ? (
-          <LessonRoadmap
-            lessons={lessons}
-            progress={progress}
-            isHydrated={isHydrated}
-            checkpoints={checkpoints}
-            onLessonPress={(lessonId) => router.push(`/lesson/${lessonId}` as Href)}
-          />
+          <View style={styles.lessonList}>
+            {lessons.map((lesson, index) => {
+              const complete = isHydrated && progress.completedLessonIds.includes(lesson.id);
+              return (
+                <Pressable key={lesson.id} accessibilityRole="button" onPress={() => router.push(`/lesson/${lesson.id}` as Href)} style={({ pressed }) => [styles.lessonCard, pressed && styles.pressed]}>
+                  <View style={[styles.lessonNumber, complete && styles.lessonComplete]}>
+                    {complete ? <Ionicons name="checkmark" size={19} color="#FFFFFF" /> : <Text style={styles.lessonNumberText}>{index + 1}</Text>}
+                  </View>
+                  <View style={styles.lessonCopy}>
+                    <Text style={styles.lessonTitle}>{lesson.title}</Text>
+                    <Text style={styles.lessonMeta}>{lesson.durationMinutes ? `${lesson.durationMinutes} min` : "Lesson"}{lesson.contentStatus === "planned" ? " · Coming soon" : ""}</Text>
+                  </View>
+                  <Ionicons name="chevron-forward" size={18} color={Colors.primary} />
+                </Pressable>
+              );
+            })}
+            {practiceSets.length > 0 ? (
+              <Pressable accessibilityRole="button" onPress={() => router.push((practiceSets.length === 1 ? `/practice/${practiceSets[0].set.id}` : `/practice/course/${subjectId}/${areaId}/${groupId}/${topicId}`) as Href)} style={({ pressed }) => [styles.practiceCard, pressed && styles.pressed]}>
+                <View style={styles.practiceIcon}><Ionicons name="document-text-outline" size={21} color={Colors.primary} /></View>
+                <View style={styles.lessonCopy}><Text style={styles.lessonTitle}>Topic practice</Text><Text style={styles.lessonMeta}>{practiceQuestionCount} questions</Text></View>
+                <Ionicons name="arrow-forward" size={18} color={Colors.primary} />
+              </Pressable>
+            ) : null}
+          </View>
         ) : (
           <View style={styles.emptyState}>
             <Ionicons name="book-outline" size={21} color={Colors.muted} />
@@ -132,6 +137,17 @@ const styles = StyleSheet.create({
   progressText: { color: Colors.muted, fontSize: 12, lineHeight: 18, fontWeight: "600", marginTop: 2 },
   progressTrack: { width: "100%", height: 10, overflow: "hidden", borderRadius: 999, backgroundColor: "#EDF1F7" },
   progressFill: { height: "100%", borderRadius: 999, backgroundColor: Colors.primary },
+  lessonList: { gap: 10 },
+  lessonCard: { minHeight: 78, flexDirection: "row", alignItems: "center", gap: 12, padding: 13, borderRadius: 16, borderWidth: 1, borderColor: Colors.line, backgroundColor: Colors.surface },
+  lessonNumber: { width: 42, height: 42, alignItems: "center", justifyContent: "center", borderRadius: 14, backgroundColor: Colors.primarySoft },
+  lessonComplete: { backgroundColor: Colors.primary },
+  lessonNumberText: { color: Colors.primary, fontSize: 14, fontWeight: "800" },
+  lessonCopy: { flex: 1, minWidth: 0, gap: 4 },
+  lessonTitle: { color: Colors.ink, fontSize: 14, lineHeight: 19, fontWeight: "700" },
+  lessonMeta: { color: Colors.muted, fontSize: 10.5, lineHeight: 14 },
+  practiceCard: { minHeight: 78, flexDirection: "row", alignItems: "center", gap: 12, marginTop: 6, padding: 13, borderRadius: 16, backgroundColor: Colors.primarySoft },
+  practiceIcon: { width: 42, height: 42, alignItems: "center", justifyContent: "center", borderRadius: 14, backgroundColor: "#FFFFFF" },
+  pressed: { opacity: 0.7 },
   emptyState: { minHeight: 96, flexDirection: "row", alignItems: "center", gap: 10, padding: 16, borderRadius: 15, backgroundColor: Colors.surface },
   emptyText: { flex: 1, color: Colors.muted, fontSize: 12, lineHeight: 17 },
   errorTitle: { color: Colors.ink, fontSize: 24, lineHeight: 30, fontWeight: "700" },

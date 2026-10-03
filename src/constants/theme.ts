@@ -1,5 +1,3 @@
-import { Platform } from "react-native";
-
 export const Colors = {
   primary: "#2556B7",
   primaryDark: "#174489",
@@ -101,8 +99,11 @@ export const Shadow = {
 
 export const MaxContentWidth = 820;
 
-export const Fonts = Platform.select({
-  ios: { rounded: "ui-rounded", sans: "system-ui" },
-  web: { rounded: "system-ui", sans: "system-ui" },
-  default: { rounded: "sans-serif", sans: "sans-serif" },
-})!;
+export const Fonts = {
+  display: "DMSerifDisplay_400Regular",
+  sans: "Inter_400Regular",
+  sansMedium: "Inter_500Medium",
+  sansSemiBold: "Inter_600SemiBold",
+  sansBold: "Inter_700Bold",
+  sansExtraBold: "Inter_800ExtraBold",
+} as const;

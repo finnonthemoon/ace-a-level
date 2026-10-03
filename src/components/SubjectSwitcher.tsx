@@ -67,7 +67,7 @@ function SubjectArtwork({ subjectId, color }: { subjectId: SubjectId; color: str
   );
 }
 
-export function SubjectSwitcher({ compact = false }: { compact?: boolean }) {
+export function SubjectSwitcher({ compact = false, header = false }: { compact?: boolean; header?: boolean }) {
   const { activeSubjectId, selections } = useCourse();
   const { transitionToSubject } = useSubjectTransition();
   const activeSubject = findSubject(activeSubjectId);
@@ -98,8 +98,8 @@ export function SubjectSwitcher({ compact = false }: { compact?: boolean }) {
   }
 
   return (
-    <View style={[styles.shell, compact && styles.compactShell]}>
-      <Text style={styles.heading}>CURRENT SUBJECT</Text>
+    <View style={[styles.shell, compact && styles.compactShell, header && styles.headerShell]}>
+      {!header ? <Text style={styles.heading}>CURRENT SUBJECT</Text> : null}
       <Pressable
         ref={trigger}
         accessibilityRole="button"
@@ -108,6 +108,7 @@ export function SubjectSwitcher({ compact = false }: { compact?: boolean }) {
         onPress={openMenu}
         style={({ pressed }) => [
           styles.trigger,
+          header && styles.headerTrigger,
           {
             backgroundColor: colorWithAlpha(activeSubject.color, 0.025),
             borderColor: colorWithAlpha(activeSubject.color, 0.16),
@@ -115,16 +116,16 @@ export function SubjectSwitcher({ compact = false }: { compact?: boolean }) {
           pressed && styles.pressed,
         ]}
       >
-        <SubjectArtwork subjectId={activeSubject.id} color={activeSubject.color} />
-        <View style={[styles.triggerIcon, { backgroundColor: activeSubject.softColor }]}>
-          <Ionicons name={activeSubject.icon} size={21} color={activeSubject.color} />
+        {!header ? <SubjectArtwork subjectId={activeSubject.id} color={activeSubject.color} /> : null}
+        <View style={[styles.triggerIcon, header && styles.headerTriggerIcon, { backgroundColor: activeSubject.softColor }]}>
+          <Ionicons name={activeSubject.icon} size={header ? 19 : 21} color={activeSubject.color} />
         </View>
-        <View style={styles.triggerCopy}>
-          <Text style={styles.triggerTitle}>{activeSubject.title}</Text>
-          <Text style={styles.triggerHint}>Your A Level course</Text>
+        <View style={[styles.triggerCopy, header && styles.headerTriggerCopy]}>
+          <Text numberOfLines={1} style={styles.triggerTitle}>{activeSubject.title}</Text>
+          {!header ? <Text style={styles.triggerHint}>Your A Level course</Text> : null}
         </View>
-        <View style={[styles.chevronBacking, { backgroundColor: colorWithAlpha(activeSubject.color, 0.07) }]}>
-          <Ionicons name={open ? "chevron-up" : "chevron-down"} size={17} color={activeSubject.color} />
+        <View style={[styles.chevronBacking, header && styles.headerChevron, { backgroundColor: colorWithAlpha(activeSubject.color, 0.07) }]}>
+          <Ionicons name={open ? "chevron-up" : "chevron-down"} size={header ? 14 : 17} color={activeSubject.color} />
         </View>
       </Pressable>
 
@@ -165,13 +166,18 @@ export function SubjectSwitcher({ compact = false }: { compact?: boolean }) {
 const styles = StyleSheet.create({
   shell: { gap: 9 },
   compactShell: { gap: 7 },
+  headerShell: { flex: 1, minWidth: 0, gap: 0 },
   heading: { color: Colors.muted, fontSize: 11, fontWeight: "700", letterSpacing: 1.2 },
   trigger: { height: 64, flexDirection: "row", alignItems: "center", gap: 11, paddingHorizontal: 13, borderRadius: 15, borderWidth: 1, overflow: "hidden" },
+  headerTrigger: { height: 48, gap: 8, paddingHorizontal: 7, paddingRight: 9, borderRadius: 16, backgroundColor: Colors.surface },
   triggerIcon: { width: 40, height: 40, borderRadius: 11, alignItems: "center", justifyContent: "center", zIndex: 1 },
+  headerTriggerIcon: { width: 34, height: 34, borderRadius: 11 },
   triggerCopy: { flex: 1, gap: 2, zIndex: 1 },
+  headerTriggerCopy: { flex: 1, minWidth: 0 },
   triggerTitle: { color: Colors.ink, fontSize: 16, fontWeight: "700" },
   triggerHint: { color: "#556174", fontSize: 12 },
   chevronBacking: { width: 30, height: 30, borderRadius: 15, alignItems: "center", justifyContent: "center", zIndex: 1 },
+  headerChevron: { width: 24, height: 24, borderRadius: 12 },
   artwork: { position: "absolute", right: 27, top: 0, bottom: 0, width: 112, alignItems: "center", justifyContent: "center", opacity: 0.15 },
   pressed: { opacity: 0.9, transform: [{ scale: 0.99 }] },
   modal: { flex: 1, backgroundColor: "rgba(17, 31, 55, 0.28)" },

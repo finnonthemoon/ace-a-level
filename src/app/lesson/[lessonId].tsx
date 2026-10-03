@@ -1,11 +1,12 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 import { LessonPlayer } from "@/components/lesson/LessonPlayer";
 import { Screen } from "@/components/Screen";
 import { Colors } from "@/constants/theme";
 import { useCourse } from "@/contexts/CourseContext";
+import { useStudyActivity } from "@/contexts/StudyActivityContext";
 import { useTopicProgress } from "@/contexts/TopicProgressContext";
 import { findLesson } from "@/content/lesson-content";
 import { canViewStage } from "@/product/qualification";
@@ -15,11 +16,18 @@ export default function LessonScreen() {
   const { lessonId } = useLocalSearchParams<{ lessonId: string }>();
   const lesson = findLesson(lessonId);
   const { qualificationLevel } = useCourse();
+  const { startStudySession } = useStudyActivity();
   const { completeLesson, getProgress, isHydrated, recordQuestionAttempt } = useTopicProgress();
   const goBack = useCallback(() => {
     if (router.canGoBack()) router.back();
     else router.replace("/(tabs)/learn");
   }, [router]);
+  const isStudyable = Boolean(lesson && lesson.contentStatus === "ready" && lesson.pages.length > 0 && canViewStage(qualificationLevel, lesson.stage));
+
+  useEffect(() => {
+    if (!isStudyable) return;
+    return startStudySession();
+  }, [isStudyable, startStudySession]);
 
   if (!lesson) {
     return <Screen eyebrow="LESSON" title="Lesson unavailable" subtitle="This lesson could not be found." onBack={goBack} />;

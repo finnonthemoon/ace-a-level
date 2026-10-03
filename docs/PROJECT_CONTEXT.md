@@ -66,6 +66,8 @@ Implemented:
 - a blue visual system derived from the proven ACE TMUA card, spacing, and hierarchy patterns;
 - a restrained A-level visual refresh and five transparent star mascot PNGs, with a cross-app stage preview in Profile;
 - six subject-specific star mascot PNGs used in Home, Learn, and Practice;
+- a dark, card-led Learn home with study activity counters, swipeable course actions, and a three-tab Learn, Practice, and Progress navigation;
+- local study-activity measurement while ready lesson content is open, persisted under the A-level storage namespace;
 - the selected blue star on white as the app icon asset for iOS, Android, and web;
 - a subject dropdown and a full-screen, reversible colour-splash transition with transparent illustrated pose frames for each subject (five Chemistry poses, two for each other subject) plus continuous motion between poses;
 - a multi-subject dashboard and 3–5-subject onboarding model;
@@ -87,7 +89,7 @@ Not yet implemented:
 - the practice runner and assessment formats;
 - final A-level branding beyond the selected icon, legal URLs, or store metadata;
 - ranked mode, friend duels, or competitive leaderboards.
-- study-activity measurement and automatic mascot stage changes (the current stage selector is explicitly a visual preview).
+- automatic mascot stage changes (the current stage selector is explicitly a visual preview).
 
 See `docs/STUDY_PLAN.md` for the v2 study-plan data model, the additive cloud migration (not deployed), legacy fallback, notification strategy, test coverage and remaining device verification. Only OCR MEI Mathematics B currently has a catalogue specification; other subjects can be kept in the plan with their board unset. Diagnostic routes currently remain preparation previews. Future weekly recommendations and automatic mascot progression are types/foundations only.
 
